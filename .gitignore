@@ -1,3 +1,11 @@
+target/
+.idea/
+*.iml
+**/out/
+**/gen-java/
+build/
+thriftout/
+
 # Compiled class file
 *.class
 
