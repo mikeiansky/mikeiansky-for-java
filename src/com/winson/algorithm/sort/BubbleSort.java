@@ -6,10 +6,27 @@ package com.winson.algorithm.sort;
  **/
 public class BubbleSort {
 
+    public static int[] arr = {34, 52, 11, 56, 29, 40, 15, 42};
+
     public static void main(String[] args) {
+        System.out.println("before bubble sort");
+        SortUtil.printArr(arr);
 
-        System.out.println("Hello World!");
 
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+
+        System.out.println("after bubble sort");
+        SortUtil.printArr(arr);
     }
+
 
 }
