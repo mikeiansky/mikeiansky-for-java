@@ -12,7 +12,12 @@ public class MergeSort {
     public static void main(String[] args) {
         System.out.println("before merge sort");
         SortUtil.printArr(arr);
-        arr = mergeSort(arr, 0, arr.length - 1);
+
+//        arr = mergeSort(arr, 0, arr.length - 1);
+//        GoodMergeSort.mergeSort(arr, arr.length);
+
+        mergeSortInternally(arr, 0, arr.length - 1);
+
         System.out.println("after merge sort");
         SortUtil.printArr(arr);
     }
@@ -55,6 +60,53 @@ public class MergeSort {
             }
         }
         return result;
+    }
+
+
+    public static void mergeSortInternally(int[] ma, int s, int e) {
+//        System.out.println("s : " + s + " , e : " + e);
+        if (s >= e) {
+            return;
+        }
+        int p = s + (e - s) / 2;
+        mergeSortInternally(ma, s, p);
+        mergeSortInternally(ma, p + 1, e);
+
+        mergeNormal(ma, s, p, e);
+    }
+
+    public static void mergeNormal(int[] ma, int s, int p, int e) {
+        int[] tmp = new int[e - s + 1];
+
+        int i = s;
+        int j = p + 1;
+        int k = 0;
+        while (i <= p && j <= e) {
+            if (ma[i] < ma[j]) {
+                tmp[k++] = ma[i++];
+            } else {
+                tmp[k++] = ma[j++];
+            }
+        }
+
+        int start = i;
+        int end = p;
+        if (j <= e) {
+            start = j;
+            end = e;
+        }
+
+        while (start <= end) {
+            tmp[k++] = ma[start++];
+        }
+
+        int a = s;
+        int b = e;
+        int t = 0;
+        while (a <= b) {
+            ma[a++] = tmp[t++];
+        }
+
     }
 
 }
