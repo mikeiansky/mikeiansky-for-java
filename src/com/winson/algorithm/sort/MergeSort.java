@@ -39,17 +39,19 @@ public class MergeSort {
             if (prefixIndex >= prefixArr.length) {
                 result[i] = suffixArr[suffixIndex];
                 suffixIndex++;
-            } else if (suffixIndex >= suffixArr.length) {
+                continue;
+            }
+            if (suffixIndex >= suffixArr.length) {
                 result[i] = prefixArr[prefixIndex];
                 prefixIndex++;
+                continue;
+            }
+            if (prefixArr[prefixIndex] > suffixArr[suffixIndex]) {
+                result[i] = suffixArr[suffixIndex];
+                suffixIndex++;
             } else {
-                if (prefixArr[prefixIndex] > suffixArr[suffixIndex]) {
-                    result[i] = suffixArr[suffixIndex];
-                    suffixIndex++;
-                } else {
-                    result[i] = prefixArr[prefixIndex];
-                    prefixIndex++;
-                }
+                result[i] = prefixArr[prefixIndex];
+                prefixIndex++;
             }
         }
         return result;
