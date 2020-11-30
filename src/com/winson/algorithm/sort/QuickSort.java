@@ -34,6 +34,9 @@ public class QuickSort {
         }
         int split = p;
         for (int i = p; i <= r; i++) {
+            if(i == pivot){
+                continue;
+            }
             if (qa[i] < qa[pivot]) {
                 int temp = qa[split];
                 qa[split] = qa[i];
