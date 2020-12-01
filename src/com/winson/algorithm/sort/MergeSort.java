@@ -72,7 +72,8 @@ public class MergeSort {
         mergeSortInternally(ma, s, p);
         mergeSortInternally(ma, p + 1, e);
 
-        mergeNormal(ma, s, p, e);
+//        mergeNormal(ma, s, p, e);
+        mergeSentry(ma, s, p, e);
     }
 
     public static void mergeNormal(int[] ma, int s, int p, int e) {
@@ -105,6 +106,33 @@ public class MergeSort {
         int t = 0;
         while (a <= b) {
             ma[a++] = tmp[t++];
+        }
+
+    }
+
+    public static void mergeSentry(int[] ma, int s, int p, int e) {
+        int[] headArr = new int[p - s + 2];
+        int[] tailArr = new int[e - p + 1];
+        int headLength = p - s + 1;
+        for (int i = 0; i < headLength; i++) {
+            headArr[i] = ma[s + i];
+        }
+        headArr[headArr.length - 1] = Integer.MAX_VALUE;
+
+        int tailLength = e - p;
+        for (int i = 0; i < tailLength; i++) {
+            tailArr[i] = ma[p + i + 1];
+        }
+        tailArr[tailArr.length - 1] = Integer.MAX_VALUE;
+        int i = 0;
+        int j = 0;
+        int k = s;
+        while (k <= e) {
+            if (headArr[i] <= tailArr[j]) {
+                ma[k++] = headArr[i++];
+            } else {
+                ma[k++] = tailArr[j++];
+            }
         }
 
     }
