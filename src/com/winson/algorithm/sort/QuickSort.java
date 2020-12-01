@@ -14,9 +14,10 @@ public class QuickSort {
         SortUtil.printArr(arr);
 
 //        quickSort(arr, 0, arr.length - 1, arr.length - 1);
-        quickSort(arr, 0, arr.length - 1, 2);
+//        quickSort(arr, 0, arr.length - 1, 2);
+        GoodQuickSort.quickSort(arr, arr.length);
 
-        System.out.println("before quick sort");
+        System.out.println("after quick sort");
         SortUtil.printArr(arr);
     }
 
@@ -27,9 +28,6 @@ public class QuickSort {
         }
         int split = p;
         for (int i = p; i <= r; i++) {
-            if(i == pivot){
-                continue;
-            }
             if (qa[i] < qa[pivot]) {
                 int temp = qa[split];
                 qa[split] = qa[i];
@@ -43,7 +41,7 @@ public class QuickSort {
         qa[split] = temp;
 
         pivot = split;
-        quickSort(qa, p, pivot-1, pivot-1);
+        quickSort(qa, p, pivot - 1, pivot - 1);
         quickSort(qa, pivot + 1, r, r);
     }
 
