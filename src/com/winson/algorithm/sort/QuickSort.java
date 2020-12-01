@@ -13,7 +13,8 @@ public class QuickSort {
         System.out.println("before quick sort");
         SortUtil.printArr(arr);
 
-        quickSort(arr, 0, arr.length - 1, arr.length - 1);
+//        quickSort(arr, 0, arr.length - 1, arr.length - 1);
+        quickSort(arr, 0, arr.length - 1, 2);
 
         System.out.println("before quick sort");
         SortUtil.printArr(arr);
@@ -21,15 +22,7 @@ public class QuickSort {
 
     public static void quickSort(int[] qa, int p, int r, int pivot) {
         int length = r - p;
-        if (length <= 0) {
-            return;
-        }
-        if (length == 1) {
-            if (qa[p] > qa[r]) {
-                int temp = qa[p];
-                qa[p] = qa[r];
-                qa[r] = temp;
-            }
+        if (length <= 1) {
             return;
         }
         int split = p;
