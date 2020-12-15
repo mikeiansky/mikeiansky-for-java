@@ -18,9 +18,10 @@ public class TestList {
         list.add(3);
         list.add(4);
         list.add(5);
+        list.add(0,10);
         System.out.println(list);
-        System.out.println(list.subList(0,4));
-        System.out.println(list.subList(0,list.size()));
+//        System.out.println(list.subList(0,4));
+//        System.out.println(list.subList(0,list.size()));
     }
 
 }
