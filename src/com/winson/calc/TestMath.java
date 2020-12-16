@@ -18,7 +18,7 @@ public class TestMath {
         Date targetDate = sdf.parse(tdStr);
         Date currentDate = sdf.parse(cdStr);
 //        System.out.println(currentDate.getTime()-targetDate.getTime());
-        System.out.println(Math.pow(1.13,30));
+        System.out.println(Math.pow(1.1,50));
     }
 
 }
