@@ -1,9 +1,7 @@
 package com.winson.algorithm.sort;
 
-import java.util.Arrays;
-
 /**
- * @author winson
+ * @author com.winson
  * @date 2020/11/27
  **/
 public class SortUtil {

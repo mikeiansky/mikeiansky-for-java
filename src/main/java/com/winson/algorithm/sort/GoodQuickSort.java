@@ -1,7 +1,7 @@
 package com.winson.algorithm.sort;
 
 /**
- * @author winson
+ * @author com.winson
  * @date 2020/12/1
  **/
 public class GoodQuickSort {

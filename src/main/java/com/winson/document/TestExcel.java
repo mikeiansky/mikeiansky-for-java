@@ -1,6 +1,5 @@
 package com.winson.document;
 
-import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 
@@ -11,7 +10,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * @author winson
+ * @author com.winson
  * @date 2020/12/18
  * @desc excel 测试类
  **/

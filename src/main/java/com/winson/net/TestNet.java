@@ -6,7 +6,7 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 
 /**
- * @author winson
+ * @author com.winson
  * @date 2020/12/17
  **/
 public class TestNet {
