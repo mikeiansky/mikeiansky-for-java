@@ -11,13 +11,14 @@ public class TestDate {
     public static void main(String[] args) {
 
         Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH,-23);
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+//        int month = calendar.get(Calendar.MONTH)+1;
+//        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         System.out.println(year);
-        System.out.println(month);
-        System.out.println(day);
+//        System.out.println(month);
+//        System.out.println(day);
 
 
     }

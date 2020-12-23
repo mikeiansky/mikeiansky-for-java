@@ -19,6 +19,11 @@ public class TestMath {
         Date currentDate = sdf.parse(cdStr);
 //        System.out.println(currentDate.getTime()-targetDate.getTime());
         System.out.println(Math.pow(1.1,50));
+
+        double radius = Math.pow(1,2)+Math.pow(1,2);
+        double sqrt = Math.sqrt(radius);
+        System.out.println(radius);
+
     }
 
 }
