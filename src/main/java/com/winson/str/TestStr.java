@@ -1,7 +1,7 @@
 package com.winson.str;
 
 /**
- * @author winson
+ * @author com.winson
  * @date 2020/12/15
  **/
 public class TestStr {

@@ -1,13 +1,11 @@
 package com.winson.geo;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * @author winson
+ * @author com.winson
  * @date 2020/12/18
  **/
 public class TestGaodeGeo {

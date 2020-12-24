@@ -1,7 +1,7 @@
 package com.winson.algorithm.sort;
 
 /**
- * @author winson
+ * @author com.winson
  * @date 2020/11/30
  * @desc 归并排序
  **/
