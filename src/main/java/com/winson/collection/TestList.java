@@ -18,8 +18,13 @@ public class TestList {
         list.add(3);
         list.add(4);
         list.add(5);
-        list.add(0,10);
-        System.out.println(list);
+        list.add(6);
+        list.add(7);
+        int from = 0;
+        int size = 3;
+        System.out.println(list.subList(from, list.size()));
+        System.out.println(list.subList(size, size * 2));
+//        System.out.println(list);
 //        System.out.println(list.subList(0,4));
 //        System.out.println(list.subList(0,list.size()));
     }
