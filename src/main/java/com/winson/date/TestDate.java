@@ -13,13 +13,13 @@ import java.util.Date;
 public class TestDate {
 
     public static void main(String[] args) throws ParseException {
-        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2020-12-24 09:00:00");
-        Instant reqInstant = date.toInstant();
+//        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2020-12-24 09:00:00");
+//        Instant reqInstant = date.toInstant();
 //        System.out.println("now-date:"+new Date());
 //        System.out.println("now-date:"+new Date().getTime());
-        System.out.println("date:"+new Date());
-        System.out.println("systemt-time:"+System.currentTimeMillis());
-        System.out.println("instant-time:"+reqInstant.toEpochMilli());
+//        System.out.println("date:"+new Date());
+//        System.out.println("systemt-time:"+System.currentTimeMillis());
+//        System.out.println("instant-time:"+reqInstant.toEpochMilli());
 //        System.out.println("instant-now:"+Instant.now());
 //        System.out.println("instant-time:"+Instant.now().toEpochMilli());
 //        System.out.println("now:"+new Date());
@@ -33,8 +33,11 @@ public class TestDate {
 //        System.out.println(month);
 //        System.out.println(day);
 
-
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = sdf.parse("2020-12-01 00:00:00");
+        Date date2 = sdf.parse("2020-12-03 00:00:00");
+        System.out.println(date2.after(date1));
+        System.out.println(sdf.format(date2));
 
     }
 
