@@ -18,7 +18,7 @@ import java.util.Map;
  * @date 2020/12/18
  * @desc excel 测试类
  **/
-public class TestExcel {
+public class TestExcelToPdf {
 
     public static void main(String[] args) {
         int i;
