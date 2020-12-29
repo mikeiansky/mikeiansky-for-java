@@ -3,7 +3,7 @@ package com.winson.juc;
 /**
  * @author winson
  * @date 2020/12/29
- * @desc 死锁v1版本
+ * @desc 死锁v1版本，使用synchronized方式
  **/
 public class TestDeadLockV1 {
 
