@@ -12,7 +12,7 @@ public class TestList {
 
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
-        list.add(0);
+//        list.add(0);
         list.add(1);
         list.add(2);
         list.add(3);
@@ -20,13 +20,15 @@ public class TestList {
         list.add(5);
         list.add(6);
         list.add(7);
-        int from = 0;
-        int size = 3;
-        System.out.println(list.subList(from, list.size()));
-        System.out.println(list.subList(size, size * 2));
+//        int from = 0;
+//        int size = 3;
+//        System.out.println(list.subList(from, list.size()));
+//        System.out.println(list.subList(size, size * 2));
 //        System.out.println(list);
 //        System.out.println(list.subList(0,4));
 //        System.out.println(list.subList(0,list.size()));
+        list.remove((Integer) 7);
+        System.out.println(list);
     }
 
 }

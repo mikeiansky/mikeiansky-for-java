@@ -33,11 +33,15 @@ public class TestDate {
 //        System.out.println(month);
 //        System.out.println(day);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date1 = sdf.parse("2020-12-01 00:00:00");
-        Date date2 = sdf.parse("2020-12-03 00:00:00");
-        System.out.println(date2.after(date1));
-        System.out.println(sdf.format(date2));
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date date1 = sdf.parse("2020-12-01 00:00:00");
+//        Date date2 = sdf.parse("2020-12-03 00:00:00");
+//        System.out.println(date2.after(date1));
+//        System.out.println(sdf.format(date2));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.HOUR_OF_DAY, -8);
+        System.out.println(calendar.getTime());
 
     }
 
