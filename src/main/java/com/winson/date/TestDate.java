@@ -39,9 +39,13 @@ public class TestDate {
 //        System.out.println(date2.after(date1));
 //        System.out.println(sdf.format(date2));
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.HOUR_OF_DAY, -8);
-        System.out.println(calendar.getTime());
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.HOUR_OF_DAY, -8);
+//        System.out.println(calendar.getTime());
+
+        String dateStr = "1995-7-24好";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(sdf.format(sdf.parse(dateStr)));
 
     }
 
