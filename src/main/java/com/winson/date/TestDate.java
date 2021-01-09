@@ -43,8 +43,8 @@ public class TestDate {
 //        calendar.add(Calendar.HOUR_OF_DAY, -8);
 //        System.out.println(calendar.getTime());
 
-        String dateStr = "1995-7-24好";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = "2020-01-29 01";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(sdf.format(sdf.parse(dateStr)));
 
     }
