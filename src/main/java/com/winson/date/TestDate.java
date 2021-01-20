@@ -13,39 +13,29 @@ import java.util.Date;
 public class TestDate {
 
     public static void main(String[] args) throws ParseException {
-//        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2020-12-24 09:00:00");
-//        Instant reqInstant = date.toInstant();
-//        System.out.println("now-date:"+new Date());
-//        System.out.println("now-date:"+new Date().getTime());
-//        System.out.println("date:"+new Date());
-//        System.out.println("systemt-time:"+System.currentTimeMillis());
-//        System.out.println("instant-time:"+reqInstant.toEpochMilli());
-//        System.out.println("instant-now:"+Instant.now());
-//        System.out.println("instant-time:"+Instant.now().toEpochMilli());
-//        System.out.println("now:"+new Date());
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.add(Calendar.MONTH,-23);
-//        int year = calendar.get(Calendar.YEAR);
-//        int month = calendar.get(Calendar.MONTH)+1;
-//        int day = calendar.get(Calendar.DAY_OF_MONTH);
+//        String dateStr = "2020-1-29 01:01:01";
+//        String dateStr = "2017-9";
+//        String dateStr = "0000-00";
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+//        System.out.println("没有格式化之前");
+//        System.out.println(sdf.parse(dateStr));
+//        System.out.println("格式化之后");
+//        System.out.println(sdf.format(sdf.parse(dateStr)));
+//        Date date = sdf.parse(dateStr);
+//        Calendar c = Calendar.getInstance();
+//        System.out.println(c.getTime());
+//        c.setTime(date);
+//        System.out.println(c.getTime());
+//        c.add(Calendar.YEAR,-4);
+//        System.out.println(c.getTime());
+//        System.out.println(sdf.format(dateStr));
+//
+//        String one = "2020-12-14 12:12:12";
+//        String two = "2020-12-13 12:12:10";
+//        System.out.println(one.compareTo(two));
 
-//        System.out.println(year);
-//        System.out.println(month);
-//        System.out.println(day);
-
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        Date date1 = sdf.parse("2020-12-01 00:00:00");
-//        Date date2 = sdf.parse("2020-12-03 00:00:00");
-//        System.out.println(date2.after(date1));
-//        System.out.println(sdf.format(date2));
-
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.add(Calendar.HOUR_OF_DAY, -8);
-//        System.out.println(calendar.getTime());
-
-        String dateStr = "2020-01-29 01";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(sdf.format(sdf.parse(dateStr)));
+        String dateOne = "2020-10";
+        SimpleDateFormat sdf = new SimpleDateFormat(dateOne);
 
     }
 
