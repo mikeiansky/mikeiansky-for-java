@@ -2,6 +2,7 @@ package com.winson.collection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author com.winson
@@ -27,7 +28,9 @@ public class TestList {
 //        System.out.println(list);
 //        System.out.println(list.subList(0,4));
 //        System.out.println(list.subList(0,list.size()));
-        list.remove((Integer) 7);
+//        list.remove((Integer) 7);
+//        System.out.println(list);
+        list = list.stream().filter(id->id>4).collect(Collectors.toList());
         System.out.println(list);
     }
 
