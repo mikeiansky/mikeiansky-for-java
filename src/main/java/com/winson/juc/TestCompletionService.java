@@ -135,6 +135,7 @@ public class TestCompletionService {
         for (int i = 0; i < 3; i++) {
             try {
                 Future<String> result = ec.take();
+                System.out.println("get future is : " + result);
                 System.out.println("index - " + i + " , result is : " + result.get());
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
