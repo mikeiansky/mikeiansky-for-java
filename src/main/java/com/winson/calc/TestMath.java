@@ -23,9 +23,11 @@ public class TestMath {
 //        double radius = Math.pow(1,2)+Math.pow(1,2);
 //        double sqrt = Math.sqrt(radius);
 //        System.out.println(radius);
-        System.out.println(2880*60*1000);
-        System.out.println(Integer.MAX_VALUE);
-        System.out.println(Math.pow(1.2,-2));
+//        System.out.println(2880*60*1000);
+//        System.out.println(Integer.MAX_VALUE);
+//        System.out.println(Math.pow(1.2,-2));
+
+        System.out.println(Math.log1p(0));
 
     }
 

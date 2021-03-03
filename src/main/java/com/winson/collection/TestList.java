@@ -1,6 +1,7 @@
 package com.winson.collection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,15 +13,15 @@ import java.util.stream.Collectors;
 public class TestList {
 
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
+//        List<Integer> list = new ArrayList<>();
 //        list.add(0);
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.add(6);
-        list.add(7);
+//        list.add(1);
+//        list.add(2);
+//        list.add(3);
+//        list.add(4);
+//        list.add(5);
+//        list.add(6);
+//        list.add(7);
 //        int from = 0;
 //        int size = 3;
 //        System.out.println(list.subList(from, list.size()));
@@ -30,8 +31,22 @@ public class TestList {
 //        System.out.println(list.subList(0,list.size()));
 //        list.remove((Integer) 7);
 //        System.out.println(list);
-        list = list.stream().filter(id->id>4).collect(Collectors.toList());
-        System.out.println(list);
+//        list = list.stream().filter(id->id>4).collect(Collectors.toList());
+//        System.out.println(list);
+
+//        int[] ints3 = new int[]{3, 102};
+//        List<int[]> list = Arrays.asList(ints3);
+
+        List<String> mobileList = new ArrayList<>();
+        mobileList.add("123");
+        mobileList.add("123");
+        mobileList.add("123");
+        mobileList.add("123");
+
+        List<String> result = mobileList.stream().distinct().collect(Collectors.toList());
+        System.out.println(result);
+
+
     }
 
 }
