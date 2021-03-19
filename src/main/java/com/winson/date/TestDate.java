@@ -34,8 +34,13 @@ public class TestDate {
 //        String two = "2020-12-13 12:12:10";
 //        System.out.println(one.compareTo(two));
 
-        String dateOne = "2020-10";
-        SimpleDateFormat sdf = new SimpleDateFormat(dateOne);
+//        String dateOne = "2020-10";
+//        SimpleDateFormat sdf = new SimpleDateFormat(dateOne);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, -30);
+
+        System.out.println(calendar.getTime());
 
     }
 
