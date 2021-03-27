@@ -27,7 +27,9 @@ public class TestMath {
 //        System.out.println(Integer.MAX_VALUE);
 //        System.out.println(Math.pow(1.2,-2));
 
-        System.out.println(Math.log1p(0));
+//        System.out.println(Math.log1p(0));
+
+
 
     }
 
