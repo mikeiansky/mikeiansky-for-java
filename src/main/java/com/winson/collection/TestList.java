@@ -38,14 +38,16 @@ public class TestList {
 //        List<int[]> list = Arrays.asList(ints3);
 
         List<String> mobileList = new ArrayList<>();
-        mobileList.add("123");
-        mobileList.add("123");
-        mobileList.add("123");
-        mobileList.add("123");
+        mobileList.add("2");
+        mobileList.add("3");
+        mobileList.add("6");
+        mobileList.add("7");
+        mobileList.add("10");
 
-        List<String> result = mobileList.stream().distinct().collect(Collectors.toList());
-        System.out.println(result);
+//        List<String> result = mobileList.stream().distinct().collect(Collectors.toList());
+//        System.out.println(result);
 
+        System.out.println(mobileList.subList(2, 4));
 
     }
 
