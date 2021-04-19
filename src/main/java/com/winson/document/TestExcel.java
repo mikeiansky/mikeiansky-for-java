@@ -24,7 +24,9 @@ public class TestExcel {
     public static int index = 0;
 
     public static void main(String[] args) {
+        String emailRegex = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$";
         int i;
+        int count = 0;
         Sheet sheet;
         Workbook book;
         Map<String,String> record = new HashMap<>();
@@ -32,7 +34,7 @@ public class TestExcel {
         List<Integer> userIdList = new ArrayList<>();
         try {
             //t.xls为要读取的excel文件名
-            book = Workbook.getWorkbook(new File("D:\\invitation.xls"));
+            book = Workbook.getWorkbook(new File("D:\\bas_company_user.xls"));
             //获得第一个工作表对象(ecxel中sheet的编号从0开始,0,1,2,3,....)
             sheet = book.getSheet(0);
             int rows = sheet.getRows();
@@ -76,32 +78,42 @@ public class TestExcel {
 //                System.out.println(fileName);
 //                download(fileName,"https://img.shixijob.net/"+downloadUrl);
                 String userId = sheet.getCell(0, i).getContents();
+                String email = sheet.getCell(1, i).getContents();
 //                System.out.println(name);
-                userIdList.add(Integer.valueOf(userId));
+//                userIdList.add(Integer.valueOf(userId));
+
+                if(!email.matches(emailRegex)){
+//                    System.out.println("userId : "+userId+" , email : '" + email.trim() +"'");
+                    String sql = "update  ald_bas.bas_company_user set email = '"+email.trim()+"'" + " where user_id = " + userId + " ;";
+                    System.out.println(sql);
+                    count++;
+                }
+
                 i++;
             }
             book.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("not match email : " + count);
 //        System.out.println(String.join(",",userIdList));
 
-        int size = 500;
-        Map<Integer,List<Integer>> result = userIdList.stream().collect(Collectors.groupingBy(uid-> {
-            int key = index/size;
-            index++;
-            return key;
-        },Collectors.toList()));
-
-        System.out.println(result.size());
-
-        int total = 0;
-        for (Integer key : result.keySet()) {
-            System.out.println(result.get(key));
-            total += result.get(key).size();
-        }
-
-        System.out.println(total);
+//        int size = 500;
+//        Map<Integer,List<Integer>> result = userIdList.stream().collect(Collectors.groupingBy(uid-> {
+//            int key = index/size;
+//            index++;
+//            return key;
+//        },Collectors.toList()));
+//
+//        System.out.println(result.size());
+//
+//        int total = 0;
+//        for (Integer key : result.keySet()) {
+//            System.out.println(result.get(key));
+//            total += result.get(key).size();
+//        }
+//
+//        System.out.println(total);
 //        System.out.println(userIdList);
 //        System.out.println(userIdList.size());
 

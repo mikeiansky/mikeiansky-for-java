@@ -10,24 +10,70 @@ import java.util.List;
  **/
 public class TestCollectSort {
 
+    public static class Score {
+
+        private int score;
+        private String time;
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            this.score = score;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        @Override
+        public String toString() {
+            return "Score{" +
+                    "score=" + score +
+                    ", time='" + time + '\'' +
+                    '}';
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("---------- 1 ----------");
 
-        List<String> strList = new ArrayList<>();
-        strList.add("2020-08-01 00:12:33");
-        strList.add("2020-08-03 10:12:33");
-        strList.add("2020-05-01 00:12:33");
-        strList.add("2021-04-01 02:12:33");
-        strList.add("2020-08-01 00:13:33");
-        strList.add("2020-08-01 00:13:34");
-        strList.add("2021-01-01 03:15:37");
+        List<Score> scoreList = new ArrayList<>();
 
-        strList.sort(Comparator.comparing(o1-> o1));
+        Score score1 = new Score();
+        score1.setScore(15);
+        score1.setTime("2021-03-03 12:23:34");
+        scoreList.add(score1);
 
-        for (String s : strList) {
-            System.out.println(s);
-        }
+        Score score2 = new Score();
+        score2.setScore(12);
+        score2.setTime("2021-03-02 12:23:34");
+        scoreList.add(score2);
 
+        Score score3 = new Score();
+        score3.setScore(19);
+        score3.setTime("2021-03-03 15:23:34");
+        scoreList.add(score3);
+
+        Score score4 = new Score();
+        score4.setScore(15);
+        score4.setTime("2021-03-04 12:23:34");
+        scoreList.add(score4);
+
+        Score score5 = new Score();
+        score5.setScore(14);
+        score5.setTime("2021-03-13 12:23:34");
+        scoreList.add(score5);
+
+        scoreList.sort(Comparator.comparing(Score::getScore, Comparator.reverseOrder())
+                .thenComparing(Score::getTime, Comparator.reverseOrder()));
+
+        System.out.println(scoreList);
         System.out.println("---------- 2 ----------");
     }
 
