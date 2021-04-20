@@ -37,17 +37,32 @@ public class TestList {
 //        int[] ints3 = new int[]{3, 102};
 //        List<int[]> list = Arrays.asList(ints3);
 
-        List<String> mobileList = new ArrayList<>();
-        mobileList.add("2");
-        mobileList.add("3");
-        mobileList.add("6");
-        mobileList.add("7");
-        mobileList.add("10");
+//        List<String> mobileList = new ArrayList<>();
+//        mobileList.add("2");
+//        mobileList.add("3");
+//        mobileList.add("6");
+//        mobileList.add("7");
+//        mobileList.add("10");
 
 //        List<String> result = mobileList.stream().distinct().collect(Collectors.toList());
 //        System.out.println(result);
 
-        System.out.println(mobileList.subList(2, 4));
+//        System.out.println(mobileList.subList(2, 4));
+
+        List<Integer> list = null;
+
+//        List<Integer> datas = new ArrayList<>();
+//        datas.add(1);
+//        datas.add(2);
+//        datas.add(3);
+//        System.out.println(datas);
+//        datas.addAll(list);
+
+        Integer aa = null;
+        int[] arr = new int[]{1,2,3,4,5};
+        int[] arr2 = null;
+        System.out.println(arr[5]);
+//        System.out.println(arr[aa]);
 
     }
 
