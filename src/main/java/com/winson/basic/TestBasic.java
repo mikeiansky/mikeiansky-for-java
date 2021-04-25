@@ -14,11 +14,21 @@ public class TestBasic {
     }
 
     public static void main(String[] args) {
-        MyStatic myStatic = new MyStatic();
+//        MyStatic myStatic = new MyStatic();
 //        myStatic.hashCode();
 //        MyStatic.say();
-        myStatic.say();
-        System.out.println(myStatic.name);
+//        myStatic.say();
+//        System.out.println(myStatic.name);
+
+        int index = 0;
+
+        for (int i = 0; i < 30; i++) {
+            int c = 2;
+            int b = c + i;
+            int r = c + b;
+            System.out.println("result is : " + r);
+        }
+
     }
 
 }
