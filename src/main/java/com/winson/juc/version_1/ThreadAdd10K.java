@@ -1,4 +1,4 @@
-package com.winson.juc;
+package com.winson.juc.version_1;
 
 /**
  * @author winson

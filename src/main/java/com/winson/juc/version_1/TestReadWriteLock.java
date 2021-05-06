@@ -1,4 +1,4 @@
-package com.winson.juc;
+package com.winson.juc.version_1;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.Lock;
@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author winson
  * @date 2021/1/20
  **/
-public class TestReadWriteLockDown {
+public class TestReadWriteLock {
 
     public static class MyCache<K, V> {
         private HashMap<K, V> cache = new HashMap<>();
@@ -21,29 +21,26 @@ public class TestReadWriteLockDown {
             readLock.lock();
             try {
                 result = cache.get(k);
-                if (result == null) {
-                    readLock.unlock();
-                    try {
-                        writeLock.lock();
-                        result = cache.get(k);
-                        if (result == null) {
-                            System.out.println("获取缓存数据");
-                            Thread.sleep(2000);
-                            cache.put(k, temp);
-                            result = temp;
-                        }
-                        readLock.lock();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        writeLock.unlock();
-                    }
-                }
-
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
                 readLock.unlock();
+            }
+            if (result == null) {
+                try {
+                    writeLock.lock();
+                    result = cache.get(k);
+                    if (result == null) {
+                        System.out.println("获取缓存数据");
+                        Thread.sleep(2000);
+                        cache.put(k, temp);
+                        result = temp;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    writeLock.unlock();
+                }
             }
             return result;
         }
