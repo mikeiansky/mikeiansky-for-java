@@ -29,15 +29,15 @@ public class TestAccountMaybeDeadLock {
     public static void main(String[] args){
         final Account zhangsan = new Account(100000);
         final Account lisi = new Account(200000);
-
+        final int size = 1000000;
         Thread t1 = new Thread(() -> {
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < size; i++) {
                 zhangsan.transfer(lisi, 2);
             }
         });
 
         Thread t2 = new Thread(() -> {
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < size; i++) {
                 lisi.transfer(zhangsan, 2);
             }
         });
