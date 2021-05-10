@@ -12,15 +12,22 @@ public class TestThreadPoolExecutor {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("test thread pool executor start ... ");
         final AtomicInteger count = new AtomicInteger();
+        final ThreadGroup threadGroup = new ThreadGroup("winson-thread");
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2,
                 4,
                 60,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(1),
-                r -> {
-                    System.out.println("create thread ... " + count.incrementAndGet());
-                    return new Thread(r, "winson-thread");
+                new ThreadFactory() {
+                    @Override
+                    public Thread newThread(Runnable r) {
+                        return new Thread(threadGroup,  r,"a");
+                    }
                 },
+//                r -> {
+//                    System.out.println("create thread ... " + count.incrementAndGet());
+//                    return new Thread(r, "winson-thread");
+//                },
                 new RejectedExecutionHandler() {
                     @Override
                     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
