@@ -26,10 +26,17 @@ public class TestRegex {
 //        String after = "2020-01-04 03:55:24";
 //        System.out.println(after.compareTo(null));
 
-        String source = "helloworld";
-        System.out.println(source);
-        System.out.println(source.substring(0, 5));
+//        String source = "helloworld";
+//        System.out.println(source);
+//        System.out.println(source.substring(0, 5));
 
+        String mobileReg = "1\\d{10}";
+        String mobile = "22345678911";
+        System.out.println(mobile.matches(mobileReg));
+
+        String emailReg = "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$";
+        String email = "4515551511@qq.co";
+        System.out.println(email.matches(emailReg));
 
     }
 
