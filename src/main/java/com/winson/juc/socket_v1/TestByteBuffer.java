@@ -50,18 +50,18 @@ public class TestByteBuffer {
             byte[] buf2 = new byte[1024];
             buffer.get(buf2, 0, readLength);
             String sb2 = new String(buf2);
-            System.out.println("read content2 is : " + sb2);
+//            System.out.println("read content2 is : " + sb2);
             System.out.println("after get2 ... ");
             System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
-//            buffer.flip();
-            buffer.limit(1024);
+            buffer.flip();
+//            buffer.limit(1024);
             buffer.put("hello".getBytes());
-            System.out.println("after put ... ");
+            System.out.println("after put1 ... ");
             System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
 //            buffer.mark();
 //            buffer.reset();
-            System.out.println("after reset ... ");
-            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
+//            System.out.println("after reset ... ");
+//            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
 
 
 //            buffer.flip();
@@ -74,17 +74,31 @@ public class TestByteBuffer {
 //            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
 
 
-            String sb = new String(buf);
-            System.out.println("read content is : " + sb);
-            CharBuffer cb = buffer.asCharBuffer();
-            System.out.println(cb.toString());
+//            String sb = new String(buf);
+//            System.out.println("read content is : " + sb);
+//            CharBuffer cb = buffer.asCharBuffer();
+//            System.out.println(cb.toString());
             System.out.println("once read");
             ByteBuffer buffer2 = ByteBuffer.allocate(1024);
-            buffer2.put("HTTP/1.1 200 ok\n\nHello World\n".getBytes());
+            buffer.flip();
+            System.out.println("before put ... ");
+            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
+            byte[] result = "HTTP/1.1 200 ok\n\nHello World\n".getBytes();
+//            buffer.flip();
+            buffer.limit(1024);
+            buffer.put(result);
+            System.out.println("before write flip ... ");
+            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
             buffer2.flip();
-            socketChannel.write(buffer2);
+            buffer.flip();
+            System.out.println("before write ... ");
+            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
+            socketChannel.write(buffer);
             socketChannel.close();
 
+            System.out.println("after write ... ");
+            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
+            System.out.println("------------------");
         }
     }
 
