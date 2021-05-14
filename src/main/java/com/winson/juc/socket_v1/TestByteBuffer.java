@@ -54,13 +54,24 @@ public class TestByteBuffer {
             System.out.println("after get2 ... ");
             System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
 //            buffer.flip();
-            buffer.get();
-            System.out.println("after gg1 ... ");
+            buffer.limit(1024);
+            buffer.put("hello".getBytes());
+            System.out.println("after put ... ");
+            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
+//            buffer.mark();
+//            buffer.reset();
+            System.out.println("after reset ... ");
             System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
 
-            buffer.get();
-            System.out.println("after gg2 ... ");
-            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
+
+//            buffer.flip();
+//            buffer.get();
+//            System.out.println("after gg1 ... ");
+//            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
+
+//            buffer.get();
+//            System.out.println("after gg2 ... ");
+//            System.out.println("position : " + buffer.position() + " , limit : " + buffer.limit() + " , capacity : " + buffer.capacity());
 
 
             String sb = new String(buf);
