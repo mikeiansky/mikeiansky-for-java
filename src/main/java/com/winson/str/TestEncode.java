@@ -11,8 +11,11 @@ public class TestEncode {
     public static void main(String[] args) throws UnsupportedEncodingException {
         String a = "a";
         String w = "文";
-        System.out.println(a + " : " + printStrBit(a));
-        System.out.println(w + " : " + printStrBit(w));
+//        System.out.println(a + " : " + printStrBit(a));
+//        System.out.println(w + " : " + printStrBit(w));
+
+        String mobile = "13537885242";
+        System.out.println(mobile.substring(7, 11));
     }
 
     public static String printByteBit(byte b){
