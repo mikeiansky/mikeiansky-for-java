@@ -12,6 +12,21 @@ public class TestDeadLockV1_UseSynchroinzed {
         final Object lockOne = new Object();
         final Object lockTwo = new Object();
 
+        Thread print = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("print start ... ");
+                boolean flag = true;
+                int index = 0;
+                while (flag){
+                    index = 2;
+                }
+                System.out.println("print end ... ");
+            }
+        });
+        print.setName("winson-thread");
+        print.start();
+
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
