@@ -8,11 +8,11 @@ public class TestGC {
 
     public static void main(String[] args) {
         boolean flag = true;
-//        Object obj1 = null;
+        Object obj1 = null;
         while (flag){
-            Object obj1 = new Object();
+            obj1 = new Object();
         }
-//        obj1.toString();
+        obj1.toString();
     }
 
 }
