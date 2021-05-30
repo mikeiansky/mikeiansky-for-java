@@ -9,13 +9,20 @@ import java.io.UnsupportedEncodingException;
 public class TestEncode {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String a = "a";
-        String w = "文";
+//        String a = "a";
+//        String w = "文";
 //        System.out.println(a + " : " + printStrBit(a));
 //        System.out.println(w + " : " + printStrBit(w));
+//
+//        String mobile = "13537885242";
+//        System.out.println(mobile.substring(7, 11));
 
-        String mobile = "13537885242";
-        System.out.println(mobile.substring(7, 11));
+        String str = "a";
+        String str2 = "文";
+        System.out.println(str.getBytes().length);
+        System.out.println(str2.getBytes("utf-8").length);
+        System.out.println(str2.getBytes("gbk").length);
+
     }
 
     public static String printByteBit(byte b){

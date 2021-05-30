@@ -1,6 +1,5 @@
 package com.winson.syntax.jvm;
 
-import sun.misc.Unsafe;
 
 /**
  * @author winson
