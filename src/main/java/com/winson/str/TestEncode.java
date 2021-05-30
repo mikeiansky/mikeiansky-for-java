@@ -17,9 +17,10 @@ public class TestEncode {
 //        String mobile = "13537885242";
 //        System.out.println(mobile.substring(7, 11));
 
-//        String str = "a";
+        String str = "a";
         String str2 = "文";
-        System.out.println(str2);
+        char a = 'a';
+        System.out.println(str.getBytes().length);
         System.out.println(str2.getBytes().length);
         System.out.println(str2.getBytes("utf-8").length);
         System.out.println(str2.getBytes("gbk").length);
