@@ -142,8 +142,14 @@ public class TestStr {
 //        System.out.println(sql);
 
 
-        String recommendSql = getRecommendSql();
-        System.out.println(recommendSql);
+//        String recommendSql = getRecommendSql();
+//        System.out.println(recommendSql);
+
+//        String path = "one/two/three/temp.json";
+        String path = "temp.json";
+        System.out.println(path.substring(0, path.lastIndexOf("/")));
+
+
 
     }
 

@@ -36,33 +36,29 @@ public class TestFileZip {
     public static void zipFile() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("D:\\temp.zip");
         ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream);
+        writeToZip("", new File(DIR), zipOutputStream);
+        zipOutputStream.flush();
+        zipOutputStream.close();
+    }
 
-        File srcDir = new File(DIR);
-        byte[] buffer = new byte[1024 * 1024 * 10];
-        int size = srcDir.listFiles().length;
-        int index = 0;
-        for (File file : srcDir.listFiles()) {
-            index++;
-            System.out.println("zip start file : " + file.getName());
-            zipOutputStream.putNextEntry(new ZipEntry(file.getName()));
+    public static void writeToZip(String parentPath, File file, ZipOutputStream out) throws IOException {
+        if (file.isDirectory()) {
+            File[] subFileList = file.listFiles();
+            for (File subFile : subFileList) {
+                writeToZip(parentPath + File.separator + file.getName(), subFile, out);
+            }
+        } else {
+            String filePath = parentPath + File.separator + file.getName();
+            byte[] buffer = new byte[1024 * 1024 * 10];
+            out.putNextEntry(new ZipEntry(filePath));
             FileInputStream in = new FileInputStream(file);
             int readLength = 0;
             while ((readLength = in.read(buffer, 0, buffer.length)) > 0) {
-                zipOutputStream.write(buffer, 0, readLength);
+                out.write(buffer, 0, readLength);
             }
             in.close();
-            zipOutputStream.closeEntry();
-            System.out.println("zip complete file : " + file.getName());
-            if (index >= size) {
-                System.out.println("准备读取输入数据。。。");
-                System.in.read();
-                System.out.println("准备读取输入数据完成。。。");
-            }
+            out.closeEntry();
         }
-
-        zipOutputStream.flush();
-        zipOutputStream.close();
-        System.in.read();
     }
 
 }
