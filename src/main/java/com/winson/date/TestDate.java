@@ -37,10 +37,14 @@ public class TestDate {
 //        String dateOne = "2020-10";
 //        SimpleDateFormat sdf = new SimpleDateFormat(dateOne);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, -30);
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.DAY_OF_YEAR, -30);
 
-        System.out.println(calendar.getTime());
+//        System.out.println(calendar.getTime());
+
+        long t = 1623048321000l;
+        Date date = new Date(t);
+        System.out.println(date.toString());
 
     }
 
