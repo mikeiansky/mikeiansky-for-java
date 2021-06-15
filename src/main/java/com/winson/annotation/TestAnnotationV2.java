@@ -20,7 +20,7 @@ public class TestAnnotationV2 {
         service.addUser("12345678912345678912");
 //        service.addUser("123456789123456789123");
         AnnotationUser user = new AnnotationUser();
-        user.setUserName("winson-1234");
+        user.setUserName("winson-123");
         service.editUser(user);
 
 //        AnnotationUser user = new AnnotationUser();

@@ -17,6 +17,8 @@ public class AnnotationServiceHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("annotation service handler invoke ... ");
+
+        // 验证参数
         Parameter[] parameters = method.getParameters();
         if (parameters != null) {
             int index = 0;
@@ -65,7 +67,20 @@ public class AnnotationServiceHandler implements InvocationHandler {
                 index++;
             }
         }
+
+        long start = System.currentTimeMillis();
         Object result = method.invoke(target, args);
+        long end = System.currentTimeMillis();
+        long useTime = end - start;
+
+        if (method.isAnnotationPresent(Timeout.class)) {
+            Timeout timeout = method.getAnnotation(Timeout.class);
+            if (useTime > timeout.time()) {
+                System.err.println(String.format("方法%s执行耗时%s毫秒，已超过规定耗时%s毫秒", method.getName(), useTime, timeout.time()));
+            }
+            System.out.println(String.format("方法%s，用时：%s 毫秒", method.getName(), useTime));
+        }
+
         return result;
     }
 

@@ -7,6 +7,11 @@ package com.winson.annotation;
 public class AnnotationServiceImpl implements AnnotationService {
 
     public void addUser(String userName) {
+        try {
+            Thread.sleep(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("add user");
     }
 
