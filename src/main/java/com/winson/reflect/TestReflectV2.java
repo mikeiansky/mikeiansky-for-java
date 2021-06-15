@@ -34,6 +34,13 @@ public class TestReflectV2 {
         for (Field field : declaredFields) {
             System.out.println(field.getName());
         }
+        System.out.println("-----------  other info ----------- ");
+        System.out.println("class loader : " + Son.class.getClassLoader());
+        System.out.println("-----------  getInterfaces ----------- ");
+        Class[] sonInterfaces = Son.class.getInterfaces();
+        for (Class sonInterface : sonInterfaces) {
+            System.out.println(sonInterface);
+        }
 
         System.out.println("test reflect v2 stop ... ");
     }

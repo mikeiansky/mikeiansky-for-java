@@ -4,7 +4,7 @@ package com.winson.reflect;
  * @author winson
  * @date 2021/6/15
  **/
-public class Son extends Parent{
+public class Son extends Parent implements Make {
 
     public String sonPublicName;
 
@@ -14,19 +14,19 @@ public class Son extends Parent{
 
     protected String sonProtectedName;
 
-    public void sonPublicMethod(){
+    public void sonPublicMethod() {
 
     }
 
-    private void sonPrivateMethod(){
+    private void sonPrivateMethod() {
 
     }
 
-    void sonDefaultMethod(){
+    void sonDefaultMethod() {
 
     }
 
-    protected void sonProtectedMethod(){
+    protected void sonProtectedMethod() {
 
     }
 
