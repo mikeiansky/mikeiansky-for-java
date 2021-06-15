@@ -30,6 +30,16 @@ public class TestAnnotationV2 {
 //        Object value = field.get(user);
 //        System.out.println("value : " + value);
 
+//        Stream.of(AnnotationService.class.getMethods())
+//                .forEach(method -> {
+//                    System.out.println("---------- method ----------");
+//                    System.out.println("method name : " + method.getName());
+//                    Stream.of(method.getParameters())
+//                            .forEach(parameter -> {
+//                                System.out.println(parameter.getName());
+//                            });
+//                });
+
         System.out.println("test annotation v2 stop ... ");
     }
 
