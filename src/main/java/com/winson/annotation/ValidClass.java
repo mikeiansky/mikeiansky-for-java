@@ -7,9 +7,10 @@ import java.lang.annotation.*;
  * @date 2021/6/15
  **/
 @Documented
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NotEmpty {
+public @interface ValidClass {
 
+    Class targetClass();
 
 }

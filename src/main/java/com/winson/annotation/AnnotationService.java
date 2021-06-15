@@ -8,4 +8,6 @@ public interface AnnotationService {
 
     void addUser(@MaxLength(20) @NotEmpty String userName);
 
+    void editUser(@NotEmpty @ValidClass(targetClass = ValidUser.class) AnnotationUser user);
+
 }

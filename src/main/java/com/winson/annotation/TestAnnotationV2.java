@@ -1,6 +1,8 @@
 package com.winson.annotation;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
+import java.util.stream.Stream;
 
 /**
  * @author winson
@@ -9,15 +11,25 @@ import java.lang.reflect.Proxy;
 public class TestAnnotationV2 {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         System.out.println("test annotation v2 start ... ");
 
         AnnotationService service = (AnnotationService) Proxy.newProxyInstance(AnnotationServiceImpl.class.getClassLoader(),
                 AnnotationServiceImpl.class.getInterfaces(),
                 new AnnotationServiceHandler(new AnnotationServiceImpl()));
         service.addUser("12345678912345678912");
-        service.addUser("123456789123456789123");
-//        service.addUser(null);
+//        service.addUser("123456789123456789123");
+        AnnotationUser user = new AnnotationUser();
+        user.setUserName("winson-1234");
+        service.editUser(user);
+
+//        AnnotationUser user = new AnnotationUser();
+////        user.setUserName("winson");
+//        Field field = AnnotationUser.class.getDeclaredField("userName");
+//        field.setAccessible(true);
+//        Object value = field.get(user);
+//        System.out.println("value : " + value);
+
         System.out.println("test annotation v2 stop ... ");
     }
 
