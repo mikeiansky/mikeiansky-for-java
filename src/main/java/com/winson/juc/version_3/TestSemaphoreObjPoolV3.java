@@ -17,7 +17,7 @@ public class TestSemaphoreObjPoolV3 {
 
         private final Semaphore semaphore;
 
-        private Vector<T> objectPool = new Vector();
+        private final Vector<T> objectPool = new Vector<>();
 
         public ObjectPool(int size, Function<Integer, T> supply) {
             this.semaphore = new Semaphore(size);
@@ -47,12 +47,7 @@ public class TestSemaphoreObjPoolV3 {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("test semaphore object pool version 3.0 start ... ");
 
-        final ObjectPool<String> objectPool = new ObjectPool<>(3, new Function<Integer, String>() {
-            @Override
-            public String apply(Integer integer) {
-                return "object-" + integer;
-            }
-        });
+        final ObjectPool<String> objectPool = new ObjectPool<>(3, integer -> "object-" + integer);
 
         int size = 20;
         Thread[] threads = new Thread[size];
