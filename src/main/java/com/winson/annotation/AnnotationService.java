@@ -11,4 +11,6 @@ public interface AnnotationService {
 
     void editUser(@NotEmpty @ValidClass(targetClass = ValidUser.class) AnnotationUser user);
 
+    void addFriend(String country, int size, String... friends);
+
 }

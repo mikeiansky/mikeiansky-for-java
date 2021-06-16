@@ -1,5 +1,8 @@
 package com.winson.annotation;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * @author winson
  * @date 2021/6/15
@@ -18,6 +21,11 @@ public class AnnotationServiceImpl implements AnnotationService {
     @Override
     public void editUser(AnnotationUser user) {
         System.out.println("impl edit user name");
+    }
+
+    @Override
+    public void addFriend(String country, int size, String... friends) {
+        System.out.println("add friend : " + country + " , size : " + size + " , friends : [" + String.join(",", friends) + "]");
     }
 
 }

@@ -24,6 +24,7 @@ public class AnnotationServiceHandler implements InvocationHandler {
             int index = 0;
             for (Parameter parameter : parameters) {
                 Object arg = args[index];
+//                System.out.println("arg : " + arg);
                 if (parameter.isAnnotationPresent(NotEmpty.class)) {
                     if (arg == null) {
                         throw new IllegalArgumentException(String.format("参数%s不能为空", parameter.getName()));

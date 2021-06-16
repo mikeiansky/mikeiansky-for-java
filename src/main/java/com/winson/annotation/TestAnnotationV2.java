@@ -22,6 +22,7 @@ public class TestAnnotationV2 {
         AnnotationUser user = new AnnotationUser();
         user.setUserName("winson-123");
         service.editUser(user);
+        service.addFriend("china", 20, "yang", "chang", "jiang");
 
 //        AnnotationUser user = new AnnotationUser();
 ////        user.setUserName("winson");
