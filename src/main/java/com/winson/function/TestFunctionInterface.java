@@ -39,6 +39,18 @@ public class TestFunctionInterface {
             }
         }).apply(3));
 
+        System.out.println("function andThen andThen apply : " + function.andThen(new Function<String, String>() {
+            @Override
+            public String apply(String s) {
+                return "after - str - " + s;
+            }
+        }).andThen(new Function<String, String>() {
+            @Override
+            public String apply(String s) {
+                return "last apply : " + s;
+            }
+        }).apply(4));
+
     }
 
 }
