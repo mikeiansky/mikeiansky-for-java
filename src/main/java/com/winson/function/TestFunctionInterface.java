@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -37,8 +38,8 @@ public class TestFunctionInterface {
 
     public static void main(String[] args) {
         System.out.println("test function interface start ... ");
-//        testFunction();
-        testFunctionIdentity();
+        testFunction();
+//        testFunctionIdentity();
         System.out.println("test function interface end ...");
 
     }
@@ -91,8 +92,27 @@ public class TestFunctionInterface {
             }
         }).apply(4));
 
+
+
         System.out.println(Function.identity());
-        ;
+
+        System.out.println("--------- predicate ----------");
+        Predicate<Integer> predicate = new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer integer) {
+                return integer % 3 == 0;
+            }
+        };
+        System.out.println(predicate.test(3));
+        System.out.println(predicate.test(4));
+        System.out.println(predicate.negate().test(3));
+        System.out.println(predicate.negate().test(4));
+        System.out.println(predicate.negate().and(new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer integer) {
+                return integer > 5;
+            }
+        }).test(7));
 
     }
 
