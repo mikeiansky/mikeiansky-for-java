@@ -25,6 +25,7 @@ public class TestProxy {
         TestProxy target = (TestProxy) enhancer.create();
         System.out.println("testProxy--->"+testProxy);
         System.out.println("target--->"+target);
+        System.out.println("target.getClass()--->"+target.getClass());
         System.out.println("ready invoke method ... ");
         target.sayHello("winson");
 
