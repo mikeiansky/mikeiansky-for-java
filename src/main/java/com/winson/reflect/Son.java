@@ -14,6 +14,12 @@ public class Son extends Parent implements Make {
 
     protected String sonProtectedName;
 
+    public static String staticField;
+
+    public static void staticMethod(){
+
+    }
+
     public void sonPublicMethod() {
 
     }
