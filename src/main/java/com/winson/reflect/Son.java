@@ -6,6 +6,8 @@ package com.winson.reflect;
  **/
 public class Son extends Parent implements Make {
 
+    public volatile String sonVolatileName;
+
     public String sonPublicName;
 
     private String sonPrivateName;
@@ -15,6 +17,8 @@ public class Son extends Parent implements Make {
     protected String sonProtectedName;
 
     public static String staticField;
+
+    public static volatile  String staticVolatileField;
 
     public static void staticMethod(){
 
