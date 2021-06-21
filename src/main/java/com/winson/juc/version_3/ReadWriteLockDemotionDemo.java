@@ -28,13 +28,29 @@ public class ReadWriteLockDemotionDemo {
             readLock.unlock();
             writeLock.lock();
             result = cache.get(key);
+            boolean empty = false;
             if (result == null) {
+                empty = true;
                 cache.put(key, supplier.get());
                 result = cache.get(key);
 
             }
             readLock.lock();
+//            if(empty){
+//                try {
+//                    Thread.sleep(5000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
             writeLock.unlock();
+            if(empty){
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         readLock.unlock();
         return result;
