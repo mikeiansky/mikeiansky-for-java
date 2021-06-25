@@ -1,6 +1,6 @@
 package com.winson.juc.version_1;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 /**
  * @author winson
@@ -23,10 +23,10 @@ public class TestThreadStop {
         System.out.println("id : " + id + " , read end");
     }
 
-    @Test
-    public void testStop() {
-
-    }
+//    @Test
+//    public void testStop() {
+//
+//    }
 
 
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package com.winson.reflect;
 
 import com.winson.net.TestNet;
-import org.junit.Test;
+//import org.junit.Test;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;

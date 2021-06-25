@@ -1,14 +1,14 @@
 package com.winson.rxjava;
 
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
-import rx.functions.Action;
-import rx.functions.Action1;
-import rx.functions.Func0;
-import rx.functions.Func1;
-import rx.observables.SyncOnSubscribe;
-import rx.schedulers.Schedulers;
+//import rx.Observable;
+//import rx.Observer;
+//import rx.Subscriber;
+//import rx.functions.Action;
+//import rx.functions.Action1;
+//import rx.functions.Func0;
+//import rx.functions.Func1;
+//import rx.observables.SyncOnSubscribe;
+//import rx.schedulers.Schedulers;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -45,27 +45,27 @@ public class TestRxJava {
 //                    }
 //                });
 
-        Observable.timer(1, TimeUnit.SECONDS);
-        Observable.just(1, 2, 3, 4, 5)
-                .repeat(Schedulers.immediate())
-                .subscribe(new Observer<Integer>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(Integer integer) {
-                        System.out.println("just on next : " + integer);
-                    }
-                });
-
-        System.out.println("test rx java stop ... ");
+//        Observable.timer(1, TimeUnit.SECONDS);
+//        Observable.just(1, 2, 3, 4, 5)
+//                .repeat(Schedulers.immediate())
+//                .subscribe(new Observer<Integer>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(Integer integer) {
+//                        System.out.println("just on next : " + integer);
+//                    }
+//                });
+//
+//        System.out.println("test rx java stop ... ");
     }
 
 }
