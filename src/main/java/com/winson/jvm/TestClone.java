@@ -1,4 +1,4 @@
-package com.winson.syntax.jvm;
+package com.winson.jvm;
 
 
 /**

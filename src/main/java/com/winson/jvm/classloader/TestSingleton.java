@@ -1,4 +1,4 @@
-package com.winson.syntax.jvm.classloader;
+package com.winson.jvm.classloader;
 
 /**
  * @author winson

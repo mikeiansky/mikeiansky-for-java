@@ -1,4 +1,4 @@
-package com.winson.syntax.jvm.oom;
+package com.winson.jvm.oom;
 
 import java.util.HashSet;
 import java.util.Set;

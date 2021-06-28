@@ -1,4 +1,4 @@
-package com.winson.syntax.jvm.oom;
+package com.winson.jvm.oom;
 
 import java.util.ArrayList;
 import java.util.List;

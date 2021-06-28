@@ -1,4 +1,4 @@
-package com.winson.syntax.jvm.oom;
+package com.winson.jvm.oom;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
