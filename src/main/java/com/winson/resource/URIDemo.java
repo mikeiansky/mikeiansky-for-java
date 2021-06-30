@@ -22,6 +22,8 @@ public class URIDemo {
         printUriInfo(uri5, "uri5");
         URI uri6 = new URI("winson://///www.baidu.com:448/user/account?name=winson&age=78");
         printUriInfo(uri6, "uri6");
+        URI uri7 = new URI("file:/D:/work/resource/xml/demo/note.xsd");
+        printUriInfo(uri7, "uri7");
     }
 
     public static void printUriInfo(URI uri, String source) {

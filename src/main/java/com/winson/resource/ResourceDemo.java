@@ -1,5 +1,8 @@
 package com.winson.resource;
 
+import net.sf.cglib.core.Local;
+
+import java.util.Locale;
 import java.util.Properties;
 
 /**
@@ -15,6 +18,11 @@ public class ResourceDemo {
         String user = System.getProperty("user");
         System.out.println("user = " + user);
 
+        System.out.println(Locale.getDefault());
+        System.out.println(Locale.getAvailableLocales().length);
+//        for (Locale locale : Locale.getAvailableLocales()) {
+//            System.out.println(locale.getCountry());
+//        }
     }
 
 }
