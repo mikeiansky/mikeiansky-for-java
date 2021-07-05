@@ -1,6 +1,6 @@
 package com.winson.jvm.oom;
 
-import sun.misc.Unsafe;
+//import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 
@@ -15,12 +15,12 @@ public class DirectMemoryOOMDemo {
 
     public static void main(String[] args) throws IllegalAccessException {
 
-        Field field = Unsafe.class.getDeclaredFields()[0];
-        field.setAccessible(true);
-        Unsafe unsafe = (Unsafe) field.get(null);
-        while (true) {
-            unsafe.allocateMemory(_1MB);
-        }
+//        Field field = Unsafe.class.getDeclaredFields()[0];
+//        field.setAccessible(true);
+//        Unsafe unsafe = (Unsafe) field.get(null);
+//        while (true) {
+//            unsafe.allocateMemory(_1MB);
+//        }
 
     }
 
