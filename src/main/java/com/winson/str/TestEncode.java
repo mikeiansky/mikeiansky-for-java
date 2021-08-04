@@ -20,6 +20,8 @@ public class TestEncode {
         String str = "a";
         String str2 = "文";
         char a = 'a';
+        System.out.println(str.length());
+        System.out.println(str2.length());
         System.out.println(str.getBytes().length);
         System.out.println(str2.getBytes().length);
         System.out.println(str2.getBytes("utf-8").length);
