@@ -5,6 +5,8 @@ import org.fusesource.hawtbuf.BufferInputStream;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author winson
@@ -12,24 +14,6 @@ import java.net.Socket;
  * @desc http协议测试类，v1版本
  **/
 public class HttpServerDemoV1 {
-
-    public static void main(String[] args) {
-        ServerSocket serverSocket = null;
-        try {
-            serverSocket = new ServerSocket(8001);
-            listen(serverSocket);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (serverSocket != null) {
-                try {
-                    serverSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     private static void listen(ServerSocket serverSocket) {
         try {
@@ -55,17 +39,59 @@ public class HttpServerDemoV1 {
 //                String result = new String(buf, 0 , length);
 //                System.out.println(result);
 //            }
-//
-//
+//            System.out.println("in . available : " + in.available() );
             String line = null;
+            StringBuilder sb = new StringBuilder();
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            int lineNumber = 0;
+            Map<String,String> headers = new HashMap<>();
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                lineNumber++;
+                if(!line.equals("") && lineNumber > 1){
+                    String[] header = line.split(":");
+                    headers.put(header[0].trim(), header[1].trim());
+                }
+//                System.out.println("'---->"+line+"<----'");
                 if(line.equals("\r\n") || line.trim().equals("")){
-//                    System.out.println("回车换行，准备下一个接收数据");
+//                    System.out.println(" end with ascii");
+                    sb.append(line);
                     break;
+                }else{
+                    sb.append(line+"\r\n");
                 }
             }
+            System.out.println(sb);
+
+            String contentLength = headers.get("Content-Length");
+            if(contentLength!=null){
+                int cv = Integer.parseInt(contentLength);
+                System.out.println("Content-Length:" + cv);
+                // get body
+                byte[] buf = new byte[1];
+                System.out.println("read body start");
+//                in.skip(sb.toString().getBytes().length);
+//                in.read(buf, 0, 1);
+
+                int bodyLength = 0;
+                StringBuilder body = new StringBuilder();
+                while ((line = reader.readLine())!=null){
+                    line = line+"\r\n";
+                    body.append(line);
+                    System.out.println(line);
+                    bodyLength += line.getBytes().length;
+                    System.out.println("bodyLength : " + bodyLength + " , cv : " + cv);
+                    if(bodyLength>= cv){
+                        break;
+                    }
+                }
+
+                System.out.println("body : " + body);
+
+                System.out.println("read body end");
+                System.out.println(new String(buf,0, 1));
+            }
+
+            System.out.println("request end ... ");
 
             String result = "HTTP/1.1 200 OK \n\n";
             result += "hello,world!";
@@ -76,6 +102,25 @@ public class HttpServerDemoV1 {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        ServerSocket serverSocket = null;
+        try {
+            serverSocket = new ServerSocket(8001);
+            listen(serverSocket);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (serverSocket != null) {
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
 }
