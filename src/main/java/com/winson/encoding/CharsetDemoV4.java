@@ -1,4 +1,4 @@
-package com.winson.protocol.http;
+package com.winson.encoding;
 
 /**
  * @author winson

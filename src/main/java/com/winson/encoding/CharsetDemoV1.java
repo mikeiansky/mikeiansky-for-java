@@ -1,4 +1,4 @@
-package com.winson.protocol.http;
+package com.winson.encoding;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
