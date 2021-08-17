@@ -13,7 +13,7 @@ public class RegularDemoV5 {
 
         String source = "Cat";
         // 不区分大小写
-        String reg = "(?i)cat";
+        String reg = "(?i)cat\\*\\rabc\\d\\s\n";
         Pattern pattern = Pattern.compile(reg);
 
         Matcher matcher = pattern.matcher(source);

@@ -22,7 +22,7 @@ public class NioDemoV1 {
 
     public static void main(String[] args) throws IOException {
 
-        String source = "Thisis java file object\r\n\r\nChange your mind are you ok never say good bye!";
+        String source = "Thisis java?+*. file object\r\n\r\nChange your mind are you ok never say good bye!";
         byte[] buf = source.getBytes();
         System.out.println("source length : " + source.length());
         System.out.println("source byte length : " + source.getBytes().length);
@@ -54,6 +54,34 @@ public class NioDemoV1 {
         printlnByteBufferInfo("byteBuffer exec5 ", byteBuffer);
         byteBuffer.rewind();
         printlnByteBufferInfo("byteBuffer exec6 ", byteBuffer);
+        byteBuffer.flip();
+        printlnByteBufferInfo("byteBuffer exec7 ", byteBuffer);
+//        byteBuffer.flip();
+//        System.out.println(byteBuffer.get(2));
+
+        byteBuffer.flip();
+//        byteBuffer.limit(10);
+        byteBuffer.clear();
+        byteBuffer.put((byte) 1);
+        byteBuffer.put((byte) 2);
+        byteBuffer.put((byte) 3);
+        byteBuffer.put((byte) 4);
+        byteBuffer.put((byte) 5);
+        byteBuffer.put((byte) 6);
+
+        System.out.println(byteBuffer.get(0));
+        printlnByteBufferInfo("byteBuffer exec7 ", byteBuffer);
+        byteBuffer.clear();
+
+
+        // 测试java中字节的处理
+        int total = 10128;
+        System.out.println(Integer.toBinaryString(total));
+        // 0010011110010000
+        byte b1 = (byte) 0x27;
+        byte b0 = (byte) 0x90;
+        int a = (b1 << 8) | (b0 & 0xff);
+        System.out.println(a);
 
     }
 
