@@ -1,3 +1,5 @@
+package com.winson.utils.encoding;
+
 import java.nio.charset.Charset;
 
 /**
