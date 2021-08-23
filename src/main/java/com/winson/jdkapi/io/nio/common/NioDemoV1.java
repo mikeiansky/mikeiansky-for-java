@@ -1,4 +1,4 @@
-package com.winson.jdkapi.io.nio;
+package com.winson.jdkapi.io.nio.common;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
