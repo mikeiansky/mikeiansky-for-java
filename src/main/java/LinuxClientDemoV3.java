@@ -6,13 +6,13 @@ import java.net.Socket;
  * @author winson
  * @date 2021/8/23
  **/
-public class LinuxClientDemoV1 {
+public class LinuxClientDemoV3 {
 
     public static void main(String[] args) {
 
         Socket socket = new Socket();
         try {
-            socket.bind(new InetSocketAddress("192.168.159.1", 10002));
+            socket.bind(new InetSocketAddress("192.168.159.1", 10004));
 
             socket.connect(new InetSocketAddress("192.168.159.130", 20001));
             System.out.println("connect server success ... ");

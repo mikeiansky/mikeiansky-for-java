@@ -15,24 +15,26 @@ public class LinuxServerDemoV1 {
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket();
-            serverSocket.bind(new InetSocketAddress("172.16.2.214", 20001));
+            serverSocket.setReceiveBufferSize(20);
+            serverSocket.bind(new InetSocketAddress("192.168.159.1", 20001), 2);
             System.out.println("server bind success ********* ");
 
             while (true) {
                 Socket socket = serverSocket.accept();
+                socket.setReceiveBufferSize(20);
+                System.out.println("accept socket : " + socket);
                 System.in.read();
                 new Thread(() -> {
-                    System.out.println("accept socket : " + socket);
 
                     try {
                         InputStream in = socket.getInputStream();
 
-                        while (true){
+                        while (true) {
                             byte[] buf = new byte[1024];
                             int readLength = in.read(buf);
-                            if(readLength > 0){
-
-                            } else if (readLength == 0){
+                            if (readLength > 0) {
+                                System.out.println("read message : " + new String(buf, 0, readLength));
+                            } else if (readLength == 0) {
                                 System.out.println("read nothing");
                             } else {
                                 System.out.println("read -1 , end ,ready to close ... ");
@@ -50,6 +52,7 @@ public class LinuxServerDemoV1 {
                 }).start();
 
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
