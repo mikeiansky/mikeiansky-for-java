@@ -1,4 +1,4 @@
-package com.winson.jvm;
+package com.winson.jvm.common;
 
 
 /**

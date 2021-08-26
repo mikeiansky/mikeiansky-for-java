@@ -1,4 +1,4 @@
-package com.winson.jvm;
+package com.winson.jvm.common;
 
 import java.io.PrintStream;
 import java.lang.invoke.MethodHandle;
