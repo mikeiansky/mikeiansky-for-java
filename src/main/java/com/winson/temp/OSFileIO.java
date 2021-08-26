@@ -1,5 +1,6 @@
+package com.winson.temp;
+
 import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
