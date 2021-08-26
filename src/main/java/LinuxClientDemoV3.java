@@ -14,16 +14,16 @@ public class LinuxClientDemoV3 {
         try {
             socket.bind(new InetSocketAddress("192.168.159.1", 10004));
 
-            socket.connect(new InetSocketAddress("192.168.159.130", 20001));
+            socket.connect(new InetSocketAddress("192.168.159.130", 30001));
             System.out.println("connect server success ... ");
-            System.in.read();
-            while (true){
-                byte[] buf = new byte[1024];
-                int readLength = System.in.read(buf);
-                for (int i = 0; i < readLength; i++) {
-                    socket.getOutputStream().write(buf[i]);
-                }
-            }
+//            System.in.read();
+//            while (true){
+//                byte[] buf = new byte[1024];
+//                int readLength = System.in.read(buf);
+//                for (int i = 0; i < readLength; i++) {
+//                    socket.getOutputStream().write(buf[i]);
+//                }
+//            }
 
         } catch (IOException e) {
             e.printStackTrace();
