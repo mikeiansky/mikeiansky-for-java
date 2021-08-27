@@ -24,6 +24,8 @@ public class URLDemo {
         printURLInfo(url6,"url6");
         URL url7 = new URL("http://///www.baidu.com:453/user/account/detail?name=winson&age=33");
         printURLInfo(url7,"url7");
+        URL url8 = new URL("classpath:/winson-servlet.xml");
+        printURLInfo(url8,"url8");
     }
 
     public static void printURLInfo(URL url, String source) {

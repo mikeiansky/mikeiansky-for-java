@@ -2,6 +2,7 @@ package com.winson.utils.resource;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * @author winson
@@ -24,6 +25,8 @@ public class URIDemo {
         printUriInfo(uri6, "uri6");
         URI uri7 = new URI("file:/D:/work/resource/xml/demo/note.xsd");
         printUriInfo(uri7, "uri7");
+        URI uri8 = new URI("classpath://192.168.0.1/winson-servlet.xml");
+        printUriInfo(uri8,"uri8");
     }
 
     public static void printUriInfo(URI uri, String source) {
