@@ -1,12 +1,16 @@
 package com.winson.base;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+
 /**
  * @author winson
  * @date 2021/8/23
  **/
 public class ComputeBitBaseDemoV1 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         int a = 1;
         int b = -1;
@@ -71,7 +75,10 @@ public class ComputeBitBaseDemoV1 {
         System.out.println(ff2);
         System.out.println(ff2 == ff1);
 
-
+//        PrintWriter writer = new PrintWriter(new FileOutputStream("D:\\out.txt"));
+//        writer.write("Hello");
+//        writer.flush();
+        System.out.println(System.getProperty("file.encoding"));
     }
 
 }
