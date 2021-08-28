@@ -50,7 +50,7 @@ public class SelectorThread implements Runnable {
         }
     }
 
-    public void handleChannel(Channel channel){
+    public void handleChannel(Channel channel) {
         try {
             channelQueue.put(channel);
             selector.wakeup();
@@ -76,8 +76,10 @@ public class SelectorThread implements Runnable {
                         if (key.isAcceptable()) {
                             acceptHandle(key);
                         } else if (key.isReadable()) {
-                            System.out.println(Thread.currentThread().getName() + " read byte ");
+//                            System.out.println(Thread.currentThread().getName() + " read byte ");
                             readHandle(key);
+                        } else if (key.isWritable()) {
+                            writeHandle(key);
                         }
                     }
                 }
@@ -126,6 +128,8 @@ public class SelectorThread implements Runnable {
 //            channelQueue.put(socketChannel);
 //            selector.wakeup();
 
+//            System.in.read();
+
             stg.handleChannel(socketChannel);
 
         } catch (IOException e) {
@@ -138,16 +142,27 @@ public class SelectorThread implements Runnable {
         SocketChannel socketChannel = (SocketChannel) key.channel();
         ByteBuffer buffer = (ByteBuffer) key.attachment();
 //        key.cancel();
-        while (true){
+        while (true) {
             try {
+                buffer.clear();
                 int readLength = socketChannel.read(buffer);
-                if(readLength >0){
+                if (readLength > 0) {
                     buffer.flip();
-                    while (buffer.hasRemaining()){
-                        socketChannel.write(buffer);
-                    }
-                    buffer.clear();
-                } else if ( readLength == 0){
+
+//                    while (buffer.hasRemaining()){
+//                        socketChannel.write(buffer);
+//                    }
+
+                    byte[] buf = new byte[readLength];
+                    buffer.get(buf);
+                    String readMessage = new String(buf);
+                    System.out.println("read message is : " + readMessage);
+
+                    buffer.flip();
+
+                    socketChannel.register(selector, SelectionKey.OP_WRITE, buffer);
+
+                } else if (readLength == 0) {
                     break;
                 } else {
                     System.out.println(Thread.currentThread().getName() + " channel close : " + socketChannel);
@@ -159,6 +174,28 @@ public class SelectorThread implements Runnable {
             }
         }
 
+    }
+
+    private void writeHandle(SelectionKey key) {
+        SocketChannel socketChannel = (SocketChannel) key.channel();
+//        System.out.println(Thread.currentThread() + " , write handle : " + key.attachment());
+        try {
+
+            ByteBuffer buffer = (ByteBuffer) key.attachment();
+            System.out.println(Thread.currentThread().getName() + " , echo message");
+            try {
+                while (buffer.hasRemaining()) {
+                    socketChannel.write(buffer);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            buffer.clear();
+            socketChannel.register(selector, SelectionKey.OP_READ, buffer);
+        } catch (ClosedChannelException e) {
+            e.printStackTrace();
+        }
     }
 
 }

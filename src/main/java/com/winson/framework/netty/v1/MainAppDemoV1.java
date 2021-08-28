@@ -21,7 +21,8 @@ public class MainAppDemoV1 {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        stg.listen("192.168.159.1", 9999);
+        stg.listen("192.168.204.1", 9999);
+        System.out.println("server start ... ");
         try {
             latch.await();
         } catch (InterruptedException e) {
