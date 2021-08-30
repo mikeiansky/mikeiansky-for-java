@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.net.InetSocketAddress;
@@ -80,6 +81,24 @@ public class MyNettyRpcV2 {
         private String name;
         private String method;
         private String content;
+        private Class[] paramTypes;
+        private Object[] args;
+
+        public Class[] getParamTypes() {
+            return paramTypes;
+        }
+
+        public void setParamTypes(Class[] paramTypes) {
+            this.paramTypes = paramTypes;
+        }
+
+        public Object[] getArgs() {
+            return args;
+        }
+
+        public void setArgs(Object[] args) {
+            this.args = args;
+        }
 
         public String getName() {
             return name;
@@ -196,6 +215,9 @@ public class MyNettyRpcV2 {
     public static void startServer() throws Exception {
         NioEventLoopGroup boss = new NioEventLoopGroup(1);
         NioEventLoopGroup work = new NioEventLoopGroup(4);
+        Car myCar = mark -> "server car mark [ " + mark+" ]";
+        RequestDispatch dispatch = new RequestDispatch();
+        dispatch.register(Car.class.getName(),myCar);
         Channel server = new ServerBootstrap()
                 .group(boss, work)
                 .channel(NioServerSocketChannel.class)
@@ -205,7 +227,7 @@ public class MyNettyRpcV2 {
                         System.out.println(" connect client : " + nioSocketChannel);
 //                        nioSocketChannel.pipeline().addLast(new ServerDecode());
                         nioSocketChannel.pipeline().addLast(new ObjectChannelHandle("server"));
-                        nioSocketChannel.pipeline().addLast(new ServerReadChannelHandle());
+                        nioSocketChannel.pipeline().addLast(new ServerReadChannelHandle(dispatch));
                     }
                 })
                 .bind("localhost", 9999)
@@ -334,7 +356,28 @@ public class MyNettyRpcV2 {
         }
     }
 
+    public static class RequestDispatch{
+
+        public static final ConcurrentHashMap<String,Object> dis = new ConcurrentHashMap<>();
+
+        public void register(String key, Object obj){
+            dis.put(key, obj);
+        }
+
+        public Object getDispatch(String key){
+            return dis.get(key);
+        }
+
+    }
+
     public static class ServerReadChannelHandle extends ChannelInboundHandlerAdapter {
+
+        private RequestDispatch dispatch;
+
+        public ServerReadChannelHandle(RequestDispatch dispatch) {
+            this.dispatch = dispatch;
+        }
+
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
             PackMessage packMessage = (PackMessage) msg;
@@ -344,40 +387,55 @@ public class MyNettyRpcV2 {
             ctx.executor().execute(new Runnable() {
                 @Override
                 public void run() {
-                    MyContent responseContent = new MyContent();
-                    responseContent.setContent("server response " + packMessage.content.getContent());
-                    byte[] respContentBuf = SerUtil.encode(responseContent);
-
-                    MyHeader responseHeader = new MyHeader();
-                    responseHeader.setRequestId(packMessage.header.getRequestId());
-                    responseHeader.setFlag(0x141424);
-                    responseHeader.setContentLength(respContentBuf.length);
-
-
-                    byte[] respHeadBuf = SerUtil.encode(responseHeader);
-//                    System.out.println("write response header content length : " + respHeadBuf.length);
-
-                    ByteBuf responseBuf = ByteBufAllocator.DEFAULT.directBuffer(respHeadBuf.length + respContentBuf.length);
-                    responseBuf.writeBytes(respHeadBuf);
-                    responseBuf.writeBytes(respContentBuf);
-                    ctx.writeAndFlush(responseBuf);
-
-//                    MyContent content = new MyContent();
-//                    content.setContent(" response from server . ");
-//
-//                    byte[] contentByte = SerUtil.encode(content);
-//
-////                    System.out.println(" server content length : " + contentByte.length);
+//                    MyContent responseContent = new MyContent();
+//                    responseContent.setContent("server response " + packMessage.content.getContent());
+//                    byte[] respContentBuf = SerUtil.encode(responseContent);
 //
 //                    MyHeader responseHeader = new MyHeader();
-//                    responseHeader.setFlag(0x141424);
 //                    responseHeader.setRequestId(packMessage.header.getRequestId());
-//                    responseHeader.setContentLength(contentByte.length);
-//                    byte[] headByte = SerUtil.encode(responseHeader);
-//                    ByteBuf responseBuf = ByteBufAllocator.DEFAULT.directBuffer(headByte.length + contentByte.length);
-//                    responseBuf.writeBytes(headByte);
-//                    responseBuf.writeBytes(contentByte);
+//                    responseHeader.setFlag(0x141424);
+//                    responseHeader.setContentLength(respContentBuf.length);
+//
+//
+//                    byte[] respHeadBuf = SerUtil.encode(responseHeader);
+////                    System.out.println("write response header content length : " + respHeadBuf.length);
+//
+//                    ByteBuf responseBuf = ByteBufAllocator.DEFAULT.directBuffer(respHeadBuf.length + respContentBuf.length);
+//                    responseBuf.writeBytes(respHeadBuf);
+//                    responseBuf.writeBytes(respContentBuf);
 //                    ctx.writeAndFlush(responseBuf);
+
+                    Object target = dispatch.getDispatch(packMessage.content.getName());
+
+                    String res = null;
+                    try {
+                        Method method = target.getClass().getMethod(packMessage.content.getMethod(), packMessage.content.getParamTypes());
+                        res = (String) method.invoke(target, packMessage.content.args);
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+
+                    MyContent content = new MyContent();
+                    content.setContent(res);
+
+                    byte[] contentByte = SerUtil.encode(content);
+
+//                    System.out.println(" server content length : " + contentByte.length);
+
+                    MyHeader responseHeader = new MyHeader();
+                    responseHeader.setFlag(0x141424);
+                    responseHeader.setRequestId(packMessage.header.getRequestId());
+                    responseHeader.setContentLength(contentByte.length);
+                    byte[] headByte = SerUtil.encode(responseHeader);
+                    ByteBuf responseBuf = ByteBufAllocator.DEFAULT.directBuffer(headByte.length + contentByte.length);
+                    responseBuf.writeBytes(headByte);
+                    responseBuf.writeBytes(contentByte);
+                    ctx.writeAndFlush(responseBuf);
+
                 }
             });
         }
@@ -416,12 +474,17 @@ public class MyNettyRpcV2 {
 //                System.out.println("invoke method : " + method);
                 Channel channel = ClientFactory.getInstance().getChannel("localhost", 9999);
 
-                Object arg0 = args[0];
-
                 MyContent content = new MyContent();
                 content.setName(clazz.getName());
                 content.setMethod(method.getName());
-                content.setContent((String) arg0);
+                content.setParamTypes(method.getParameterTypes());
+                content.setArgs(args);
+
+
+//                Object arg0 = args[0];
+//                content.setContent((String) arg0);
+
+
                 byte[] contentBuf = SerUtil.encode(content);
 
                 MyHeader header = new MyHeader();
