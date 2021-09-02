@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 /**
  * @author winson
  * @date 2021/9/1
+ * @desc lambda 表达式原理测试
  **/
 public class InvokeDemoV1 {
 

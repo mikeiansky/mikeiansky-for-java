@@ -27,6 +27,7 @@ public class InnerOuterClassDemoV1 {
         InnerOuterClassDemoV1 app = new InnerOuterClassDemoV1();
         app.getMyInnerClass().sayInner();
 
+
 //        MyInnerClass innerClass = new app.MyInnerClass();
 //        innerClass.sayInner();
 
