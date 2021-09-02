@@ -17,7 +17,8 @@ public class WinsonServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //使用PrintWriter.write()方法gaifang向前台页面输出内容
         PrintWriter writer = resp.getWriter();
-        writer.write("welcome to winson ' s web haha ");
+        writer.write("welcome to winson ' s web haha : " + getClass().getClassLoader() + "<br/>");
+        writer.write("and current thread load : " + Thread.currentThread().getContextClassLoader());
         writer.close();
         doGet(req, resp);
     }
