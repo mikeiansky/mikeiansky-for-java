@@ -39,31 +39,36 @@ public class GCLogPrintDemoV1 {
 //        byte[] b10 = new byte[_1MB * 2];
 
         // 测试元空间内存回收异常
-//        int size = 10000;
-//        ArrayList<Object> objList = new ArrayList<>();
-//        for (int i = 0; i < size; i++) {
-//            ClassLoader loader = new ClassLoader() {
-//                @Override
-//                public Class<?> loadClass(String name) throws ClassNotFoundException {
-//                    String fileName1 = name.substring(name.lastIndexOf(".")+1)+".class";
-//                    InputStream in = getClass().getResourceAsStream(fileName1);
-//                    if(in != null){
-//                        try {
-//                            byte[] cb = new byte[in.available()];
-//                            in.read(cb);
-//                            return defineClass(name, cb, 0, cb.length);
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                    return super.loadClass(name);
-//                }
-//            };
-//            Class clazz = loader.loadClass(GCLogPrintDemoV1.class.getName());
-////            objList.add(clazz);
-////            System.out.println(loader.loadClass(GCLogPrintDemoV1.class.getName()));
-//        }
-
+        int size = 700;
+        ArrayList<Object> objList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            ClassLoader loader = new ClassLoader() {
+                @Override
+                public Class<?> loadClass(String name) throws ClassNotFoundException {
+                    String fileName1 = name.substring(name.lastIndexOf(".")+1)+".class";
+                    InputStream in = getClass().getResourceAsStream(fileName1);
+                    if(in != null){
+                        try {
+                            byte[] cb = new byte[in.available()];
+                            in.read(cb);
+                            return defineClass(name, cb, 0, cb.length);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    return super.loadClass(name);
+                }
+            };
+            Class clazz = loader.loadClass(GCLogPrintDemoV1.class.getName());
+            objList.add(clazz);
+//            System.out.println(loader.loadClass(GCLogPrintDemoV1.class.getName()));
+        }
+        System.out.println("app run end ... ");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("hello jvm gc end");
     }
 
