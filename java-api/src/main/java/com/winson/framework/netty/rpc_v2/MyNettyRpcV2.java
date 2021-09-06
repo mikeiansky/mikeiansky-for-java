@@ -1,19 +1,15 @@
-package com.winson.framework.netty.rpc_v3;
+package com.winson.framework.netty.rpc_v2;
 
 import com.winson.utils.common.SerUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.ChannelInitializer;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.ByteToMessageDecoder;
-import io.netty.handler.codec.http.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -23,10 +19,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -37,7 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author winson
  * @date 2021/8/30
  **/
-public class MyNettyRpcV3 {
+public class MyNettyRpcV2 {
 
     public interface Car {
         String race(String mark);
@@ -205,7 +198,7 @@ public class MyNettyRpcV3 {
                             @Override
                             protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
 //                                nioSocketChannel.pipeline().addLast(new ServerDecode());
-                                nioSocketChannel.pipeline().addLast(new ObjectChannelHandle("client " + index));
+                                nioSocketChannel.pipeline().addLast(new ObjectChannelHandle("client "+ index));
                                 nioSocketChannel.pipeline().addLast(new ClientReadChannelHandle());
                             }
                         })
@@ -219,6 +212,33 @@ public class MyNettyRpcV3 {
 
     }
 
+    public static void startServer() throws Exception {
+        NioEventLoopGroup boss = new NioEventLoopGroup(1);
+        NioEventLoopGroup work = new NioEventLoopGroup(4);
+        Car myCar = mark -> "server car mark [ " + mark+" ]";
+        RequestDispatch dispatch = new RequestDispatch();
+        dispatch.register(Car.class.getName(),myCar);
+        Channel server = new ServerBootstrap()
+                .group(boss, work)
+                .channel(NioServerSocketChannel.class)
+                .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                    @Override
+                    protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
+                        System.out.println(" connect client : " + nioSocketChannel);
+//                        nioSocketChannel.pipeline().addLast(new ServerDecode());
+                        nioSocketChannel.pipeline().addLast(new ObjectChannelHandle("server"));
+                        nioSocketChannel.pipeline().addLast(new ServerReadChannelHandle(dispatch));
+                    }
+                })
+                .bind("localhost", 9999)
+                .sync()
+                .channel();
+        System.out.println(" server started ... ");
+
+
+        server.closeFuture().sync();
+        System.out.println(" server finish xxx ");
+    }
 
     public static class PackMessage {
         public MyHeader header;
@@ -336,28 +356,100 @@ public class MyNettyRpcV3 {
         }
     }
 
-    public static class RequestDispatch {
+    public static class RequestDispatch{
 
-        public static final ConcurrentHashMap<String, Object> dis = new ConcurrentHashMap<>();
+        public static final ConcurrentHashMap<String,Object> dis = new ConcurrentHashMap<>();
 
-        public void register(String key, Object obj) {
+        public void register(String key, Object obj){
             dis.put(key, obj);
         }
 
-        public Object getDispatch(String key) {
+        public Object getDispatch(String key){
             return dis.get(key);
         }
 
     }
 
+    public static class ServerReadChannelHandle extends ChannelInboundHandlerAdapter {
+
+        private RequestDispatch dispatch;
+
+        public ServerReadChannelHandle(RequestDispatch dispatch) {
+            this.dispatch = dispatch;
+        }
+
+        @Override
+        public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+            PackMessage packMessage = (PackMessage) msg;
+//            System.out.println(" server read message : " + packMessage);
+
+            // 这里直接写会有问题
+            ctx.executor().execute(new Runnable() {
+                @Override
+                public void run() {
+//                    MyContent responseContent = new MyContent();
+//                    responseContent.setContent("server response " + packMessage.content.getContent());
+//                    byte[] respContentBuf = SerUtil.encode(responseContent);
+//
+//                    MyHeader responseHeader = new MyHeader();
+//                    responseHeader.setRequestId(packMessage.header.getRequestId());
+//                    responseHeader.setFlag(0x141424);
+//                    responseHeader.setContentLength(respContentBuf.length);
+//
+//
+//                    byte[] respHeadBuf = SerUtil.encode(responseHeader);
+////                    System.out.println("write response header content length : " + respHeadBuf.length);
+//
+//                    ByteBuf responseBuf = ByteBufAllocator.DEFAULT.directBuffer(respHeadBuf.length + respContentBuf.length);
+//                    responseBuf.writeBytes(respHeadBuf);
+//                    responseBuf.writeBytes(respContentBuf);
+//                    ctx.writeAndFlush(responseBuf);
+
+                    Object target = dispatch.getDispatch(packMessage.content.getName());
+
+                    String res = null;
+                    try {
+                        Method method = target.getClass().getMethod(packMessage.content.getMethod(), packMessage.content.getParamTypes());
+                        res = (String) method.invoke(target, packMessage.content.args);
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+
+                    MyContent content = new MyContent();
+                    content.setContent(res);
+
+                    byte[] contentByte = SerUtil.encode(content);
+
+//                    System.out.println(" server content length : " + contentByte.length);
+
+                    MyHeader responseHeader = new MyHeader();
+                    responseHeader.setFlag(0x141424);
+                    responseHeader.setRequestId(packMessage.header.getRequestId());
+                    responseHeader.setContentLength(contentByte.length);
+                    byte[] headByte = SerUtil.encode(responseHeader);
+                    ByteBuf responseBuf = ByteBufAllocator.DEFAULT.directBuffer(headByte.length + contentByte.length);
+                    responseBuf.writeBytes(headByte);
+                    responseBuf.writeBytes(contentByte);
+                    ctx.writeAndFlush(responseBuf);
+
+                }
+            });
+        }
+
+    }
 
     public static class ClientReadChannelHandle extends ChannelInboundHandlerAdapter {
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-            MyNettyRpcV3.PackMessage packMessage = (MyNettyRpcV3.PackMessage) msg;
+            PackMessage packMessage = (PackMessage) msg;
             RequestCallback.callback(packMessage.header.requestId, packMessage.content.content);
         }
     }
+
 
     public static class RequestCallback {
         private static ConcurrentHashMap<Long, CompletableFuture<String>> requestCallback = new ConcurrentHashMap<>();
@@ -401,53 +493,42 @@ public class MyNettyRpcV3 {
                 header.setContentLength(contentBuf.length);
 
                 byte[] headBuf = SerUtil.encode(header);
-                CompletableFuture<Object> future = new CompletableFuture<>();
 
-//                urlST(contentBuf, future);
-                nettyST(contentBuf, future);
+                CompletableFuture<String> future = new CompletableFuture<>();
+                RequestCallback.addRequestCallback(header.getRequestId(), future);
 
+                ByteBuf buf = ByteBufAllocator.DEFAULT.directBuffer(contentBuf.length);
+                buf.writeBytes(headBuf);
+                buf.writeBytes(contentBuf);
+                channel.writeAndFlush(buf);
 
                 return future.get();
-
-
-//                CompletableFuture<String> future = new CompletableFuture<>();
-//                RequestCallback.addRequestCallback(header.getRequestId(), future);
-
-//                ByteBuf buf = ByteBufAllocator.DEFAULT.directBuffer(contentBuf.length);
-//                buf.writeBytes(headBuf);
-//                buf.writeBytes(contentBuf);
-//                channel.writeAndFlush(buf);
-
-//                return future.get();
-//                return null;
             }
         });
     }
 
     public static void main(String[] args) {
 
-//        for (int i = 0; i < 100; i++) {
-//            int finalI = i;
-//            new Thread(() -> {
-//
-//                Car car = getProxy(Car.class);
-//                String sendMessage = "hello : " + finalI;
-//                String res = car.race(sendMessage);
-//                System.out.println("response msg  " + res + " , client send msg : " + sendMessage);
-//
-//            }).start();
-//        }
-//
-//        try {
-//            System.in.read();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        new Thread(() -> {
+            try {
+                startServer();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
 
-        Car car = getProxy(Car.class);
-        String sendMessage = "hello car";
-        String res = car.race(sendMessage);
-        System.out.println("response msg  " + res + " , client send msg : " + sendMessage);
+
+        for (int i = 0; i < 100; i++) {
+            int finalI = i;
+            new Thread(() -> {
+
+                Car car = getProxy(Car.class);
+                String sendMessage = "hello : " + finalI;
+                String res = car.race(sendMessage);
+                System.out.println("response msg  " + res + " , client send msg : " + sendMessage);
+
+            }).start();
+        }
 
         try {
             System.in.read();
@@ -455,94 +536,6 @@ public class MyNettyRpcV3 {
             e.printStackTrace();
         }
         System.out.println("app end xxx ");
-    }
-
-
-    public static class HttpClientReadChannelHandle extends ChannelInboundHandlerAdapter {
-
-        private CompletableFuture<Object> future;
-
-        public HttpClientReadChannelHandle(CompletableFuture<Object> future) {
-            this.future = future;
-        }
-
-        @Override
-        public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//            MyNettyRpcV3.PackMessage packMessage = (MyNettyRpcV3.PackMessage) msg;
-//            RequestCallback.callback(packMessage.header.requestId, packMessage.content.content);
-            System.out.println(" http client read result msg : " + msg);
-
-
-            FullHttpResponse response = (FullHttpResponse) msg;
-            byte[] cs = new byte[response.headers().getInt("content-length")];
-            response.content().readBytes(cs);
-            MyContent rc = SerUtil.decode(cs, MyContent.class);
-            System.out.println("client decode content : " + rc);
-
-            future.complete(rc.getContent());
-        }
-    }
-
-    public static void urlST(byte[] content, CompletableFuture<Object> future) {
-        try {
-            URL url = new URL("http://localhost:9999");
-
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-            connection.setRequestMethod(HttpMethod.POST.name());
-
-            connection.setRequestProperty("content-length", String.valueOf(content.length));
-            connection.getOutputStream().write(content);
-
-            if (connection.getResponseCode() == 200) {
-                System.out.println("connect success ... ");
-
-                int contentLength = Integer.parseInt(connection.getHeaderField("content-length"));
-                byte[] contents = new byte[contentLength];
-                connection.getInputStream().read(contents);
-
-                MyContent responseContent = SerUtil.decode(contents, MyContent.class);
-                future.complete(responseContent.getContent());
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void nettyST(byte[] content, CompletableFuture<Object> future){
-        try {
-            Channel client = new Bootstrap()
-                    .group(new NioEventLoopGroup(1))
-                    .channel(NioSocketChannel.class)
-                    .handler(new ChannelInitializer<NioSocketChannel>() {
-                        @Override
-                        protected void initChannel(NioSocketChannel ch) throws Exception {
-                            ch.pipeline()
-                                    .addLast(new HttpClientCodec())
-                                    .addLast(new HttpObjectAggregator(1024 * 513))
-                                    .addLast(new HttpClientReadChannelHandle(future));
-                        }
-                    })
-                    .connect(new InetSocketAddress("localhost", 9999))
-                    .sync()
-                    .channel();
-
-
-            FullHttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_0,
-                    HttpMethod.POST, "");
-            request.headers().add("content-length", content.length);
-            request.content().writeBytes(content);
-
-            client.writeAndFlush(request);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 }
