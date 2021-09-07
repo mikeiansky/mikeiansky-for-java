@@ -3,6 +3,7 @@ package com.winson.jvm.gc;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author winson
@@ -38,6 +39,35 @@ public class GCLogPrintDemoV1 {
         byte[] b9 = new byte[_1MB * 2];
 //        byte[] b10 = new byte[_1MB * 2];
 
+        CountDownLatch latch = new CountDownLatch(1);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("demo start");
+//                try {
+//                    latch.wait();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+                for (;;) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+//                System.out.println("demo end");
+            }
+        }, "winson-thread");
+        thread.setPriority(5);
+        thread.setDaemon(true);
+        thread.start();
+
         // 测试元空间内存回收异常
         int size = 700;
         ArrayList<Object> objList = new ArrayList<>();
@@ -65,11 +95,26 @@ public class GCLogPrintDemoV1 {
         }
         System.out.println("app run end ... ");
         try {
+            int flag = 0;
+            while (true){
+                flag++;
+                System.out.println(sayHello(String.valueOf(flag)));
+                System.in.read();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("hello jvm gc end");
+        try {
             System.in.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("hello jvm gc end");
+    }
+
+    public static String sayHello(String msg){
+        return "hello : " + msg;
     }
 
 }
