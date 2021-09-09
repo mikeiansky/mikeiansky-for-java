@@ -8,7 +8,15 @@ import java.util.Locale;
  **/
 public class ResourceDemo {
 
+    /**
+     * 测试自定义属性 -Dwinson.name=ciwei
+     * @param args
+     */
     public static void main(String[] args) {
+
+        String winsonName = System.getProperty("winson.name");
+        System.out.println("winson name : " + winsonName);
+
         String userDir = System.getProperty("user.dir");
         System.out.println("user.dir = " + userDir);
 

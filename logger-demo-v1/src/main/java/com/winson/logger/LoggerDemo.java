@@ -59,6 +59,7 @@ public class LoggerDemo {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+
         sayHello("ciwei");
         try {
             Thread.sleep(5000);
