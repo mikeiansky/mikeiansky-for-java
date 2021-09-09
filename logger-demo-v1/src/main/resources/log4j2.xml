@@ -6,9 +6,9 @@
             <PatternLayout pattern="localtion[%l] : %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
         <File name="File1"
-              fileName="D:/work/java/winson-for-java/logger-demo-v1/src/log/log4j-2.log"
+              fileName="D:/winson.log"
               bufferedIO="false"
-              advertiseURI="file://D:/work/java/winson-for-java/logger-demo-v1/src/log/log4j-2.log"
+              advertiseURI="D:/winson.log"
               advertise="true">
             <PatternLayout pattern="localtion[%l] : runtime [%r] class[%c] priority[%-5p] %d{HH:mm:ss.SSS} [%t] %-5level %logger{10} - %m || %n"/>
         </File>
@@ -16,7 +16,7 @@
             name="rf"
             fileName="D:/work/java/winson-for-java/logger-demo-v1/src/log/rf2.log"
             filePattern="D:/work/java/winson-for-java/logger-demo-v1/src/log/rf2_%d{yyyy-MM-dd}.log">
-            <PatternLayout pattern="localtion[%l] : runtime [%r] class[%c] priority[%-5p] %d{HH:mm:ss.SSS} [%t] %-5level %logger{10} - %m%n"/>
+            <PatternLayout pattern="method: [%method] localtion[%l] : runtime [%r] class[%c] priority[%-5p] %d{HH:mm:ss.SSS} [%t] %-5level %logger{10} - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>
             </Policies>
