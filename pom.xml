@@ -23,6 +23,7 @@
     <modules>
         <module>java-api</module>
         <module>logger-demo</module>
+        <module>winson-shiro</module>
     </modules>
 
 </project>
