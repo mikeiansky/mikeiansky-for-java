@@ -1,8 +1,7 @@
-package com.winson.jvm.invoke;
+package com.winson.jvm.proxy;
 
 import java.lang.invoke.*;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 
 /**
  * @author winson

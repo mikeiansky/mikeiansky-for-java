@@ -1,4 +1,4 @@
-package com.winson.jvm.invoke;
+package com.winson.jvm.proxy;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;

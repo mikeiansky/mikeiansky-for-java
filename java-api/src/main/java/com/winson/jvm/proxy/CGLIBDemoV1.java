@@ -1,4 +1,4 @@
-package com.winson.jvm.invoke;
+package com.winson.jvm.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
