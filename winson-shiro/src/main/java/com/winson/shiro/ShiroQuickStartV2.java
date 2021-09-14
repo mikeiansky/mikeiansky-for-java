@@ -47,15 +47,16 @@ public class ShiroQuickStartV2 {
 
         String pwd = "123456";
         String md5 = MD5Util.toMD5String(pwd);
+        System.out.println(md5);
         String salt = "ciwei";
-        String sha256Hash = new Sha256Hash(pwd, salt, 1024).toBase64();
-
+        String sha256Hash = new Sha256Hash(pwd, salt, 1024).toString();
+        System.out.println("sha256 : " + sha256Hash);
 
         SimpleAccountRealm simpleAccountRealm = new SimpleAccountRealm();
-//        simpleAccountRealm.setCredentialsMatcher(sha256CredentialsMatcher);
+        simpleAccountRealm.setCredentialsMatcher(sha256CredentialsMatcher);
 //        simpleAccountRealm.addAccount("winson", sha256Hash, "manager", "owner");
-        simpleAccountRealm.setCredentialsMatcher(hashedCredentialsMatcher);
-        simpleAccountRealm.addAccount("winson", md5, "manager", "owner");
+//        simpleAccountRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        simpleAccountRealm.addAccount("winson", sha256Hash, "manager", "owner");
 
         DomainPermission managerPermission = new DomainPermission("select,update");
         WildcardPermission managerPermission2 = new WildcardPermission("insert,delete");
