@@ -53,7 +53,7 @@ public class ShiroQuickStartV2 {
         System.out.println("sha256 : " + sha256Hash);
 
         SimpleAccountRealm simpleAccountRealm = new SimpleAccountRealm();
-        simpleAccountRealm.setCredentialsMatcher(sha256CredentialsMatcher);
+//        simpleAccountRealm.setCredentialsMatcher(sha256CredentialsMatcher);
 //        simpleAccountRealm.addAccount("winson", sha256Hash, "manager", "owner");
 //        simpleAccountRealm.setCredentialsMatcher(hashedCredentialsMatcher);
         simpleAccountRealm.addAccount("winson", sha256Hash, "manager", "owner");
@@ -88,7 +88,7 @@ public class ShiroQuickStartV2 {
         Subject user2 = securityManager.createSubject(subjectContext);
         if(!user1.isAuthenticated()){
 
-            UsernamePasswordToken token = new UsernamePasswordToken("winson", pwd);
+            UsernamePasswordToken token = new UsernamePasswordToken("winson", sha256Hash);
 //            UsernamePasswordToken token = new UsernamePasswordToken("winson", sha256Hash);
 
             System.out.println("before login user1 is authenticated : " + user1.isAuthenticated());

@@ -2,6 +2,7 @@ package com.winson.shiro;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.realm.SimpleAccountRealm;
@@ -51,6 +52,7 @@ public class CustomShiroDemoV1 {
 
         DefaultSecurityManager securityManager = new DefaultSecurityManager();
         SecurityUtils.setSecurityManager(securityManager);
+
 
         SimpleAccountRealm accountRealm = new SimpleAccountRealm();
         accountRealm.addAccount("winson", "123456");
