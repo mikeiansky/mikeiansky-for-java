@@ -3,6 +3,11 @@ package com.winson.utils.reptile;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,10 +17,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author winson
@@ -26,27 +37,15 @@ public class CompanyReptileUtils {
     // 企查查
     // https://www.qcc.com/firm/9618c2f06a4570efaf7a898ff49dfd05.html
 
-    public static void queryList() {
-//        String url1 = "https://www.qcc.com";
-
-//        String url1 = "https://www.qcc.com/web/search?key=apple";
-//        OkHttpClient client = new OkHttpClient().newBuilder()
-//                .build();
-//        Request request = new Request.Builder()
-//                .url(url1)
-//                .method("GET", null)
-////                .addHeader("Cookie", "QCCSESSID=20084a46e450ea9d41d8bdde7c; acw_tc=7793461c16319516755346092e090a29f2da048fe35475e0c7d1858261")
-//                .build();
-//        try {
-//            Response response = client.newCall(request).execute();
-//            System.out.println(response.body().string());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        String url = "https://www.qcc.com/web/search?key=apple";
-        String url = "https://www.qcc.com/web/search?key=%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%B9%90%E6%9C%89%E5%AE%B6%E6%88%BF%E4%BA%A7%E4%BA%A4%E6%98%93%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%E9%98%B3%E5%85%89%E6%B5%B7%E6%BB%A8%E4%BA%8C%E5%88%86%E5%85%AC%E5%8F%B8";
-
+    public static String queryList(String key) {
+        String urlKey = null;
+        try {
+            urlKey = URLEncoder.encode(key, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String url = "https://www.qcc.com/web/search?key=" + urlKey;
+        System.out.println("query list url is : " + url);
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
@@ -58,18 +57,18 @@ public class CompanyReptileUtils {
             Response response = client.newCall(request).execute();
             String listResult = response.body().string();
             System.out.println("response : " + listResult);
-            parseHtml(listResult);
+            String href = parseHtml(listResult);
+            if (href != null) {
+                return queryDetail(href);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    public static void queryDetail() {
-        String url1 = "https://www.qcc.com/web/search?key=apple";
-        String url2 = "https://www.qcc.com/firm/9618c2f06a4570efaf7a898ff49dfd05.html";
-
-        String queryUrl = url2;
-
+    public static String queryDetail(String queryUrl) {
+        System.out.println("queryDetail url : " + queryUrl);
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
@@ -79,66 +78,72 @@ public class CompanyReptileUtils {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            System.out.println("body : " + response.body().string());
-            System.out.println("response code ----> ");
-            System.out.println(response.code());
+            String result = response.body().string();
+            System.out.println("body : " + result);
+//            System.out.println("response code ----> ");
+//            System.out.println(response.code());
+            return parseDetail(result);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    public static void parseHtml(String html){
-        System.out.println("parse Html --------> start");
+    public static String parseHtml(String html) {
+//        System.out.println("parse Html --------> start");
         Document doc = Jsoup.parse(html);
-//        Elements elements = doc.getElementsByTag("table");
-//        for (Element element : elements) {
-//            System.out.println("table for ---> ");
-////            System.out.println(element.html());
-//
-//            Elements trs = element.getElementsByTag("tr");
-//            for (Element tr : trs) {
-//                System.out.println("tr ---> ");
-//                System.out.println(tr.html());
-//                System.out.println("tr <-- ");
-//            }
-//
-//            System.out.println("table for <<<<");
-//        }
         String key = "https://www.qcc.com/firm";
         Elements as = doc.getElementsByTag("a");
         for (Element ahref : as) {
             String href = ahref.attr("href");
-            if(href != null && href.startsWith(key)){
-                System.out.println("href ===> " + href);
-                return;
+            if (href != null && href.startsWith(key)) {
+                return href;
             }
         }
 
-        System.out.println("parse Html --------> end");
+//        System.out.println("parse Html --------> end");
+        return null;
     }
 
-    public static void main(String[] args) {
-//        String urlStr = "https://www.qcc.com/firm/9618c2f06a4570efaf7a898ff49dfd05.html";
-//        try {
-//            URL url = new URL(urlStr);
-//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//            int resCode = connection.getResponseCode();
-//            System.out.println("result code : " + resCode);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
+    public static String parseDetail(String html) {
+//        System.out.println("parse detail -----------> ");
+        Document doc = Jsoup.parse(html);
+        Elements elements = doc.getElementsByClass("app-ntable");
+//        System.out.println(elements.html());
+        Element element = elements.get(0);
+
+        Elements trElements = element.getElementsByTag("tr");
+        String parentCompany = trElements.get(1).getElementsByTag("td").get(1).getElementsByTag("a").html();
+        return parentCompany;
+    }
+
+    public static void main(String[] args) throws IOException {
+//        String filePath = "D:\\work\\java\\winson-for-java\\java-api\\src\\main\\java\\com\\winson\\utils\\reptile\\bas_company.xlsx";
+//        List<String> companyFullNameList = new ArrayList<>();
+//        FileInputStream inputStream = new FileInputStream(filePath);
+//        XSSFWorkbook sheets = new XSSFWorkbook(inputStream);
+//        XSSFSheet sheet = sheets.getSheet("bas_company");
+//        for (int i = 1; i < 23494; i++) {
+//            XSSFRow row = sheet.getRow(i);
+//            XSSFCell nameCell = row.getCell(1);
+//            XSSFCell fullNameCell = row.getCell(2);
+//            if (fullNameCell != null) {
+////                System.out.println("i:" + i + " - " + fullNameCell.toString());
+//                companyFullNameList.add(fullNameCell.toString());
+//            }
+//        }
+//
+//        for (String companyFullName : companyFullNameList) {
+//            //        String company = "广州市乐有家房产经纪有限公司猎德大道第一分公司";
+//            String parentCompany = queryList(companyFullName);
+//            System.out.println(companyFullName + "==总公司[" + parentCompany + "]");
 //        }
 
-//        queryList();
-        queryDetail();
+        String company = "广州市乐有家房产经纪有限公司猎德大道第一分公司";
+        String parentCompany = queryList(company);
+        System.out.println(parentCompany);
 
-//        String url = "https://www.qcc.com/web/search?key=apple";
-//        WebDriver driver = new ChromeDriver();
-//        driver.get(url);
-//        System.out.println(driver.getTitle());
-
-
+        System.out.println("app end .... ");
     }
 
 }
