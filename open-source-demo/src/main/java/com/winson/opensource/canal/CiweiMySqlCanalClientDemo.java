@@ -1,6 +1,7 @@
 package com.winson.opensource.canal;
 
 import java.net.InetSocketAddress;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -22,6 +23,8 @@ import com.alibaba.otter.canal.protocol.CanalEntry.RowData;
 public class CiweiMySqlCanalClientDemo {
 
     public static void main(String args[]) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("");
+
         // 创建链接
         CanalConnector connector = CanalConnectors.newSingleConnector(
                 new InetSocketAddress(AddressUtils.getHostIp(),
@@ -67,7 +70,6 @@ public class CiweiMySqlCanalClientDemo {
             if (entry.getEntryType() == EntryType.TRANSACTIONBEGIN || entry.getEntryType() == EntryType.TRANSACTIONEND) {
                 continue;
             }
-
             RowChange rowChage = null;
             try {
                 rowChage = RowChange.parseFrom(entry.getStoreValue());
@@ -75,13 +77,11 @@ public class CiweiMySqlCanalClientDemo {
                 throw new RuntimeException("ERROR ## parser of eromanga-event has an error , data:" + entry.toString(),
                         e);
             }
-
             EventType eventType = rowChage.getEventType();
             System.out.println(String.format("================&gt; binlog[%s:%s] , name[%s,%s] , eventType : %s",
                     entry.getHeader().getLogfileName(), entry.getHeader().getLogfileOffset(),
                     entry.getHeader().getSchemaName(), entry.getHeader().getTableName(),
                     eventType));
-
             for (RowData rowData : rowChage.getRowDatasList()) {
                 if (eventType == EventType.DELETE) {
                     printColumn(rowData.getBeforeColumnsList());
