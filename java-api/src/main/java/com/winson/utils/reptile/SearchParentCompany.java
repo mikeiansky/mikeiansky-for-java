@@ -36,10 +36,11 @@ public class SearchParentCompany {
         List<MyCompany> companyFullNameList = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(filePath);
         XSSFWorkbook sheets = new XSSFWorkbook(inputStream);
-        XSSFSheet sheet = sheets.getSheet("bas_company");
+        XSSFSheet sheet = sheets.getSheet("has_parent_company");
 //        int size = 23400;
-        int size = 3976;
-        int from = 1;
+//        int size = 3704;
+        int from = 3651;
+        int size = 3704;
         for (int i = from; i < size; i++) {
             XSSFRow row = sheet.getRow(i);
             XSSFCell idCell = row.getCell(0);
@@ -50,8 +51,13 @@ public class SearchParentCompany {
                 company.companyFullName = fullNameCell.toString();
                 company.companyId = (int) Float.parseFloat(idCell.toString());
                 companyFullNameList.add(company);
+//                System.out.println(company.companyFullName);
             }
         }
+//        boolean exit = true;
+//        if(exit){
+//            return;
+//        }
 
         System.out.println(companyFullNameList.size());
 
@@ -59,9 +65,13 @@ public class SearchParentCompany {
 
         System.setProperty("webdriver.chrome.driver", "D:\\service\\chromedriver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        driver.get(searchUrlPrefix+"aaaa");
-
+        driver.get(searchUrlPrefix + "aaaa");
         System.in.read();
+//        driver.get(searchUrlPrefix + "aaaa");
+//        System.in.read();
+
+
+        int sleeptime = 500;
         System.out.println("start ... ");
         for (MyCompany company : companyFullNameList) {
             String detailUrl = searchDetailUrl(driver, company.companyFullName);
@@ -70,7 +80,7 @@ public class SearchParentCompany {
             }
             String parentCompanyName = null;
             if (detailUrl != null && detailUrl.startsWith("http")) {
-                Thread.sleep(1000);
+//                Thread.sleep(sleeptime);
                 parentCompanyName = searchParentCompany(driver, detailUrl);
             }
             if (needExist) {
@@ -80,10 +90,11 @@ public class SearchParentCompany {
                 parentCompanyName = "no_parent_company";
             }
             String realParentCompanyName = parentCompanyName;
-            String date = company.companyId + "," + company.companyFullName + "," + realParentCompanyName + "\r\n";
-            out.write(date.getBytes());
+            String data = company.companyId + "," + company.companyFullName + "," + realParentCompanyName + "\r\n";
+            System.err.println("查询总公司情况：" + data);
+            out.write(data.getBytes());
             out.flush();
-            Thread.sleep(4000);
+//            Thread.sleep(sleeptime);
         }
 
         out.flush();
@@ -92,8 +103,12 @@ public class SearchParentCompany {
 
     }
 
-    public static boolean catchCheckUrl(String url){
-        return url.startsWith("https://antirobot.tianyancha.com") || url.startsWith("https://www.tianyancha.com/login");
+    public static boolean catchCheckUrl(String url) {
+        boolean result = url.startsWith("https://antirobot.tianyancha.com") || url.startsWith("https://www.tianyancha.com/login");
+        if (result) {
+            JFrameTest.showAlter();
+        }
+        return result;
     }
 
     public static String searchDetailUrl(WebDriver driver, String company) {
