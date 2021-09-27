@@ -1,6 +1,5 @@
 package com.winson.utils.reptile;
 
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -18,7 +17,7 @@ import java.util.Scanner;
  * @author winson
  * @date 2021/9/23
  **/
-public class SearchParentCompany {
+public class SearchParentCompany10000 {
 
     public static class MyCompany {
         public int companyId;
@@ -27,8 +26,8 @@ public class SearchParentCompany {
 
     public static final String searchUrlPrefix = "https://www.tianyancha.com/search?key=";
     public static boolean needExist = false;
-    public static final String outPath = "D:\\work\\temp\\out\\out-17000.txt";
     public static final Scanner scan = new Scanner(System.in);
+    public static final String outPath = "D:\\work\\temp\\out\\out-10000.txt";
 
     public static int readLine() {
         int count = 0;
@@ -47,22 +46,20 @@ public class SearchParentCompany {
         return count;
     }
 
-
     public static void main(String[] args) throws Exception {
-
         int count = readLine();
         count++;
-        System.out.println("current count : " + count);
         String filePath = "D:\\work\\temp\\single_bas_company_2021-09-24.xlsx";
         List<MyCompany> companyFullNameList = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(filePath);
         XSSFWorkbook sheets = new XSSFWorkbook(inputStream);
         XSSFSheet sheet = sheets.getSheet("bas_company");
 //        int size = 18772;
-        int offset = 17000;
-        int from = count + offset;
+        int offset = 10000;
+        int from = count;
+        int realFrom = from + offset;
         int size = 18772;
-        for (int i = from; i < size; i++) {
+        for (int i = realFrom; i < size; i++) {
             XSSFRow row = sheet.getRow(i);
             XSSFCell idCell = row.getCell(0);
             XSSFCell nameCell = row.getCell(1);
@@ -139,7 +136,6 @@ public class SearchParentCompany {
             String searchUrl = searchUrlPrefix + ecStr;
             driver.get(searchUrl);
             while (catchCheckUrl(driver.getCurrentUrl())){
-                System.err.println("1111 xxxxxxxxxxxxxxxxxxxxxxxxx");
                 scan.next();
                 driver.get(searchUrl);
             }

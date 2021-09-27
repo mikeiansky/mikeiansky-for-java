@@ -2,6 +2,7 @@ package com.winson.utils.reptile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
 
 /**
  * @author winson
@@ -9,8 +10,17 @@ import java.awt.*;
  **/
 public class JFrameTest {
 
+    public static final Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
+        scan.next();
         showAlter();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        scan.next();
+        System.out.println("end");
     }
 
     public static void showAlter(){
@@ -42,7 +52,7 @@ public class JFrameTest {
 //        frame.setSize(300,200);
         frame.setVisible(true);
         //使右上角的关闭按钮生效，如果没有这句，点击右上角的关闭按钮只能关闭窗口，无法结束进程
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }
