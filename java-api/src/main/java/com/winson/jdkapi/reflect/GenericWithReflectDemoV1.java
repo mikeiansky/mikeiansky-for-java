@@ -3,6 +3,7 @@ package com.winson.jdkapi.reflect;
 
 import com.winson.jdkapi.reflect.ReflectAnnotation;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.List;
@@ -60,8 +61,9 @@ public class GenericWithReflectDemoV1 {
     interface InterfaceFive {
     }
 
+    // 注解信息会写入到字节码里面
     @ReflectAnnotation("SuperUser-class")
-    public static class SuperUser<A, E, S, R, F> implements InterfaceTwo<FlagWithType<E>, FlagWithTwoType<? extends S, ? super E>, R>, InterfaceThree<E> {
+    public static class SuperUser<A, E, S, R, F, G> implements InterfaceTwo<FlagWithType<E>, FlagWithTwoType<? extends S, ? super E>, R>, InterfaceThree<E> {
 
         @ReflectAnnotation("super-user-reflect-method-getFlag")
         public E getFlag(@ReflectAnnotation("p-a-int") int a, @ReflectAnnotation("p-e-int") E e, @ReflectAnnotation("p-es-E[]") E[] es) {
@@ -93,7 +95,7 @@ public class GenericWithReflectDemoV1 {
 
     }
 
-    public static class NormalUser<T extends InterfaceFive, S, B> extends SuperUser<S, Flag, FlagWithType<InterfaceNormal<T>>, FlagWithTheeType<InterfaceOne<S, B>, ? extends S, ? super T>, FlagWithType<? extends T>> implements InterfaceFour, InterfaceFive {
+    public static class NormalUser<T extends InterfaceFive, S, B> extends SuperUser<S, Flag, FlagWithType<InterfaceNormal<T>>, FlagWithTheeType<InterfaceOne<S, B>, ? extends S, ? super T>, FlagWithType<? extends T>, FlagWithType<?>> implements InterfaceFour, InterfaceFive {
 
         public Flag getFlag(int a, Flag e, Flag[] es) {
             System.out.println("getFlag on normal invoke by : " + this + " , e : " + e + " , es : " + es);
@@ -175,6 +177,12 @@ public class GenericWithReflectDemoV1 {
         System.out.println("clazz.getGenericSuperclass() : " + clazz.getGenericSuperclass());
         System.out.println("clazz.getGenericSuperclass().getTypeName() : " + clazz.getGenericSuperclass().getTypeName());
         System.out.println("clazz.getGenericSuperclass().getClass() : " + clazz.getGenericSuperclass().getClass());
+        for (Annotation annotation : clazz.getSuperclass().getAnnotations()) {
+            if (annotation.annotationType().isAssignableFrom(ReflectAnnotation.class)) {
+                ReflectAnnotation ra = (ReflectAnnotation) annotation;
+                System.out.println("clazz.getSuperclass().getAnnotation(ReflectAnnotation.class).getValue() : " + ra.value());
+            }
+        }
         System.out.println("========= class parameterize info");
         ParameterizedType parameterizedType = (ParameterizedType) clazz.getGenericSuperclass();
         System.out.println("parameterizedType : " + parameterizedType);

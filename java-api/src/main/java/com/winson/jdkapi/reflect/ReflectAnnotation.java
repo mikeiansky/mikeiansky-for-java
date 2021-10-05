@@ -12,6 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @RootAnnotation("normal-reflect-annotation-inherited")
 @RootAnnotationWithInherited("reflect-annotation-inherited")
+// 被反射为一个 接口
 public @interface ReflectAnnotation {
 
     String value() default "reflect-annotation";
