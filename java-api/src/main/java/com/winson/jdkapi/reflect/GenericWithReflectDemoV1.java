@@ -1,6 +1,8 @@
 package com.winson.jdkapi.reflect;
 
 
+import com.winson.jdkapi.reflect.ReflectAnnotation;
+
 import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.stream.Collectors;
  * @author winson
  * @date 2021/10/4
  **/
-public class GenericDemoV1 {
+public class GenericWithReflectDemoV1 {
 
     public static class Flag {
     }
@@ -58,6 +60,7 @@ public class GenericDemoV1 {
     interface InterfaceFive {
     }
 
+    @ReflectAnnotation("SuperUser-class")
     public static class SuperUser<A, E, S, R, F> implements InterfaceTwo<FlagWithType<E>, FlagWithTwoType<? extends S, ? super E>, R>, InterfaceThree<E> {
 
         @ReflectAnnotation("super-user-reflect-method-getFlag")
@@ -112,7 +115,7 @@ public class GenericDemoV1 {
     public static void main(String[] args) throws NoSuchMethodException {
 
         Class clazz = NormalUser.class;
-//        displayClassInfo(clazz);
+        displayClassInfo(clazz);
 
         System.out.println("========= flag method ========");
         Method flagMethod = clazz.getMethod("getFlag", int.class, Object.class, Object[].class);
