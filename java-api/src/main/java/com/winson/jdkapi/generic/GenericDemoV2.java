@@ -12,13 +12,16 @@ import java.util.stream.Collectors;
 public class GenericDemoV2 {
 
     public static class MyGenericNormal{
-
+        public void doNormal(){
+            System.out.println("generic normal do something !");
+        }
     }
 
     public static class MySubGeneric extends MyGenericNormal{
 
     }
 
+    // 这里的T在字节码文件里面会被转成Object
     public static class WithGeneric<T>{
 
         public T t;
@@ -30,6 +33,13 @@ public class GenericDemoV2 {
         public T getTarget(){
             System.out.println(t);
             return t;
+        }
+    }
+
+    // 这里的T在字节码里面会被转成MyGenericNormal
+    public static class GenericWithExtend<T extends MyGenericNormal>{
+        public void test(T normal){
+            normal.doNormal();
         }
     }
 
@@ -63,6 +73,8 @@ public class GenericDemoV2 {
         withGeneric.doWithGenericType(wg, null);
         WithGeneric<MySubGeneric> wm = new WithGeneric<>(new MySubGeneric());
         withGeneric.doWithGenericType(wm, null);
+
+
 
     }
 

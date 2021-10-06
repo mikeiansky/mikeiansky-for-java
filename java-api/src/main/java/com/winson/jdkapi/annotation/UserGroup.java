@@ -12,4 +12,9 @@ import java.lang.annotation.*;
 @Inherited
 @Super
 public @interface UserGroup {
+
+    String name() default "winson";
+
+    int age() default 23;
+
 }
