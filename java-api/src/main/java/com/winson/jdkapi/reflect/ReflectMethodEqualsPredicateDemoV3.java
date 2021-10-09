@@ -8,11 +8,11 @@ import java.util.Map;
  * @author winson
  * @date 2021/10/8
  **/
-public class ReflectBaseDemoV3 {
+public class ReflectMethodEqualsPredicateDemoV3 {
 
 
     public static void main(String[] args) {
-        Class<?> clazz = ReflectBaseDemoV3.class;
+        Class<?> clazz = ReflectMethodEqualsPredicateDemoV3.class;
         Map<Method, String> methodMap = new HashMap<>();
         Method method1 = null;
         Method method2 = null;

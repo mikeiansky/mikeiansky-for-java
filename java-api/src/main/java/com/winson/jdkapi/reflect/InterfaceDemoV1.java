@@ -21,7 +21,7 @@ public class InterfaceDemoV1 {
 
     }
 
-    interface InterfaceFour extends InterfaceTwo{
+    interface InterfaceFour extends InterfaceOne, InterfaceTwo{
 
     }
 
@@ -34,7 +34,11 @@ public class InterfaceDemoV1 {
         System.out.println(clazz.getName());
         System.out.println(clazz.getCanonicalName());
         System.out.println(clazz.getSuperclass());
-        System.out.println(Arrays.stream(clazz.getInterfaces()).collect(Collectors.toList()));
+        System.out.println(Arrays.asList(clazz.getInterfaces()));
+        System.out.println("====== interfaces ======");
+        for (Class cif : clazz.getInterfaces()) {
+            System.out.println("isInterface : "+cif.isInterface() + " , " + cif + " , interfaces : " + Arrays.asList(cif.getInterfaces()) + " , super : " + cif.getSuperclass());
+        }
     }
 
 }

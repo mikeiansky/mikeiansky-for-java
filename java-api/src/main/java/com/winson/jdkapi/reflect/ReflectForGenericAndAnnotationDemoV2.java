@@ -10,7 +10,7 @@ import java.lang.reflect.Parameter;
  * @date 2021/10/4
  **/
 @ReflectAnnotation("class-annotation")
-public class ReflectBaseDemoV2 {
+public class ReflectForGenericAndAnnotationDemoV2 {
 
     public static final int finalFlagField = 12;
 
@@ -70,7 +70,7 @@ public class ReflectBaseDemoV2 {
 
     public static void main(String[] args) {
 
-        Class clazz = ReflectBaseDemoV2.class;
+        Class clazz = ReflectForGenericAndAnnotationDemoV2.class;
         System.out.println("============ FIELDS ============");
         Field[] fields = clazz.getFields();
         for (Field field : fields) {

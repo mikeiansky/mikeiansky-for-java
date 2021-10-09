@@ -25,6 +25,7 @@
         <module>logger-demo</module>
         <module>winson-shiro</module>
         <module>open-source-demo</module>
+        <module>exceptions</module>
     </modules>
 
 </project>

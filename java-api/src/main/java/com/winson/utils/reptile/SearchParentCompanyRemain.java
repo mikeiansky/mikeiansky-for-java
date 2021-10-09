@@ -61,7 +61,7 @@ public class SearchParentCompanyRemain {
 //        int size = 18772;
         int offset = 0;
         int from = count + offset;
-        int size = 31;
+        int size = 11;
         for (int i = from; i < size; i++) {
             XSSFRow row = sheet.getRow(i);
             XSSFCell idCell = row.getCell(0);
