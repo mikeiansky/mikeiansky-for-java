@@ -4,6 +4,7 @@ package com.winson.jdkapi.annotation;
  * @author winson
  * @date 2021/6/15
  **/
+@UserGroup
 public class Person {
 
 
