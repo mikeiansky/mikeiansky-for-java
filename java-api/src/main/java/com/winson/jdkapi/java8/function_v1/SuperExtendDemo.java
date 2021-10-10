@@ -1,4 +1,4 @@
-package com.winson.jdkapi.java8.function;
+package com.winson.jdkapi.java8.function_v1;
 
 import java.util.ArrayList;
 import java.util.List;
