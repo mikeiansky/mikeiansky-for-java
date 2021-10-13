@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.Arrays;
 
 /**
  * @author winson
@@ -131,7 +132,10 @@ public class ReflectForGenericAndAnnotationDemoV2 {
                 .append(" , return type : " + method.getReturnType())
                 .append(" , parameters : " + sbPs)
                 .append(" , modifiers : " + method.getModifiers())
-                .append(" , annotation : " + annotation);
+                .append(" , annotation : " + annotation)
+                .append(" , exception types : " + Arrays.asList(method.getExceptionTypes()))
+                .append(" , generic exception types : " + Arrays.asList(method.getGenericExceptionTypes()))
+                .append(" , annotation exception types : " + Arrays.asList(method.getAnnotatedExceptionTypes()));
 
         System.out.println(sb);
     }
