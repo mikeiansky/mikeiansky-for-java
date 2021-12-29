@@ -26,6 +26,8 @@
         <module>winson-shiro</module>
         <module>open-source-demo</module>
         <module>exceptions</module>
+        <module>log4j-bug-demo</module>
+        <module>jni-rmi-demo</module>
     </modules>
 
 </project>
