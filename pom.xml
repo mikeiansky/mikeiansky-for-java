@@ -28,6 +28,7 @@
         <module>exceptions</module>
         <module>log4j-bug-demo</module>
         <module>jni-rmi-demo</module>
+        <module>winson-for-spring-mvc</module>
     </modules>
 
 </project>

