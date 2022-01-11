@@ -2,10 +2,7 @@ package com.winson.spring.mvc;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
@@ -21,6 +18,11 @@ public class MyHttpServlet extends HttpServlet {
 
     static {
         System.out.println("MyHttpServlet static init ...... ");
+    }
+
+    public MyHttpServlet(){
+        super();
+        System.out.println("MyHttpServlet construct init ...... ");
     }
 
     @Override
@@ -51,7 +53,27 @@ public class MyHttpServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
 //        doNormal(req, resp);
-        doCookie(req, resp);
+//        doCookie(req, resp);
+        doSession(req, resp);
+    }
+
+    private void doSession(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html;charset=utf-8");
+
+        HttpSession session = req.getSession();
+
+        System.out.println("session.getCreationTime() : " + session.getCreationTime());
+        System.out.println("session.getId() : " + session.getId());
+        System.out.println("session.getLastAccessedTime() : " + session.getLastAccessedTime());
+        System.out.println("session.getMaxInactiveInterval() : " + session.getMaxInactiveInterval());
+        System.out.println("session.getServletContext() : " + session.getServletContext());
+
+//        session.setMaxInactiveInterval(1);
+
+        resp.getWriter().write("hello session!");
+        resp.getWriter().close();
+
+//        resp.sendError(777, "winson-error");
     }
 
     private String getCookieString(Cookie cookie) {
