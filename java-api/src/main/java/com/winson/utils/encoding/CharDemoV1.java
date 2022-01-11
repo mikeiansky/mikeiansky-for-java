@@ -13,28 +13,28 @@ public class CharDemoV1 {
         // 中文生僻字字符编码范围
         // https://www.qqxiuzi.cn/zh/hanzi-unicode-bianma.php
 
-        char a = 'a';
-        char b = '中';
-        char c = '圚';
-        char d = '壆';
-        char e = 'ﻻ';
-        char g = '㇀';
-        char h = '⿰';
-        char i = 'ㄅ';
-        char j = 'ㆠ';
+//        char a = 'a';
+//        char b = '中';
+//        char c = '圚';
+//        char d = '壆';
+//        char e = 'ﻻ';
+//        char g = '㇀';
+//        char h = '⿰';
+//        char i = 'ㄅ';
+//        char j = 'ㆠ';
 
 //        char f = '𠀀'; // 编译失败：异常 too many characters in character literal
 
-        System.out.println("char a = " + a);
-        System.out.println("char b = " + b);
-        System.out.println("char c = " + c);
-        System.out.println("char d = " + d);
-        System.out.println("char e = " + e);
+//        System.out.println("char a = " + a);
+//        System.out.println("char b = " + b);
+//        System.out.println("char c = " + c);
+//        System.out.println("char d = " + d);
+//        System.out.println("char e = " + e);
 //        System.out.println("char f = " + f);
-        System.out.println("char g = " + g);
-        System.out.println("char h = " + h);
-        System.out.println("char i = " + i);
-        System.out.println("char j = " + j);
+//        System.out.println("char g = " + g);
+//        System.out.println("char h = " + h);
+//        System.out.println("char i = " + i);
+//        System.out.println("char j = " + j);
 
         byte[] buf = new byte[]{
                 // 1110 1111

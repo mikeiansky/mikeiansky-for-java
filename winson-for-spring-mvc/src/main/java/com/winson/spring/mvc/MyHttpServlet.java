@@ -2,11 +2,16 @@ package com.winson.spring.mvc;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * @author winson
@@ -45,14 +50,83 @@ public class MyHttpServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
+//        doNormal(req, resp);
+        doCookie(req, resp);
+    }
 
+    private String getCookieString(Cookie cookie) {
+        return cookie.getName() + ":" + cookie.getPath() + ":" + cookie.getValue();
+    }
+
+    private void doCookie(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("text/html;charset=utf-8");
+
+        Arrays.stream(req.getCookies())
+                .map(this::getCookieString)
+                .forEach(System.out::println);
+
+        Cookie cookie = new Cookie("winson-company", "ciwei-big");
+        resp.addCookie(cookie);
+
+        resp.getWriter().write("hello winson");
+        resp.getWriter().close();
+    }
+
+    private void doNormal(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // 设置响应给页面的格式、字符集
         System.out.println("MyHttpServlet doGet ...... ");
-        resp.setContentType("text/html;charset=UTF-8");
+//        resp.setContentType("text/html;charset=GBK");
+        resp.setContentType("text/html;charset=utf-8");
         PrintWriter writer = resp.getWriter();
-        writer.write("MyHttpServlet 00000 --- ");
-        writer.close();
+//        writer.write("你好中文 00005 --- "+"\r\n");
+//        resp.setContentType("text/html;charset=GBK");
+//        resp.setContentType("text/html;charset=utf-8");
+//        writer.close();
 
+        resp.setContentType("text/html;charset=GBK");
+//        resp.setContentType("text/html;charset=utf-8");
+
+        System.out.println("req.getContextPath():" + req.getContextPath());
+        System.out.println("req.getServletPath():" + req.getServletPath());
+        System.out.println("req.getMethod():" + req.getMethod());
+        System.out.println("req.getRequestURL():" + req.getRequestURL());
+        System.out.println("req.getQueryString():" + req.getQueryString());
+        System.out.println("req.getServletContext():" + req.getServletContext());
+        System.out.println("req.getServerName():" + req.getServerName());
+        System.out.println("req.getRemoteAddr():" + req.getRemoteAddr());
+        System.out.println("req.getRemoteHost():" + req.getRemoteHost());
+        System.out.println("winson-name:" + req.getAttribute("winson-name"));
+//        writer.write("你好中文 00001 --- "+"\r\n");
+//        resp.setHeader("Content-Type","text/html;charset=gbk");
+//        resp.setContentType("text/html;charset=gbk");
+//        resp.setHeader("Content-Type","text/html;charset=utf-8");
+//        resp.setContentType("text/html;charset=utf-8");
+
+        String str = "中文";
+
+        resp.addHeader("winson-heard", "winson-head1");
+        resp.addHeader("winson-heard", "winson-head2");
+        resp.addHeader("winson-heard", "winson-head3");
+        resp.setHeader("winson-heard", "winson-head001");
+        System.out.println("Charset.defaultCharset().name():" + Charset.defaultCharset().name());
+//        resp.getOutputStream().write(str.getBytes(StandardCharsets.UTF_8));
+//        resp.getOutputStream().write(str.getBytes());
+
+        System.out.println("------buf1-----");
+        byte[] buf1 = str.getBytes();
+        for (byte b : buf1) {
+            System.out.println(Integer.toHexString(b));
+        }
+
+        System.out.println("------buf2-----");
+        byte[] buf2 = str.getBytes(StandardCharsets.UTF_8);
+        for (byte b : buf2) {
+            System.out.println(Integer.toHexString(b));
+        }
+
+//        resp.getOutputStream().close();
+
+        resp.sendRedirect("http://www.baidu.com");
     }
 
     @Override
