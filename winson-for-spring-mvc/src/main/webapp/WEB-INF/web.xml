@@ -5,21 +5,29 @@
          version="3.0">
     <display-name>springMVC</display-name>
     <!-- 部署 DispatcherServlet -->
+<!--    <servlet>-->
+<!--        <servlet-name>springmvc</servlet-name>-->
+<!--        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+<!--        <init-param>-->
+<!--            <param-name>contextConfigLocation</param-name>-->
+<!--            <param-value>classpath:springmvc-servlet.xml</param-value>-->
+<!--        </init-param>-->
+<!--        &lt;!&ndash; 表示容器再启动时立即加载servlet &ndash;&gt;-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>springmvc</servlet-name>-->
+<!--        &lt;!&ndash; 处理所有URL &ndash;&gt;-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+
     <servlet>
-        <servlet-name>springmvc</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:springmvc-servlet.xml</param-value>
-        </init-param>
-        <!-- 表示容器再启动时立即加载servlet -->
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>winsonServlet2</servlet-name>
+        <servlet-class>com.winson.spring.mvc.WinsonServlet2</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>springmvc</servlet-name>
-        <!-- 处理所有URL -->
-        <url-pattern>/</url-pattern>
+        <servlet-name>winsonServlet2</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
-
 
 </web-app>

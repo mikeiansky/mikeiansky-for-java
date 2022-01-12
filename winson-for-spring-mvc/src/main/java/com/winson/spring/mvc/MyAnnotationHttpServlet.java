@@ -13,8 +13,8 @@ import java.io.PrintWriter;
  * @author winson
  * @date 2022/1/11
  **/
-@WebServlet(asyncSupported = true, name = "annotationHttpServlet", loadOnStartup = 1,
-        urlPatterns = {"/annotationHttpServlet", "/*"})
+//@WebServlet(asyncSupported = true, name = "annotationHttpServlet", loadOnStartup = 1,
+//        urlPatterns = {"/annotationHttpServlet", "/*"})
 public class MyAnnotationHttpServlet extends HttpServlet {
 
     static {

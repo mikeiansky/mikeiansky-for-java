@@ -1,5 +1,6 @@
 package com.winson.spring.mvc;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,13 +14,33 @@ import java.io.PrintWriter;
  **/
 public class WinsonServlet2 extends HttpServlet {
 
+    static {
+        System.out.println("WinsonServlet2 static init ... ");
+    }
+
+    public WinsonServlet2(){
+        System.out.println("WinsonServlet2 construct init ... ");
+    }
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        System.out.println("WinsonServlet2 init(ServletConfig config) ... ");
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        System.out.println("WinsonServlet2 destroy ... ");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 设置响应给页面的格式、字符集
         System.out.println("winson servlet do get ...... ");
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.write("winson 6666 --- C语言中文网，c.biancheng.net");
+        writer.write("winson - ciwei - servlet - server");
         writer.close();
     }
 
