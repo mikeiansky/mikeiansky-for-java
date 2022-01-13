@@ -29,6 +29,7 @@
         <module>log4j-bug-demo</module>
         <module>jni-rmi-demo</module>
         <module>winson-for-servlet</module>
+        <module>winson-for-mvc</module>
     </modules>
 
 </project>
