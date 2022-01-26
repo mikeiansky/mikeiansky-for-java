@@ -141,6 +141,15 @@ public class ReflectEnclosingClassDemo {
         System.out.println("clazz.getEnclosingConstructor() : " + clazz.getEnclosingConstructor());
         System.out.println("clazz.getEnclosingMethod() : " + clazz.getEnclosingMethod());
 
+        System.out.println("============= OutFlag =============");
+        clazz = OutFlag.class;
+        System.out.println("class : " + clazz);
+        System.out.println("class.getSuper() : " + clazz.getSuperclass());
+        System.out.println("class.getInterfaces() : " + Arrays.asList(clazz.getInterfaces()));
+        System.out.println("clazz.getEnclosingClass() : " + clazz.getEnclosingClass());
+        System.out.println("clazz.getEnclosingConstructor() : " + clazz.getEnclosingConstructor());
+        System.out.println("clazz.getEnclosingMethod() : " + clazz.getEnclosingMethod());
+
     }
 
 }
