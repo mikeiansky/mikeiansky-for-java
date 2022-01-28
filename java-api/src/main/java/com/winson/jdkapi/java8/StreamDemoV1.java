@@ -25,7 +25,11 @@ public class StreamDemoV1 {
         list.add(8);
         list.add(9);
 
-        Object result = list.stream()
+        List<Integer> result = list.stream()
+                .map(i-> {
+                    int r = i + 2;
+                    return r;
+                })
                 .collect(Collectors.toList());
 
         System.out.println(result);
