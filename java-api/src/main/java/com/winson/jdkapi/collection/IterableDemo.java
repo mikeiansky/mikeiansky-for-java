@@ -148,6 +148,7 @@ public class IterableDemo {
         for (Object o : myCollection) {
             System.out.println(o);
         }
+
         System.out.println(" -- 3 --  ");
         myCollection.stream().forEach(System.out::println);
 
