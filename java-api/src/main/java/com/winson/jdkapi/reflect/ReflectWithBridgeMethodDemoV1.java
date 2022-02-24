@@ -2,7 +2,10 @@ package com.winson.jdkapi.reflect;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author winson
@@ -25,7 +28,7 @@ public class ReflectWithBridgeMethodDemoV1 {
     public static class Father<T> {
 
         public T getTarget(T t) {
-            System.out.println("getTarget @ Father class ... ");
+            System.out.println("getTarget @ Father class ... t : " + t);
             return t;
         }
 
@@ -44,7 +47,9 @@ public class ReflectWithBridgeMethodDemoV1 {
         // has a bridge method
         @Override
         public Flag getTarget(Flag flag) {
-            System.out.println("getTarget @ Son class ... ");
+            System.out.println("getTarget @ Son class ... 11 flag : " + flag);
+            super.getTarget(flag);
+            System.out.println("getTarget @ Son class ... 22 flag : " + flag);
             return flag;
         }
 
@@ -66,13 +71,18 @@ public class ReflectWithBridgeMethodDemoV1 {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
 
         Flag flag = new Flag();
 
         // invoke son method
         Son son = new Son();
+        Father father = new Son();
+        Father realFather = new Father();
         son.getTarget(flag);
+        System.out.println("--");
+        father.getTarget(flag);
+        System.out.println("--");
         // error
 //        son.getTarget(new Object());
 
@@ -87,7 +97,7 @@ public class ReflectWithBridgeMethodDemoV1 {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
+        System.out.println("--");
         // invoke father method, and error
 //        try {
 //            Method method2 = Son.class.getMethod("getTarget", Object.class);
@@ -104,15 +114,24 @@ public class ReflectWithBridgeMethodDemoV1 {
 //        Father father = new Father();
         Method[] methods = Son.class.getMethods();
         for (Method method : methods) {
-            System.out.println(method.getName() + " , method is bridge() : " + method.isBridge());
+            System.out.println(method.getName() + " , method is bridge() : " + method.isBridge() + " , param is : " + getParamString(method));
             if (method.isBridge()) {
                 System.out.println("------------- bridge -------------");
 //                System.out.println();
-                System.out.println("parameters count : " + method.getParameters().length);
-                System.out.println("method parameters : " + Arrays.asList(method.getParameters()));
+                System.out.println("==> parameters count : " + method.getParameters().length);
+                System.out.println("==> method parameters : " + Arrays.asList(method.getParameters()));
+//                method.invoke(son, new Object()); // error
+//                method.invoke(realFather, new Object()); // error
+                System.out.println("one bridge test end ... ");
             }
         }
 
+    }
+
+    public static String getParamString(Method method) {
+        return Stream.of(method.getParameters()).map(Parameter::getType)
+                .map(Class::getName)
+                .collect(Collectors.toList()).toString();
     }
 
 }
