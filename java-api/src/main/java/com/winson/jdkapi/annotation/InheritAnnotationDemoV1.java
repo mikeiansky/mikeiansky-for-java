@@ -12,7 +12,8 @@ public class InheritAnnotationDemoV1 {
 
         System.out.println("AnnotationUser.class.getAnnotations() : " + Arrays.asList(AnnotationUser.class.getAnnotations()));
         System.out.println("AnnotationUser.class.getDeclaredAnnotations() : " + Arrays.asList(AnnotationUser.class.getDeclaredAnnotations()));
-
+        System.out.println(AnnotationUser.class.getAnnotatedSuperclass().getType());
+        System.out.println(AnnotationUser.class.getAnnotatedInterfaces().length);
     }
 
 }

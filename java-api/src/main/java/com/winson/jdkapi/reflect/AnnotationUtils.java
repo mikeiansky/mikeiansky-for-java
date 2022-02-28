@@ -16,12 +16,14 @@ public class AnnotationUtils {
 
     public static void getAllAnnotation(Class clazz) {
         Annotation[] annotations = clazz.getAnnotations();
-//        System.out.println(Arrays.stream(clazz.getAnnotatedInterfaces()).collect(Collectors.toList()));
-//        System.out.println(Arrays.stream(clazz.getAnnotations()).collect(Collectors.toList()));
-//        System.out.println(clazz.getComponentType());
-//        System.out.println(clazz.getAnnotatedSuperclass());
-//        System.out.println(clazz.getCanonicalName());
-//        System.out.println(Arrays.stream(clazz.getDeclaredAnnotations()).collect(Collectors.toList()));
+        System.out.println(clazz);
+        System.out.println(Arrays.stream(clazz.getAnnotatedInterfaces()).collect(Collectors.toList()));
+        System.out.println(Arrays.stream(clazz.getAnnotations()).collect(Collectors.toList()));
+        System.out.println(clazz.getComponentType());
+        System.out.println(clazz.getAnnotatedSuperclass());
+        System.out.println(clazz.getCanonicalName());
+        System.out.println(Arrays.stream(clazz.getDeclaredAnnotations()).collect(Collectors.toList()));
+        System.out.println("---------");
         for (Annotation annotation : annotations) {
             getAnnotation(annotation);
         }
