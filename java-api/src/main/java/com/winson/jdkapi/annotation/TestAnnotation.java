@@ -14,6 +14,7 @@ public class TestAnnotation {
 
     }
 
+    @UserGroup
     public static class Student extends Person {
 
         @TypeAnnotation
@@ -21,6 +22,7 @@ public class TestAnnotation {
 
         }
 
+        @UserGroup
         public void getParamAnnotation(@AllTargetAnnotation(address = "beijing") String name) {
             System.out.println("student test ---> " + name);
 
@@ -39,12 +41,23 @@ public class TestAnnotation {
         Annotation[] annotations = AllTargetAnnotation.class.getAnnotations();
 //        System.out.println(annotations.length);
         for (Annotation annotation : annotations) {
-            System.out.println(annotation);
+            System.out.println("AllTargetAnnotation annotation : " + annotation);
         }
         TypeAnnotation typeAnnotation = AllTargetAnnotation.class.getAnnotation(TypeAnnotation.class);
         System.out.println(typeAnnotation.value());
 
         System.out.println("-------- student --------");
+//        for (Annotation annotation : Student.class.getAnnotations()) {
+        for (Annotation annotation : Student.class.getAnnotations()) {
+            System.out.println("annotation : " + annotation);
+            System.out.println("annotation.getClass() : " + annotation.getClass());
+            System.out.println("annotation.annotationType() : " + annotation.annotationType());
+            System.out.println("annotation.getAnnotations()");
+            for (Annotation aa : annotation.annotationType().getAnnotations()) {
+                System.out.println("aa : " + aa);
+            }
+        }
+        System.out.println("--");
         AllTargetAnnotation studentAllTargetAnnotation = Student.class.getAnnotation(AllTargetAnnotation.class);
         System.out.println(studentAllTargetAnnotation);
         System.out.println(studentAllTargetAnnotation == allTargetAnnotation);
@@ -53,10 +66,19 @@ public class TestAnnotation {
 
         Method method = Student.class.getMethod("getParamAnnotation", String.class);
         System.out.println(method);
+        System.out.println("====> method.getDeclaredAnnotations()");
+        Annotation[] mas = method.getDeclaredAnnotations();
+        for (Annotation ma : mas) {
+            System.out.println("method.getDeclaredAnnotations() : " + ma);
+            System.out.println("method.getDeclaredAnnotations().annotationType() : " + ma.annotationType());
+        }
+
+        System.out.println("====> method.getParameterAnnotations()");
         Annotation[][] paramAnnotation = method.getParameterAnnotations();
         for (Annotation[] pa : paramAnnotation) {
             for (Annotation annotation : pa) {
-                System.out.println(annotation);
+                System.out.println("paramAnnotation : " + annotation);
+                System.out.println("paramAnnotation.annotationType() : " + annotation.annotationType());
                 if (annotation instanceof AllTargetAnnotation) {
                     System.out.println(((AllTargetAnnotation) annotation).address());
                     System.out.println(((AllTargetAnnotation) annotation).value());
