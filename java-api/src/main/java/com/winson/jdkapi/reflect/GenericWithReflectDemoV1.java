@@ -386,6 +386,8 @@ public class GenericWithReflectDemoV1 {
     public static void displayMethod(Method method) {
         System.out.println("========================================== method : " + method);
         System.out.println("method.getName() : " + method.getName());
+        System.out.println("method.isBridge() : " + method.isBridge());
+        System.out.println("method.isSynthetic() : " + method.isSynthetic());
         System.out.println("method.getReturnType() : " + method.getReturnType());
         System.out.println("method.getDeclaringClass() : " + method.getDeclaringClass());
         System.out.println("method.getAnnotations() : " + Arrays.stream(method.getAnnotations()).collect(Collectors.toList()));
@@ -413,6 +415,7 @@ public class GenericWithReflectDemoV1 {
             } else if (ParameterizedType.class.isAssignableFrom(ptClazz)) {
                 ParameterizedType ppt = (ParameterizedType) pt;
                 System.out.println("------------------------ ppt : " + ppt);
+                System.out.println("ppt.getActualTypeArguments().length : " + ppt.getActualTypeArguments().length);
                 System.out.println("ppt.getRawType() : " + ppt.getRawType());
                 System.out.println("ppt.getOwnerType() : " + ppt.getOwnerType());
                 System.out.println("ppt.getTypeName() : " + ppt.getTypeName());

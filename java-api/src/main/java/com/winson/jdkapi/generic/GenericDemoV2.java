@@ -54,7 +54,7 @@ public class GenericDemoV2 {
     public static void main(String[] args) throws ClassNotFoundException {
         System.out.println(MyGenericNormal.class.getGenericSuperclass().getClass());
         System.out.println(MyGenericNormal.class.getGenericSuperclass().getTypeName());
-
+        System.out.println("WithGeneric ==== ");
         System.out.println(WithGeneric.class.getGenericSuperclass());
         System.out.println(WithGeneric.class.getGenericSuperclass().getTypeName());
         System.out.println(WithGeneric.class.isAssignableFrom(ParameterizedType.class));
