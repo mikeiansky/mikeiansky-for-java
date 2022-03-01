@@ -329,6 +329,11 @@ public class GenericWithReflectDemoV1 {
                                     System.out.println("        threeType is [ TypeVariable ]");
                                     System.out.println("        threeType.getName() : " + ttv.getName());
                                     System.out.println("        threeType.getBounds() : " + Arrays.stream(ttv.getBounds()).collect(Collectors.toList()));
+                                    for (Type threeBound : ttv.getBounds()) {
+                                        System.out.println("        threeType.getBounds() -- ");
+                                        System.out.println("        threeType.getBounds()[].getClass() : " + threeBound.getClass());
+                                        System.out.println("        threeType.getBounds() ++ ");
+                                    }
                                     System.out.println("        threeType.getGenericDeclaration() : " + ttv.getGenericDeclaration());
                                 } else if (Class.class.isAssignableFrom(threeType.getClass())) {
                                     System.out.println("        threeType is [ Class ]  : " + threeType);
