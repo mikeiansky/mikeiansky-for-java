@@ -8,7 +8,7 @@ import java.util.Arrays;
  **/
 public class ReflectEnclosingClassDemo {
 
-    public class OutFlag {
+    public static class OutFlag {
         public void testEnclosing(){
             System.out.println("============= anonymous class on OutFlag#testEnclosing =============");
 //            anonymousMethod();
@@ -29,6 +29,11 @@ public class ReflectEnclosingClassDemo {
             System.out.println("clazz.getEnclosingConstructor() : " + clazz.getEnclosingConstructor());
             System.out.println("clazz.getEnclosingMethod() : " + clazz.getEnclosingMethod());
         }
+
+        public static class ThreeNestClass {
+
+        }
+
     }
 
     public ReflectEnclosingClassDemo(){
@@ -143,6 +148,15 @@ public class ReflectEnclosingClassDemo {
 
         System.out.println("============= OutFlag =============");
         clazz = OutFlag.class;
+        System.out.println("class : " + clazz);
+        System.out.println("class.getSuper() : " + clazz.getSuperclass());
+        System.out.println("class.getInterfaces() : " + Arrays.asList(clazz.getInterfaces()));
+        System.out.println("clazz.getEnclosingClass() : " + clazz.getEnclosingClass());
+        System.out.println("clazz.getEnclosingConstructor() : " + clazz.getEnclosingConstructor());
+        System.out.println("clazz.getEnclosingMethod() : " + clazz.getEnclosingMethod());
+
+        System.out.println("============= OutFlag.ThreeNestClass =============");
+        clazz = OutFlag.ThreeNestClass.class;
         System.out.println("class : " + clazz);
         System.out.println("class.getSuper() : " + clazz.getSuperclass());
         System.out.println("class.getInterfaces() : " + Arrays.asList(clazz.getInterfaces()));
