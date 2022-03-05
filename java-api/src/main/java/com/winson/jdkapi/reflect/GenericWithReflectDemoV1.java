@@ -1,8 +1,6 @@
 package com.winson.jdkapi.reflect;
 
 
-import com.winson.jdkapi.reflect.ReflectAnnotation;
-import sun.reflect.annotation.AnnotationType;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;

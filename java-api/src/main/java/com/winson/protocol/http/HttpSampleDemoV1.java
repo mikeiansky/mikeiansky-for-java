@@ -1,6 +1,5 @@
 package com.winson.protocol.http;
 
-import sun.misc.BASE64Encoder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -11,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -43,8 +43,7 @@ public class HttpSampleDemoV1 {
             out.flush();
             out.close();
 
-            BASE64Encoder encoder = new BASE64Encoder();
-            String base64Str = encoder.encode(allByte);
+            String base64Str = Base64.getUrlEncoder().encodeToString(allByte);
             return "data:image/png;base64," + base64Str;
         } catch (MalformedURLException e) {
             e.printStackTrace();
