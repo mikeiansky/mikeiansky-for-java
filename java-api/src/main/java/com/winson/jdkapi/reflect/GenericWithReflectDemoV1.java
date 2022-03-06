@@ -6,6 +6,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -228,7 +229,18 @@ public class GenericWithReflectDemoV1 {
         System.out.println("========= class info =========");
         System.out.println("clazz : " + clazz);
         System.out.println("clazz.getCanonicalName() : " + clazz.getCanonicalName());
+        System.out.println("clazz.getConstructors() : " + clazz.getConstructors());
+        System.out.println("clazz.getDeclaredConstructors() : " + clazz.getDeclaredConstructors());
+        System.out.println("clazz.getTypeParameters() : " +
+                Arrays.stream(Optional.ofNullable(clazz.getTypeParameters()).orElse(new TypeVariable[]{}))
+                .map(TypeVariable::getName).collect(Collectors.toList()));
+
         System.out.println("clazz.getSuperclass() : " + clazz.getSuperclass());
+        if(clazz.getSuperclass() != null){
+            System.out.println("clazz.getSuperclass().getTypeParameters() : " +
+                    Arrays.stream(Optional.ofNullable(clazz.getSuperclass().getTypeParameters()).orElse(new TypeVariable[]{}))
+                            .map(TypeVariable::getName).collect(Collectors.toList()));
+        }
         System.out.println("clazz.getInterfaces() : " + Stream.of(clazz.getInterfaces()).collect(Collectors.toList()));
         System.out.println("clazz.getAnnotations() : " + Arrays.stream(clazz.getAnnotations()).collect(Collectors.toList()));
         System.out.println("clazz.getDeclaredAnnotations() : " + Arrays.stream(clazz.getDeclaredAnnotations()).collect(Collectors.toList()));
