@@ -1,6 +1,5 @@
 package com.winson.jvm.stream;
 
-import jdk.internal.org.objectweb.asm.ClassReader;
 
 import java.io.InputStream;
 import java.lang.reflect.InvocationHandler;
