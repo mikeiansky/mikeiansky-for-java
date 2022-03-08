@@ -1,6 +1,5 @@
 package com.winson.jdkapi.exception;
 
-import com.winson.exceptions.TestExceptionFactory;
 
 /**
  * @author winson
@@ -33,7 +32,7 @@ public class ExceptionCauseByDemoV1 {
             try {
 //                int zero = 0;
 //                int temp = flag/zero;
-                TestExceptionFactory.throwException();
+//                TestExceptionFactory.throwException();
             }catch (Exception e){
                 System.out.println("nextedException");
 //                e.printStackTrace();
