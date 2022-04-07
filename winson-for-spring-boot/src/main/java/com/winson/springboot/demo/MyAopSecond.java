@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2022/4/6
  **/
 @Aspect
-//@Order(100)
+@Order(100)
 @Component
 public class MyAopSecond {
 

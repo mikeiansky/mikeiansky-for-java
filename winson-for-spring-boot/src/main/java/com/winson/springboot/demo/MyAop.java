@@ -13,7 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
  * @date 2022/4/6
  **/
 @Aspect
-@Order(-1)
+@Order(101)
 @Component
 public class MyAop {
 
