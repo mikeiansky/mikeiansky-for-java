@@ -24,6 +24,8 @@ public class InheritedAnnotationDemo {
         System.out.println(Cat.class.getAnnotation(UserGroup.class));
         System.out.println(Cat.class.getAnnotation(UserGroup.class).getClass());
         System.out.println(Cat.class.getAnnotation(UserGroup.class).getClass().isAnnotationPresent(Super.class));
+        System.out.println(Cat.class.getAnnotation(UserGroup.class).annotationType().isAnnotationPresent(Super.class));
+        System.out.println(UserGroup.class);
         System.out.println(UserGroup.class.isAnnotationPresent(Super.class));
         System.out.println(UserGroup.class.getAnnotation(Super.class));
         System.out.println(Animal.class.isAnnotationPresent(UserGroup.class));
