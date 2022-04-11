@@ -23,6 +23,16 @@ public class TargetObj<H, J> extends TargetSuperObj<MyFlagOne, MyFlagTwo, MyFlag
         ZHOU, WEN, XIANG;
     }
 
+    public int size;
+
+    public String flag;
+
+    @MyFatherAnnotation
+    public H h;
+
+    @MySonAnnotation
+    public MyFlagThree<J> three;
+
     public TargetObj() {
 
     }
@@ -47,9 +57,10 @@ public class TargetObj<H, J> extends TargetSuperObj<MyFlagOne, MyFlagTwo, MyFlag
         return new MyFlagThree<>();
     }
 
-    public static void myStaticMethod(){
+    public static void myStaticMethod() {
 
     }
+
 
     @Override
     public MyFlagOne createAV2(MyFlagThree myFlagThree) {

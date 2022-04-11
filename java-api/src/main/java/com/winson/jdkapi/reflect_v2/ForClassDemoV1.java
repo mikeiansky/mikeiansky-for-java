@@ -46,10 +46,10 @@ public class ForClassDemoV1 {
         System.out.println("clazz.getComponentType(): " + clazz.getComponentType());
         System.out.println("clazz.getClassLoader(): " + clazz.getClassLoader());
         System.out.println("clazz.getDeclaringClass(): " + clazz.getDeclaringClass());
-        System.out.println("clazz.getEnclosingClass(): " + clazz.getEnclosingClass());
         System.out.println("clazz.getAnnotations(): " + PrintUtils.toList(clazz.getAnnotations()));
         System.out.println("clazz.getDeclaredAnnotations(): " + PrintUtils.toList(clazz.getDeclaredAnnotations()));
         System.out.println("clazz.getInterfaces(): " + PrintUtils.toList(clazz.getInterfaces()));
+        System.out.println("clazz.getEnclosingClass(): " + clazz.getEnclosingClass());
         System.out.println("clazz.getEnclosingMethod(): " + clazz.getEnclosingMethod());
         System.out.println("clazz.getEnclosingConstructor(): " + clazz.getEnclosingConstructor());
         System.out.println("clazz.getEnumConstants(): " + Arrays.stream(Optional.ofNullable(clazz.getEnumConstants())

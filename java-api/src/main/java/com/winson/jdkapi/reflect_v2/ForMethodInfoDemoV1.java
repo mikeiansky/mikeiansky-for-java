@@ -20,6 +20,12 @@ public class ForMethodInfoDemoV1 {
         for (Method method : methods) {
             displayMethod(method);
         }
+
+        System.out.println("===== method =====");
+        Method[] methods2 = clazz.getMethods();
+        for (Method method : methods2) {
+            displayMethod(method);
+        }
     }
 
     public static void displayMethod(Method method) {

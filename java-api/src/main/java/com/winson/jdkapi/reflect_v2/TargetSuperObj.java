@@ -7,6 +7,10 @@ package com.winson.jdkapi.reflect_v2;
 @MyFatherAnnotation
 public abstract class TargetSuperObj<A, B, C> {
 
+    public String name;
+    protected int age;
+    String city;
+
     public A createAV1(C c) {
         System.out.println("TargetSuperObj createAV1 : " + c);
         return (A) c;

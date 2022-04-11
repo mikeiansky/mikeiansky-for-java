@@ -1,6 +1,7 @@
 package com.winson.jdkapi.reflect;
 
 
+import com.winson.utils.common.PrintUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
@@ -67,7 +68,7 @@ public class GenericWithReflectDemoV1 {
 
     }
 
-    interface InterfaceSeven<T> extends InterfaceSix<T>{
+    interface InterfaceSeven<T> extends InterfaceSix<T> {
 
     }
 
@@ -233,10 +234,10 @@ public class GenericWithReflectDemoV1 {
         System.out.println("clazz.getDeclaredConstructors() : " + clazz.getDeclaredConstructors());
         System.out.println("clazz.getTypeParameters() : " +
                 Arrays.stream(Optional.ofNullable(clazz.getTypeParameters()).orElse(new TypeVariable[]{}))
-                .map(TypeVariable::getName).collect(Collectors.toList()));
+                        .map(TypeVariable::getName).collect(Collectors.toList()));
 
         System.out.println("clazz.getSuperclass() : " + clazz.getSuperclass());
-        if(clazz.getSuperclass() != null){
+        if (clazz.getSuperclass() != null) {
             System.out.println("clazz.getSuperclass().getTypeParameters() : " +
                     Arrays.stream(Optional.ofNullable(clazz.getSuperclass().getTypeParameters()).orElse(new TypeVariable[]{}))
                             .map(TypeVariable::getName).collect(Collectors.toList()));
@@ -309,6 +310,7 @@ public class GenericWithReflectDemoV1 {
 //                        System.out.println("------------------------------------ tv : " + tv);
                             System.out.println("    subType is [ TypeVariable ]");
                             System.out.println("    subType.getName() : " + tv.getName());
+                            System.out.println("    subType.getAnnotatedBounds() : " + PrintUtils.toList(tv.getAnnotatedBounds()));
                             System.out.println("    subType.getBounds() : " + Arrays.stream(tv.getBounds()).collect(Collectors.toList()));
                             System.out.println("    subType.getGenericDeclaration() : " + tv.getGenericDeclaration());
                         } else if (Class.class.isAssignableFrom(subType.getClass())) {
@@ -338,6 +340,9 @@ public class GenericWithReflectDemoV1 {
                                     TypeVariable ttv = (TypeVariable) threeType;
                                     System.out.println("        threeType is [ TypeVariable ]");
                                     System.out.println("        threeType.getName() : " + ttv.getName());
+                                    System.out.println("        threeType.getAnnotatedBounds() : " + PrintUtils.toList(ttv.getAnnotatedBounds()));
+                                    System.out.println("        threeType.getAnnotations() : " + PrintUtils.toList(ttv.getAnnotations()));
+                                    System.out.println("        threeType.getDeclaredAnnotations() : " + PrintUtils.toList(ttv.getDeclaredAnnotations()));
                                     System.out.println("        threeType.getBounds() : " + Arrays.stream(ttv.getBounds()).collect(Collectors.toList()));
                                     for (Type threeBound : ttv.getBounds()) {
                                         System.out.println("        threeType.getBounds() -- ");
