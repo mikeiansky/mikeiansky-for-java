@@ -121,7 +121,7 @@ public class GenericWithReflectDemoV1 {
 
     @NormalAnnotation
     public static class NormalUser<T extends InterfaceFive, S, B>
-            extends SuperUser<S, Flag, FlagWithType<InterfaceNormal<T>>,
+            extends SuperUser<@NormalAnnotation S, Flag, FlagWithType<InterfaceNormal<T>>,
             FlagWithTheeType<InterfaceOne<S, FlagFour>, ? extends S, ? super T>,
             FlagWithType<? extends T>, FlagWithType<?>, InterfaceNormal<S>>
             implements InterfaceFour, InterfaceFive<B>, InterfaceSeven<FlagWithType<InterfaceNormal<T>>> {

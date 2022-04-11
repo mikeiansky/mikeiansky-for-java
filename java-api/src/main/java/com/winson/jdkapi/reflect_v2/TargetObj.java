@@ -5,7 +5,7 @@ package com.winson.jdkapi.reflect_v2;
  * @date 2022/4/11
  **/
 @MySonAnnotation
-public class TargetObj<H, J> extends TargetSuperObj<MyFlagOne, MyFlagTwo, MyFlagThree> implements TargetInterfaceObj<MyFlagOne> {
+public class TargetObj<H, J> extends TargetSuperObj<@MyFatherAnnotation MyFlagOne, MyFlagTwo, MyFlagThree> implements TargetInterfaceObj<MyFlagOne> {
 
     public static class MyStaticObj {
 
@@ -45,7 +45,7 @@ public class TargetObj<H, J> extends TargetSuperObj<MyFlagOne, MyFlagTwo, MyFlag
 
     }
 
-    J analyze() {
+    @MyFatherAnnotation J analyze() {
         return (J) new Object();
     }
 

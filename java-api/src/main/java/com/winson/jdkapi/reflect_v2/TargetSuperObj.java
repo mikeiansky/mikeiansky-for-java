@@ -5,7 +5,7 @@ package com.winson.jdkapi.reflect_v2;
  * @date 2022/4/11
  **/
 @MyFatherAnnotation
-public abstract class TargetSuperObj<A, B, C> {
+public abstract class TargetSuperObj<A, @MyFatherAnnotation B, C> {
 
     public String name;
     protected int age;

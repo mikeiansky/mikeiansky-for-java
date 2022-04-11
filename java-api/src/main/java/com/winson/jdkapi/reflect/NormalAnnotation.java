@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  **/
 @Documented
 @Target({ElementType.PARAMETER, ElementType.TYPE_PARAMETER, ElementType.FIELD,
-        ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.TYPE})
+        ElementType.ANNOTATION_TYPE, ElementType.TYPE_USE, ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NormalAnnotation {
 }
