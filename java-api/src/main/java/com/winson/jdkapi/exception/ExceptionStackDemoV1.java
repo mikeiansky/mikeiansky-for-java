@@ -47,9 +47,11 @@ public class ExceptionStackDemoV1 {
         try {
             System.out.println("methodSix +++++ 1");
             System.out.println("methodSix +++++ 2");
-            if (1 == 1) {
-                throw new IllegalStateException("hello exception");
-            }
+//            if (1 == 1) {
+//                throw new IllegalStateException("hello exception");
+//            }
+            String temp = null;
+            System.out.println(temp.length());
             System.out.println("methodSix +++++ 3");
             System.out.println("methodSix +++++ 4");
         } catch (Exception e) {
