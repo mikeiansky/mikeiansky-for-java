@@ -87,7 +87,8 @@ public class GenericDemoV1 {
         }
     }
 
-    public static abstract class AbstractGenericImpl<S extends GenericThree, R extends GenericFour> implements GenericInvokeInterface<GenericAddition<? extends S>, GenericAddition<? super R>> {
+    public static abstract class AbstractGenericImpl<S extends GenericThree, R extends GenericFour>
+            implements GenericInvokeInterface<GenericAddition<? extends S>, GenericAddition<? super R>> {
 
         @Override
         public GenericAddition<? super R> invokeWithSuperSelf(GenericAddition<? extends S> genericAddition) {
