@@ -6,6 +6,14 @@ package com.winson.jdkapi.exception;
  **/
 public class ExceptionStackDemoV1 {
 
+    public static void topOne(){
+        topTwo();
+    }
+
+    public static void topTwo(){
+        methodOne();
+    }
+
     public static void methodOne() {
         try {
             System.out.println("methodOne ---- 1");
@@ -61,7 +69,12 @@ public class ExceptionStackDemoV1 {
     }
 
     public static void main(String[] args) {
-        methodOne();
+        System.out.println("main1");
+        System.out.println("main2");
+        System.out.println("main3");
+        topOne();
+        System.out.println("main4");
+        System.out.println("main5");
     }
 
 }
