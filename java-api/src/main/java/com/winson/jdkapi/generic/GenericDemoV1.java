@@ -85,6 +85,10 @@ public class GenericDemoV1 {
         public O getTarget() {
             return o;
         }
+
+        public void doWithTarget(O o){
+            System.out.println("target : " + o);
+        }
     }
 
     public static abstract class AbstractGenericImpl<S extends GenericThree, R extends GenericFour>
@@ -129,7 +133,7 @@ public class GenericDemoV1 {
         GenericAddition<? super GenericFour> superGenericAddition = generic.invokeWithSuperSelf(genericFourAddition);
         System.out.println("superGenericAddition.getTarget() : " + superGenericAddition.getTarget());
         System.out.println("superGenericAddition.getTarget().getClass() : " + superGenericAddition.getTarget().getClass());
-
+//        superGenericAddition.doWithTarget(superGenericAddition.getTarget());
 
         System.out.println("======== invoke extend ==========");
         // error
