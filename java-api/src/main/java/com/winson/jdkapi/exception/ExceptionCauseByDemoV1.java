@@ -30,8 +30,8 @@ public class ExceptionCauseByDemoV1 {
     public static void nextedException(int flag)  {
         if(flag >= 20){
             try {
-//                int zero = 0;
-//                int temp = flag/zero;
+                int zero = 0;
+                int temp = flag/zero;
 //                TestExceptionFactory.throwException();
             }catch (Exception e){
                 System.out.println("nextedException");
