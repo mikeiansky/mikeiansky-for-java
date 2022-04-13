@@ -10,6 +10,9 @@ public class GenericWildcardTypeDemoV1 {
         public void doOne() {
             System.out.println("MyFlagOne doOne");
         }
+        public void doWithType(A a){
+            System.out.println("type is :" + a);
+        }
     }
 
     public static class MyFlagTwo<B> extends MyFlagOne<B> {
@@ -81,7 +84,7 @@ public class GenericWildcardTypeDemoV1 {
         // 不行
 //        myActionSuper2.createA().doOne();
         // 可以
-        myActionSuper.createA().doThree();
+//        myActionSuper.createA().doThree();
 
         // 只要在范围内的就可以进行传递
         myActionSuper2.consumeA(new MyFlagFour());
@@ -91,6 +94,17 @@ public class GenericWildcardTypeDemoV1 {
         myAction.doExtend(new MyFlagThree());
         myAction.doExtend(new MyFlagFour());
 //        myAction.doExtend(new MyFlagTwo());
+
+
+        MyFlagOne<MyAction> myFlagOne = new MyFlagOne<>();
+        myFlagOne.doOne();
+//        myFlagOne.doWithType(myAction);
+//        myFlagOne.doWithType(myAction);
+//        myFlagOne.doWithType(myActionSuper);
+
+        Class<MyFlagOne> clazz = MyFlagOne.class;
+        MyFlagOne cc = clazz.cast(myAction);
+
     }
 
 }
