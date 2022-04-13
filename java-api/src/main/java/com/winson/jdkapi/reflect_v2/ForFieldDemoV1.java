@@ -23,6 +23,8 @@ public class ForFieldDemoV1 {
             System.out.println("field.getName():" + field.getName());
             System.out.println("field.getAnnotatedType():" + field.getAnnotatedType());
             System.out.println("field.getGenericType():" + field.getGenericType());
+            System.out.println("field.getGenericType().getTypeName():" + field.getGenericType().getTypeName());
+            System.out.println("field.getGenericType().getClass():" + field.getGenericType().getClass());
             System.out.println("field.getType():" + field.getType());
             System.out.println("field.getModifiers():" + field.getModifiers());
             System.out.println("field.getDeclaringClass():" + field.getDeclaringClass());
