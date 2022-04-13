@@ -26,6 +26,12 @@ public class ReflectBaseDemoV1 {
         Integer.valueOf(-128);
         Integer.valueOf(-200);
         Integer.valueOf(-1001);
+
+        String[] arr = new String[]{"one","two"};
+        System.out.println(arr.getClass().getTypeName());
+
+        System.out.println(arr.getClass().isArray());
+        System.out.println(Man.class.getConstructors()[0].getParameterCount());
     }
 
 }
