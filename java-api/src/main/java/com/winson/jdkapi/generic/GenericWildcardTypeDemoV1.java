@@ -1,16 +1,23 @@
 package com.winson.jdkapi.generic;
 
+import jdk.internal.org.objectweb.asm.ClassWriter;
+
 /**
  * @author winson
  * @date 2022/4/12
  **/
 public class GenericWildcardTypeDemoV1 {
 
+    public static class MyFlag{
+
+    }
+
     public static class MyFlagOne<A> {
         public void doOne() {
             System.out.println("MyFlagOne doOne");
         }
-        public void doWithType(A a){
+
+        public void doWithType(A a) {
             System.out.println("type is :" + a);
         }
     }
@@ -36,6 +43,20 @@ public class GenericWildcardTypeDemoV1 {
     public static class MyFlagFive<E> extends MyFlagFour<E> {
         public void doFive() {
             System.out.println("MyFlagFive doFive");
+        }
+    }
+
+    public static class MyFlagSix<E extends MyFlagSix<E>> {
+        public void doAction(E e){
+
+        }
+    }
+
+    public static class MyFlagSeven<E> extends MyFlagSix<MyFlagSeven<E>> {
+
+        @Override
+        public void doAction(MyFlagSeven<E> eMyFlagSeven) {
+            super.doAction(eMyFlagSeven);
         }
     }
 
@@ -103,7 +124,11 @@ public class GenericWildcardTypeDemoV1 {
 //        myFlagOne.doWithType(myActionSuper);
 
         Class<MyFlagOne> clazz = MyFlagOne.class;
-        MyFlagOne cc = clazz.cast(myAction);
+//        MyFlagOne cc = clazz.cast(myAction);
+
+        MyFlagSeven<MyFlagOne<?>> myFlagSeven = new MyFlagSeven<>();
+        myFlagSeven.doAction(myFlagSeven);
+
 
     }
 
