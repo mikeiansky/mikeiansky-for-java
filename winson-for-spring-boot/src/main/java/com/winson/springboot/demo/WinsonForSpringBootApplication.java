@@ -9,7 +9,9 @@ public class WinsonForSpringBootApplication {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(WinsonForSpringBootApplication.class, args);
-        context.getBean(MyService.class);
+        MyService myService = context.getBean(MyService.class);
+        myService.doTransaction();
+        System.exit(0);
 
     }
 

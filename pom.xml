@@ -30,6 +30,8 @@
         <module>jni-rmi-demo</module>
         <module>winson-for-servlet</module>
         <module>winson-for-mvc</module>
+<!--        <module>open-lib-one</module>-->
+<!--        <module>open-lib-two</module>-->
     </modules>
 
 </project>

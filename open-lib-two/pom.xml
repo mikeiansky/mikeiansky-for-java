@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>open-source-demo</artifactId>
+    <artifactId>open-lib-two</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,26 +17,11 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.alibaba.otter/canal.client -->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba.otter</groupId>-->
-<!--            <artifactId>canal.client</artifactId>-->
-<!--            <version>1.1.5</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba.otter</groupId>-->
-<!--            <artifactId>canal.client</artifactId>-->
-<!--            <version>1.1.0</version>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.2.2</version>
-        </dependency>
         <dependency>
             <groupId>com.winson</groupId>
-            <artifactId>open-lib-two</artifactId>
+            <artifactId>open-lib-one</artifactId>
             <version>1.0-SNAPSHOT</version>
+<!--            <scope>compile</scope>-->
         </dependency>
     </dependencies>
 
