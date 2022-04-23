@@ -45,19 +45,19 @@ public class MyService {
     @Transactional
     public void doTransaction(){
         System.out.println("doTransaction =====> start");
-        System.out.println(TransactionSynchronizationManager.getResourceMap().keySet());
+//        System.out.println(TransactionSynchronizationManager.getResourceMap().keySet());
 //        System.out.println("Threadname : " + Thread.currentThread().getName());
         String key = "HikariDataSource (HikariPool-1)";
         Object source = new ArrayList<>(TransactionSynchronizationManager.getResourceMap().values()).get(0);
-        System.out.println(source);
+//        System.out.println(source);
         ConnectionHolder connectionHolder = (ConnectionHolder) source;
         System.out.println(connectionHolder.getConnection());
-        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
-            @Override
-            public void afterCommit() {
-                System.out.println("doTransaction =====> afterCommit");
-            }
-        });
+//        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+//            @Override
+//            public void afterCommit() {
+//                System.out.println("doTransaction =====> afterCommit");
+//            }
+//        });
         System.out.println("doTransaction =====> end");
     }
 
