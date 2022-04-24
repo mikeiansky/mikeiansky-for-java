@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+
 @SpringBootApplication
 public class WinsonForSpringBootApplication {
 
@@ -16,9 +17,9 @@ public class WinsonForSpringBootApplication {
         System.out.println("----- split --------");
         myService.doTransaction();
         System.out.println("hahahah ");
-        WinsonMapper winsonMapper = context.getBean(WinsonMapper.class);
-        System.out.println("winson mapper : " + winsonMapper);
-        winsonMapper.update();
+//        WinsonMapper winsonMapper = context.getBean(WinsonMapper.class);
+//        System.out.println("winson mapper : " + winsonMapper);
+//        winsonMapper.update();
 
         System.exit(-1);
     }
