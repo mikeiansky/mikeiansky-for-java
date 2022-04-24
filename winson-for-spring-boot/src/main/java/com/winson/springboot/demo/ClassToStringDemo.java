@@ -1,7 +1,7 @@
 package com.winson.springboot.demo;
 
-import com.winson.autoconfig.TestDependency;
-import com.winson.autoconfig.WinsonAutoConfig;
+//import com.winson.autoconfig.TestDependency;
+//import com.winson.autoconfig.WinsonAutoConfig;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,7 +20,7 @@ public class ClassToStringDemo {
 
 //        TestDependency.doAction();
 
-        System.out.println(WinsonAutoConfig.class.getAnnotations());
+//        System.out.println(WinsonAutoConfig.class.getAnnotations());
 
 //        System.out.println(MybatisAutoConfiguration.class.getAnnotations());
 //        System.out.println(MybatisAutoConfiguration.class.getDeclaredAnnotations());

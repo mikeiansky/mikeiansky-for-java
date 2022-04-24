@@ -65,17 +65,17 @@
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.winson</groupId>
-            <artifactId>winson-auto-config</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.winson</groupId>
-                    <artifactId>open-lib-two</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.winson</groupId>-->
+<!--            <artifactId>winson-auto-config</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>com.winson</groupId>-->
+<!--                    <artifactId>open-lib-two</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -84,7 +84,37 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <!-- Generate proxies -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <!-- phase>generate-test-sources</phase -->
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchain>paths</toolchain>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-cp</argument>
+<!--                        <argument>${project.build.outputDirectory}${path.separator}${maven.compile.classpath}</argument>-->
+                        <argument>D:\\temp</argument>
+                        <argument>com.zaxxer.hikari.util.JavassistProxyFactory</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+
         </plugins>
+
+
     </build>
 
 </project>
