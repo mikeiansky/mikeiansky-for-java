@@ -14,7 +14,7 @@ public class WinsonForSpringBootApplication {
         MyService myService = context.getBean(MyService.class);
 //        myService.doTransaction();
 //        System.out.println("----- split --------");
-//        myService.doTransaction();
+        myService.doTransaction();
         System.out.println("hahahah ");
         WinsonMapper winsonMapper = context.getBean(WinsonMapper.class);
 //        System.out.println("winson mapper : " + winsonMapper);
