@@ -1,5 +1,7 @@
 package com.winson.spring.mvc.demo;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
@@ -23,6 +25,8 @@ public class HelloController implements Controller {
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println("HelloController --> handleRequest");
+        XmlWebApplicationContext acc = null;
+//        acc.setConfigLocation();
         return new ModelAndView();
     }
 
