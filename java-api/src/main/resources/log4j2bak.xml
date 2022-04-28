@@ -5,7 +5,7 @@
 <configuration status="WARN" monitorInterval="30">
     <Properties>
         <!--自定义一些常量，之后使用${变量名}引用-->
-        <Property name="logFilePath">log</Property>
+        <Property name="logFilePath">clog22</Property>
         <Property name="logFileName">test.log</Property>
     </Properties>
     <!--appenders:定义输出内容,输出格式,输出方式,日志保存策略等,常用其下三种标签[console,File,RollingFile]-->
