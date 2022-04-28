@@ -73,15 +73,21 @@
             <artifactId>okhttp</artifactId>
             <version>4.2.2</version>
         </dependency>
-
         <dependency>
-            <!--            <groupId>javax.servlet</groupId>-->
-            <!--            <artifactId>servlet-api</artifactId>-->
-            <!--            <version>4.0.1</version>-->
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
+            <groupId>com.winson</groupId>
+            <artifactId>open-lib-two</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            &lt;!&ndash;            <groupId>javax.servlet</groupId>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <artifactId>servlet-api</artifactId>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <version>4.0.1</version>&ndash;&gt;-->
+<!--            <groupId>javax.servlet</groupId>-->
+<!--            <artifactId>javax.servlet-api</artifactId>-->
+<!--            <version>4.0.1</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>io.netty</groupId>
