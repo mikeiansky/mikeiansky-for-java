@@ -12,6 +12,14 @@ import java.lang.reflect.Method;
 @MyCondition(LibOneManager.class)
 public class LibTwoManager {
 
+    public void doSomething(){
+        System.out.println("do some thing ... ");
+    }
+
+    public void doFour(){
+        System.out.println("doFour ===========> ");
+    }
+
     public void doAction(){
 //        LibOneManager libOneManager = new LibOneManager();
 //        System.out.println("doaction .... ");

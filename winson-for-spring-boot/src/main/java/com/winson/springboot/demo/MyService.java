@@ -1,5 +1,6 @@
 package com.winson.springboot.demo;
 
+import com.winson.lib.two.LibTwoManager;
 import org.springframework.jdbc.datasource.ConnectionHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +60,13 @@ public class MyService {
 //            }
 //        });
         System.out.println("doTransaction =====> end");
+    }
+
+    public void testLibTwo(){
+        LibTwoManager libTwoManager = new LibTwoManager();
+        System.out.println("testLibTwo : " + libTwoManager);
+        libTwoManager.doSomething();
+        libTwoManager.doFour();
     }
 
 }

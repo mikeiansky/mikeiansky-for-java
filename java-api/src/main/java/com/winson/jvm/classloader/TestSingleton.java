@@ -1,5 +1,9 @@
 package com.winson.jvm.classloader;
 
+
+//import com.ciwei.rsm.thriftApi.RSMService;
+import com.winson.lib.two.LibTwoManager;
+
 /**
  * @author winson
  * @date 2021/6/10
@@ -26,6 +30,8 @@ public class TestSingleton {
         getInstance(true);
         System.out.println("test singleton stop ... ");
         getInstance(false);
+        LibTwoManager rsmService = new LibTwoManager();
+        System.out.println("rsmService:"+rsmService);
     }
 
 }

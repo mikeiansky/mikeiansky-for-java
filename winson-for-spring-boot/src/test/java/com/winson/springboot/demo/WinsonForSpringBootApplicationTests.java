@@ -15,36 +15,36 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 class WinsonForSpringBootApplicationTests {
 
-    @Autowired
-    public WebApplicationContext webApplicationContext;
-
-    private MockMvc mockMvc;
-
-    @BeforeEach
-    public void before() {
-//        System.out.println("----------> ");
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
-
-    @Test
-    void getUserInfo() {
+//    @Autowired
+//    public WebApplicationContext webApplicationContext;
+//
+//    private MockMvc mockMvc;
+//
+//    @BeforeEach
+//    public void before() {
+////        System.out.println("----------> ");
 //        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/user") ;
-
-        try {
-            MvcResult mvcResult = mockMvc.perform(requestBuilder)
-                    .andDo(MockMvcResultHandlers.print())
-                    .andReturn();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("getUserInfo  === > ");
-    }
+//    }
+//
+//    @Test
+//    void getUserInfo() {
+////        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+//
+//        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/user") ;
+//
+//        try {
+//            MvcResult mvcResult = mockMvc.perform(requestBuilder)
+//                    .andDo(MockMvcResultHandlers.print())
+//                    .andReturn();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println("getUserInfo  === > ");
+//    }
 
 }
