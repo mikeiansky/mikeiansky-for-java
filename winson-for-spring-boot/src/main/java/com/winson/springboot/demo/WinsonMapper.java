@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface WinsonMapper {
 
-    @Update("update course set cname = 'winson-0003' where cid = 6")
+    @Update("update course set cname = 'winson-0004' where cid = 6")
     void update();
 
 }

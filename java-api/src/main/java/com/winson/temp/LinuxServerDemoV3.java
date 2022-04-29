@@ -22,7 +22,7 @@ public class LinuxServerDemoV3 {
             selector = Selector.open();
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.configureBlocking(false);
-            serverSocketChannel.bind(new InetSocketAddress("192.168.159.130", 30001));
+            serverSocketChannel.bind(new InetSocketAddress("localhost", 30001));
             System.out.println("bind socket port success ... ");
 
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
@@ -33,7 +33,7 @@ public class LinuxServerDemoV3 {
                 int size = selector.selectedKeys().size();
                 System.out.println("current selector key size : " + size);
 
-                while (selector.select() > 0) {
+                while (selector.select(1000) > 0) {
 
                     Set<SelectionKey> keySet = selector.selectedKeys();
                     Iterator<SelectionKey> keyIterator = keySet.iterator();

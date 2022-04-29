@@ -16,10 +16,10 @@ public class WinsonForSpringBootApplication {
 //        System.out.println("----- split --------");
 //        myService.doTransaction();
         System.out.println("hahahah ");
-        myService.testLibTwo();
-        System.exit(0);
+//        myService.testLibTwo();
+//        System.exit(0);
 
-//        WinsonMapper winsonMapper = context.getBean(WinsonMapper.class);
+        WinsonMapper winsonMapper = context.getBean(WinsonMapper.class);
 
 //        System.out.println("winson mapper : " + winsonMapper);
 
@@ -29,7 +29,7 @@ public class WinsonForSpringBootApplication {
 //        System.out.println(" ----------2 ");
 //        winsonMapper.update();
 //        System.out.println(" ----------3 ");
-//        winsonMapper.update();
+        winsonMapper.update();
 
 //        int length = 1;
 //        Thread[] threads = new Thread[length];
@@ -53,7 +53,7 @@ public class WinsonForSpringBootApplication {
 //            }
 //        }
 //
-//        System.exit(-1);
+        System.exit(-1);
     }
 
 }
