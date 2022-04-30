@@ -24,6 +24,7 @@
     <servlet>
         <servlet-name>winsonServlet2</servlet-name>
         <servlet-class>com.winson.spring.mvc.WinsonServlet2</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>winsonServlet2</servlet-name>
