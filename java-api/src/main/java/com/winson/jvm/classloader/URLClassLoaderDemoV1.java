@@ -15,6 +15,7 @@ public class URLClassLoaderDemoV1 {
 
         URLClassLoader urlClassLoader1 = new URLClassLoader(new URL[]{new URL("file:D:/work/temp/")});
         URLClassLoader urlClassLoader2 = new URLClassLoader(new URL[]{new URL("file:D:/work/temp/")});
+//        URLClassLoader urlClassLoader2 = new URLClassLoader(new URL[]{new URL("file:D:/work/temp/")},urlClassLoader1);
         Class tempClazz1 = urlClassLoader1.loadClass("com.winson.Temp");
         Class tempClazz2 = urlClassLoader2.loadClass("com.winson.Temp");
         System.out.println(tempClazz1);
