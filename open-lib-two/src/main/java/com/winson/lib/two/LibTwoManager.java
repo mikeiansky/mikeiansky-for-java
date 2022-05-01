@@ -1,6 +1,6 @@
 package com.winson.lib.two;
 
-import com.winson.lib.one.LibOneManager;
+//import com.winson.lib.one.LibOneManager;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  * @author winson
  * @date 2022/4/19
  **/
-@MyCondition(LibOneManager.class)
+//@MyCondition(LibOneManager.class)
 public class LibTwoManager {
 
     public void doSomething(){
