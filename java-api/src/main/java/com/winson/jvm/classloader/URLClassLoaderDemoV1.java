@@ -28,6 +28,12 @@ public class URLClassLoaderDemoV1 {
         System.out.println(demoClazz1 == demoClazz2);
         Class tempClazz11 = urlClassLoader1.loadClass("com.winson.Temp");
         System.out.println(tempClazz1 == tempClazz11);
+        System.out.println("println class loader");
+        System.out.println("tempClazz1.getClassLoader() :" + tempClazz1.getClassLoader());
+        System.out.println("tempClazz11.getClassLoader():" + tempClazz11.getClassLoader());
+        System.out.println("tempClazz2.getClassLoader() :" + tempClazz2.getClassLoader());
+        System.out.println("URLClassLoaderDemoV1.class.getClassLoader() :" + URLClassLoaderDemoV1.class.getClassLoader());
+        System.out.println("String.class.getClassLoader() :" + String.class.getClassLoader());
 
     }
 

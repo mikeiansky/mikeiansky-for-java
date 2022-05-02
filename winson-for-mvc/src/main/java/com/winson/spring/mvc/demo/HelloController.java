@@ -25,9 +25,17 @@ public class HelloController implements Controller {
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println("HelloController --> handleRequest");
-        XmlWebApplicationContext acc = null;
+//        XmlWebApplicationContext acc = null;
 //        acc.setConfigLocation();
-        return new ModelAndView();
+
+        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("winson.html");
+//        mv.setViewName("WEB-INF/winson.html");
+        mv.setViewName("WEB-INF/page/winson.html");
+//        mv.setViewName("ciwei.jsp");
+//        mv.setViewName("ciwei.jsp");
+        mv.addObject("companyName","ciwei");
+        return mv;
     }
 
 }

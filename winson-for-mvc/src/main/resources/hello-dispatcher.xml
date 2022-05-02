@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <bean id="/hello" class="com.winson.spring.mvc.demo.HelloController"/>
+
+    <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <bean id="handlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+
+    <bean id="myHandleMapping" class="com.winson.spring.mvc.demo.MyHandleMapping"/>
+    <bean id="myInterceptor" class="com.winson.spring.mvc.demo.MyInterceptor"/>
+    <bean id="myRequestMapping" class="com.winson.spring.mvc.demo.RequestMappingController"/>
+
+    <mvc:default-servlet-handler/>
+
 
 </beans>
