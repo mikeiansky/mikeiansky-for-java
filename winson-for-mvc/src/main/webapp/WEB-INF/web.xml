@@ -6,6 +6,15 @@
 
     <display-name>winson-for-spring-mvc</display-name>
 
+<!--    <servlet>-->
+<!--        <servlet-name>DefaultServlet</servlet-name>-->
+<!--        <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>DefaultServlet</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+    
     <servlet>
         <servlet-name>dispatchServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

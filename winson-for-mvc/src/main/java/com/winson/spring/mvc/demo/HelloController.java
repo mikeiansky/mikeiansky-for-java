@@ -30,10 +30,10 @@ public class HelloController implements Controller {
 
         ModelAndView mv = new ModelAndView();
 //        mv.setViewName("winson.html");
+//        mv.setViewName("ciwei.jsp");
 //        mv.setViewName("WEB-INF/winson.html");
-        mv.setViewName("WEB-INF/page/winson.html");
-//        mv.setViewName("ciwei.jsp");
-//        mv.setViewName("ciwei.jsp");
+        mv.setViewName("WEB-INF/ciwei2.jsp");
+//        mv.setViewName("WEB-INF/page/winson.html");
         mv.addObject("companyName","ciwei");
         return mv;
     }

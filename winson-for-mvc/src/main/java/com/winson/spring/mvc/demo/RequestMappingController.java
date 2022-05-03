@@ -20,14 +20,14 @@ public class RequestMappingController {
     @RequestMapping("/info")
     public String doInfo(HttpServletRequest request, HttpServletResponse response){
         System.out.println("RequestMappingController do info .... ");
-        return "../../winson.html";
+        return "/WEB-INF/winson.html";
     }
 
     @RequestMapping("/mv")
     public ModelAndView doMV(HttpServletRequest request, HttpServletResponse response){
         System.out.println("RequestMappingController do mv .... ");
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("winson.html");
+        mv.setViewName("/WEB-INF/ciwei2.jsp");
         return mv;
     }
 
