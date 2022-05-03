@@ -12,7 +12,7 @@ public class WinsonForSpringBootApplication {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(WinsonForSpringBootApplication.class, args);
         MyService myService = context.getBean(MyService.class);
-//        myService.doTransaction();
+        myService.doTransaction();
 //        System.out.println("----- split --------");
 //        myService.doTransaction();
         System.out.println("hahahah ");

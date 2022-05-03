@@ -1,6 +1,10 @@
 package com.winson.springboot.demo;
 
 import com.winson.lib.two.LibTwoManager;
+import org.apache.logging.slf4j.SLF4JLoggerContextFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.impl.Reload4jLoggerAdapter;
 import org.springframework.jdbc.datasource.ConnectionHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,8 +47,14 @@ public class MyService {
         function1();
     }
 
+    private Logger logger = LoggerFactory.getLogger(MyService.class);
+
     @Transactional
     public void doTransaction(){
+//        Reload4jLoggerAdapter r = null;
+        System.out.println("logger class : " + logger.getClass());
+        logger.info("logger ----> doTransaction");
+
         System.out.println("doTransaction =====> start");
 //        System.out.println(TransactionSynchronizationManager.getResourceMap().keySet());
 //        System.out.println("Threadname : " + Thread.currentThread().getName());
