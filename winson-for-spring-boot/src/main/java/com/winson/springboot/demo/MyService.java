@@ -4,7 +4,7 @@ import com.winson.lib.two.LibTwoManager;
 import org.apache.logging.slf4j.SLF4JLoggerContextFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.impl.Reload4jLoggerAdapter;
+//import org.slf4j.impl.Reload4jLoggerAdapter;
 import org.springframework.jdbc.datasource.ConnectionHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestMappingController {
 
     @RequestMapping("/info")
-    public String doInfo(HttpServletRequest request, HttpServletResponse response){
+    public String doInfo(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("RequestMappingController do info .... ");
         return "/WEB-INF/winson.html";
     }
 
     @RequestMapping("/mv")
-    public ModelAndView doMV(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView doMV(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("RequestMappingController do mv .... ");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/WEB-INF/ciwei2.jsp");
@@ -33,9 +35,18 @@ public class RequestMappingController {
 
     @RequestMapping("/json")
     @ResponseBody
-    public String doJson(HttpServletRequest request, HttpServletResponse response){
+    public String doJson(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("RequestMappingController do json .... ");
         return "json haha";
+    }
+
+    @RequestMapping("/mp")
+    @ResponseBody
+    public String doMultiPart(MultipartHttpServletRequest mr) {
+        System.out.println("doMultiPart ----> mr : " + mr);
+        System.out.println("doMultiPart ----> province : " + mr.getParameter("province"));
+        System.out.println(mr.getFile("dd"));
+        return "test multipart";
     }
 
 }

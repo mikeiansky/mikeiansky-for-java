@@ -25,11 +25,13 @@
 <!--    <bean id="normalAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>-->
 <!--    <bean id="myInterceptor" class="com.winson.spring.mvc.demo.MyInterceptor"/>-->
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
 
     <bean id="/hello" class="com.winson.spring.mvc.demo.HelloController"/>
     <bean id="myRequestMapping" class="com.winson.spring.mvc.demo.RequestMappingController"/>
 
-    <mvc:default-servlet-handler/>
+<!--    <mvc:default-servlet-handler/>-->
 
 
 </beans>
