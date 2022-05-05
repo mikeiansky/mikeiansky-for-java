@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.io.File;
+
 
 @SpringBootApplication
 public class WinsonBootApp {
@@ -11,6 +13,13 @@ public class WinsonBootApp {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(WinsonBootApp.class, args);
+        File file = new File("./");
+        System.out.println("cf-path : " + file.getAbsolutePath());
+        System.out.println("cf-cf-size:" + file.listFiles().length);
+        File rf = new File("/");
+        System.out.println("rf-path:" + rf.getAbsolutePath());
+        System.out.println("rf-cf-size:" + rf.listFiles().length);
+
 //        MyService myService = context.getBean(MyService.class);
 //        myService.doTransaction();
 //        System.out.println("----- split --------");
