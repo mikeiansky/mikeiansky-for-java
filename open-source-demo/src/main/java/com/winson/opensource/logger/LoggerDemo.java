@@ -1,4 +1,4 @@
-package com.winson.logger;
+package com.winson.opensource.logger;
 
 //import org.apache.log4j.Logger;
 
@@ -8,11 +8,6 @@ package com.winson.logger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.logging.LogManager;
 
 /**
  * @author winson

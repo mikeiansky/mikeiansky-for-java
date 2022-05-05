@@ -1,17 +1,10 @@
-package com.winson.log4j.bug.demo;
+package com.winson.opensource.logger;
 
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.naming.Context;
 import javax.naming.NamingException;
-import javax.naming.directory.Attributes;
-import javax.naming.directory.DirContext;
-import javax.naming.directory.InitialDirContext;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Hashtable;
 
 /**
  * @author winson

@@ -1,4 +1,4 @@
-package com.winson.log4j.bug.demo;
+package com.winson.opensource.logger;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
