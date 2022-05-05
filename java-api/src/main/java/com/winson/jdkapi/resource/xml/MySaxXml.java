@@ -57,7 +57,7 @@ public class MySaxXml {
                 System.out.println("startElement ==> localName : " + localName + " , qName : " + qName + " , attributes-length : " + attributes.getLength());
                 for (int i = 0; i < attributes.getLength(); i++) {
                     String qname = attributes.getQName(i);
-                    System.out.println("qname : " + attributes.getQName(i) + " , value : " + attributes.getValue(i));
+                    System.out.println("qname : " + attributes.getQName(i) + " , value : " + attributes.getValue(i) + " , localName : " + attributes.getLocalName(i));
                 }
             }
 
