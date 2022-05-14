@@ -1,6 +1,7 @@
 package com.winson.advanced.concurrency;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutionException;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -13,7 +14,7 @@ import java.util.function.Supplier;
 public class CompletableFutureDemoV1 {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-
+//        CompletionService
 //        CompleteFuture cff = null;
         CompletableFuture<String> cf = CompletableFuture.supplyAsync(new Supplier<String>() {
             @Override
@@ -57,6 +58,8 @@ public class CompletableFutureDemoV1 {
 
         System.out.println(cf3.get());
         System.out.println("main end ");
+
+        Thread.currentThread().getState();
     }
 
 }

@@ -1,6 +1,5 @@
 package com.winson.advanced.concurrency;
 
-import com.sun.java.swing.plaf.windows.WindowsTextAreaUI;
 
 import java.util.concurrent.*;
 

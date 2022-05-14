@@ -1,6 +1,5 @@
 package com.winson.reference;
 
-import sun.misc.VM;
 
 import java.lang.ref.SoftReference;
 

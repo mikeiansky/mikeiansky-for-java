@@ -1,6 +1,6 @@
 package com.winson.remote.demo.rmi;
 
-import com.sun.jndi.rmi.registry.ReferenceWrapper;
+//import com.sun.jndi.rmi.registry.ReferenceWrapper;
 
 import javax.naming.NamingException;
 import javax.naming.Reference;
@@ -45,12 +45,12 @@ public class HelloServer {
 //        HelloServer server = new HelloServer();
 //        server.server();
 
-        String url = "http://127.0.0.1:8080/";
-        Registry registry = LocateRegistry.createRegistry(1099);
-        Reference reference = new Reference("test", "test", url);
-        ReferenceWrapper referenceWrapper = new ReferenceWrapper(reference);
-        registry.bind("obj",referenceWrapper);
-        System.out.println("running");
+//        String url = "http://127.0.0.1:8080/";
+//        Registry registry = LocateRegistry.createRegistry(1099);
+//        Reference reference = new Reference("test", "test", url);
+//        ReferenceWrapper referenceWrapper = new ReferenceWrapper(reference);
+//        registry.bind("obj",referenceWrapper);
+//        System.out.println("running");
 
     }
 
