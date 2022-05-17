@@ -76,7 +76,7 @@ public class MyService {
         LibTwoManager libTwoManager = new LibTwoManager();
         System.out.println("testLibTwo : " + libTwoManager);
         libTwoManager.doSomething();
-        libTwoManager.doFour();
+//        libTwoManager.doFour();
     }
 
 }
