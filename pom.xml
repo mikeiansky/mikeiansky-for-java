@@ -26,6 +26,7 @@
         <module>open-source-demo</module>
         <module>winson-for-servlet</module>
         <module>winson-for-mvc</module>
+        <module>winson-for-netty</module>
     </modules>
 
 </project>
