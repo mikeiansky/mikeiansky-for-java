@@ -1,6 +1,5 @@
 package com.winson.netty.echo;
 
-import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -16,7 +15,7 @@ import io.netty.handler.logging.LoggingHandler;
  * @author winson
  * @date 2022/5/21
  **/
-public class NettyEchoServerDemoV1 {
+public class EchoServerDemoV1 {
 
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);

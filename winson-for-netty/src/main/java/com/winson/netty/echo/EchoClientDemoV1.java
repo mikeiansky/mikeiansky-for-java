@@ -20,9 +20,6 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.ssl.SslContext;
-import io.netty.handler.ssl.SslContextBuilder;
-import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 
 /**
  * Sends one message when a connection is open and echoes back any received
@@ -30,7 +27,7 @@ import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
  * traffic between the echo client and server by sending the first message to
  * the server.
  */
-public final class NettyEchoClient {
+public final class EchoClientDemoV1 {
 
     static final String HOST = System.getProperty("host", "127.0.0.1");
     static final int PORT = Integer.parseInt(System.getProperty("port", "8007"));

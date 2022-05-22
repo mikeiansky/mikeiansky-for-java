@@ -58,6 +58,9 @@ public class TestByteBuf {
 //        byteBuf.readInt();
         byteBuf.readBytes(tbs);
         System.out.println(new String(tbs));
+        ByteBuf sbf = byteBuf.slice(0,10);
+        System.out.println(byteBuf);
+        System.out.println(sbf);
 //        System.out.println(tbf.array().length);
 
 //        System.out.println(str.substring(0, 1));
