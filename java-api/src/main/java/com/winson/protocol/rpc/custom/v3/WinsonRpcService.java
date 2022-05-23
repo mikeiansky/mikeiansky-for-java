@@ -81,7 +81,7 @@ public class WinsonRpcService {
         WinsonRpcProtocolProcess rpcProtocolProcess = (WinsonRpcProtocolProcess) selectionKey.attachment();
 //        workerGroup.work(rpcProtocolProcess);
 //        rpcProtocolProcess.sendResult(socketChannel);
-        System.out.println("close ---> socketChannel : " + socketChannel);
+        System.out.println(Thread.currentThread().getName() + " , close ---> socketChannel : " + socketChannel);
         selectionKey.cancel();
         socketChannel.close();
     }

@@ -63,6 +63,7 @@ public class WinsonRpcClient {
                 ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
                 byte[] buf = new byte[1024];
                 while ((readLength = in.read(buf)) != -1) {
+                    totalLength += readLength;
 //                    int start = totalLength;
 //                    int cl = totalLength + readLength;
 //                    if(temp == null){
@@ -72,23 +73,42 @@ public class WinsonRpcClient {
 //                        System.arraycopy(buf, 0, temp, start , readLength);
 //
 //                    }
+//                    System.out.println("read length : " + readLength);
                     byteBuffer.put(buf, 0, readLength);
+
+                    if (totalLength >= WinsonRpcResponseHeader.RESPONSE_HEAD_LENGTH) {
+                        byteBuffer.flip();
+                        byte[] headBuf = new byte[WinsonRpcResponseHeader.RESPONSE_HEAD_LENGTH];
+                        byteBuffer.get(headBuf);
+                        ByteArrayInputStream headBin = new ByteArrayInputStream(headBuf);
+                        ObjectInputStream objHeadReader = new ObjectInputStream(headBin);
+                        WinsonRpcResponseHeader responseHead = (WinsonRpcResponseHeader) objHeadReader.readObject();
+
+                        byte[] bodyBuf = new byte[responseHead.getDataLength()];
+                        byteBuffer.get(bodyBuf);
+                        ByteArrayInputStream bodyBin = new ByteArrayInputStream(bodyBuf);
+                        ObjectInputStream objBodyReader = new ObjectInputStream(bodyBin);
+                        Object result = objBodyReader.readObject();
+
+                        System.out.println("result ------> " + result);
+                    }
+//                    byteBuffer.put(buf, 0, readLength);
                 }
 
-                byteBuffer.flip();
-                byte[] headBuf = new byte[WinsonRpcResponseHeader.RESPONSE_HEAD_LENGTH];
-                byteBuffer.get(headBuf);
-                ByteArrayInputStream headBin = new ByteArrayInputStream(headBuf);
-                ObjectInputStream objHeadReader = new ObjectInputStream(headBin);
-                WinsonRpcResponseHeader responseHead = (WinsonRpcResponseHeader) objHeadReader.readObject();
-
-                byte[] bodyBuf = new byte[responseHead.getDataLength()];
-                byteBuffer.get(bodyBuf);
-                ByteArrayInputStream bodyBin = new ByteArrayInputStream(bodyBuf);
-                ObjectInputStream objBodyReader = new ObjectInputStream(bodyBin);
-                Object result = objBodyReader.readObject();
-
-                System.out.println("result ------> " + result);
+//                byteBuffer.flip();
+//                byte[] headBuf = new byte[WinsonRpcResponseHeader.RESPONSE_HEAD_LENGTH];
+//                byteBuffer.get(headBuf);
+//                ByteArrayInputStream headBin = new ByteArrayInputStream(headBuf);
+//                ObjectInputStream objHeadReader = new ObjectInputStream(headBin);
+//                WinsonRpcResponseHeader responseHead = (WinsonRpcResponseHeader) objHeadReader.readObject();
+//
+//                byte[] bodyBuf = new byte[responseHead.getDataLength()];
+//                byteBuffer.get(bodyBuf);
+//                ByteArrayInputStream bodyBin = new ByteArrayInputStream(bodyBuf);
+//                ObjectInputStream objBodyReader = new ObjectInputStream(bodyBin);
+//                Object result = objBodyReader.readObject();
+//
+//                System.out.println("result ------> " + result);
 
                 out.close();
                 socket.close();
