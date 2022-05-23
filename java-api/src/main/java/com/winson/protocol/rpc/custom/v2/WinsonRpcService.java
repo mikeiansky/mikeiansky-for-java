@@ -1,4 +1,4 @@
-package com.winson.protocol.rpc.custom;
+package com.winson.protocol.rpc.custom.v2;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

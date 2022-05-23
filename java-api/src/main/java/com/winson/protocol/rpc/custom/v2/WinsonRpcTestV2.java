@@ -1,4 +1,5 @@
-package com.winson.protocol.rpc.custom;
+package com.winson.protocol.rpc.custom.v2;
+
 
 import java.io.*;
 
@@ -6,7 +7,7 @@ import java.io.*;
  * @author winson
  * @date 2022/5/23
  **/
-public class WinsonRpcTest {
+public class WinsonRpcTestV2 {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -22,7 +23,7 @@ public class WinsonRpcTest {
 //        WinsonRpcBody rpcBody = new WinsonRpcBody();
 //        rpcBody.setServiceName("helloService");
 //        rpcBody.setMethodName("sayHello");
-//        rpcBody.setClazz("com.winson.protocol.rpc.custom.WinsonHelloService");
+//        rpcBody.setClazz("com.winson.protocol.rpc.custom.v1.WinsonHelloService");
 //        rpcBody.setArgs(new Object[]{"ciwei"});
 //        ObjectOutputStream bodyObjOut = new ObjectOutputStream(bodyOut);
 //        bodyObjOut.writeObject(rpcBody);

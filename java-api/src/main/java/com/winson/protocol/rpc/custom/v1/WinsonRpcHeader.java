@@ -1,4 +1,4 @@
-package com.winson.protocol.rpc.custom;
+package com.winson.protocol.rpc.custom.v1;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 public class WinsonRpcHeader implements Serializable {
 
-    public static final int HEAD_LENGTH = 112;
+    public static final int HEAD_LENGTH = 115;
     private int version = 1;
     private long id;
     private int totalLength;

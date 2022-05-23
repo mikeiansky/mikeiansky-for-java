@@ -1,4 +1,4 @@
-package com.winson.protocol.rpc.custom;
+package com.winson.protocol.rpc.custom.v1;
 
 /**
  * @author winson
