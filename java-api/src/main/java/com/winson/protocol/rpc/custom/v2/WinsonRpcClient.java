@@ -42,13 +42,11 @@ public class WinsonRpcClient {
                 ObjectOutputStream headObjOut = new ObjectOutputStream(headOut);
                 headObjOut.writeObject(header);
                 byte[] headByteArray = headOut.toByteArray();
-                System.out.println("head length : " + headByteArray.length);
-                // write header
 
                 socket.connect(new InetSocketAddress("localhost", 9001));
                 OutputStream out = socket.getOutputStream();
+                // write header
                 out.write(headByteArray);
-                //        Thread.sleep(1000);
                 // write body
                 out.write(bodyByteArray);
 
@@ -60,7 +58,6 @@ public class WinsonRpcClient {
                         int readLength = 0;
                         while ((readLength = in.read(buf)) != -1) {
                             result = new String(buf, 0, readLength);
-//                            System.out.println("read result : " + );
                         }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -80,7 +77,7 @@ public class WinsonRpcClient {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         WinsonHelloService winsonHelloService = WinsonRpcClient.createService(WinsonHelloService.class);
-        System.out.println("result is : "+winsonHelloService.sayHello("v2 rpc test - 002"));
+        System.out.println("result is : "+winsonHelloService.sayHello("v2 rpc test - 004"));
         System.out.println("client end ... ");
 
     }

@@ -18,8 +18,13 @@ public class WinsonRpcService {
 
     private boolean stop;
 
+    private WinsonRpcServiceManager winsonRpcServiceManager;
+
+    public WinsonRpcService() {
+        winsonRpcServiceManager = new WinsonRpcServiceManager();
+    }
+
     public void start() {
-        System.out.println("winson rpc service start ... ");
         CountDownLatch latch = new CountDownLatch(1);
         try {
             Selector selector = Selector.open();
@@ -59,14 +64,14 @@ public class WinsonRpcService {
         ServerSocketChannel serverSocketChannel = (ServerSocketChannel) selectionKey.channel();
         SocketChannel clientSocketChannel = serverSocketChannel.accept();
         System.out.println("handleAccept accept new client : " + clientSocketChannel);
-        WinsonRpcProtocolHolder rpcProtocolHolder = new WinsonRpcProtocolHolder(1024);
+        WinsonRpcProtocolProcess rpcProtocolHolder = new WinsonRpcProtocolProcess(1024);
         clientSocketChannel.configureBlocking(false);
         clientSocketChannel.register(selector, SelectionKey.OP_READ, rpcProtocolHolder);
     }
 
     private void handleWriteKeyEvent(Selector selector, SelectionKey selectionKey) throws IOException {
         SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
-        WinsonRpcProtocolHolder rpcProtocolHolder = (WinsonRpcProtocolHolder) selectionKey.attachment();
+        WinsonRpcProtocolProcess rpcProtocolHolder = (WinsonRpcProtocolProcess) selectionKey.attachment();
         rpcProtocolHolder.sendResult(socketChannel);
         selectionKey.cancel();
         socketChannel.close();
@@ -74,20 +79,16 @@ public class WinsonRpcService {
 
     private void handleReadKeyEvent(Selector selector, SelectionKey selectionKey) throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
-        WinsonRpcProtocolHolder rpcProtocolHolder = (WinsonRpcProtocolHolder) selectionKey.attachment();
+        WinsonRpcProtocolProcess rpcProtocolProcess = (WinsonRpcProtocolProcess) selectionKey.attachment();
 
-        int length = readData(selector, selectionKey, socketChannel, rpcProtocolHolder);
+        int length = readData(selector, selectionKey, socketChannel, rpcProtocolProcess);
         for (; ; ) {
             if (length > 0) {
-//                System.out.println("handleReadKeyEvent length > 0");
                 // read data
-                length = readData(selector, selectionKey, socketChannel, rpcProtocolHolder);
+                length = readData(selector, selectionKey, socketChannel, rpcProtocolProcess);
             } else if (length == 0) {
-                // break;
-//                System.out.println("handleReadKeyEvent length == 0");
                 break;
             } else {
-//                System.out.println("handleReadKeyEvent length < 0");
                 // close
                 selectionKey.cancel();
                 socketChannel.close();
@@ -96,27 +97,28 @@ public class WinsonRpcService {
         }
     }
 
-    private int readData(Selector selector, SelectionKey selectionKey, SocketChannel socketChannel, WinsonRpcProtocolHolder rpcProtocolHolder) throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        int readLength = rpcProtocolHolder.readData(socketChannel);
-        handleData(selector, selectionKey, socketChannel, rpcProtocolHolder);
+    private int readData(Selector selector, SelectionKey selectionKey, SocketChannel socketChannel,
+                         WinsonRpcProtocolProcess rpcProtocolProcess) throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        int readLength = rpcProtocolProcess.readData(socketChannel);
+        handleData(selector, selectionKey, socketChannel, rpcProtocolProcess);
         return readLength;
     }
 
-    private void handleData(Selector selector, SelectionKey selectionKey, SocketChannel socketChannel, WinsonRpcProtocolHolder rpcProtocolHolder) throws IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        rpcProtocolHolder.checkData();
-        if (rpcProtocolHolder.isHeadReady()) {
-            if (!rpcProtocolHolder.isBodyReady() && rpcProtocolHolder.canReadBody()) {
+    private void handleData(Selector selector, SelectionKey selectionKey, SocketChannel socketChannel,
+                            WinsonRpcProtocolProcess rpcProtocolProcess) throws IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        rpcProtocolProcess.checkData();
+        if (rpcProtocolProcess.isHeadReady()) {
+            if (rpcProtocolProcess.canReadBody()) {
                 // 准备读取数据部分
-                rpcProtocolHolder.readBody();
-                Object result = rpcProtocolHolder.process();
-                rpcProtocolHolder.offerResult(result);
-                socketChannel.register(selector, selectionKey.interestOps() | SelectionKey.OP_WRITE, rpcProtocolHolder);
+                rpcProtocolProcess.readBody();
+                Object result = winsonRpcServiceManager.doService(rpcProtocolProcess.getRpcBody());
+                rpcProtocolProcess.offerResult(result);
+                socketChannel.register(selector, selectionKey.interestOps() | SelectionKey.OP_WRITE, rpcProtocolProcess);
             }
         } else {
-            if (rpcProtocolHolder.canReadHeader()) {
+            if (rpcProtocolProcess.canReadHeader()) {
                 // 头部准备好了,读取头部
-                WinsonRpcHeader header = rpcProtocolHolder.readHeader();
-                System.out.println("handle data header is : " + header);
+                rpcProtocolProcess.readHeader();
             }
         }
     }
