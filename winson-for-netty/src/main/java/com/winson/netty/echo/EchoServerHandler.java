@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
  * @author winson
  * @date 2022/5/21
  **/
-//@ChannelHandler.Sharable
+@ChannelHandler.Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override

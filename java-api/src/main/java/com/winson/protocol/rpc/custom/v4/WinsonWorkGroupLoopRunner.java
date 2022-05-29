@@ -34,6 +34,7 @@ public class WinsonWorkGroupLoopRunner extends Thread {
         socketChannel.configureBlocking(false);
         socketChannel.register(selector, SelectionKey.OP_READ, buf);
         selector.wakeup();
+//        selector.selectNow();
     }
 
     @Override

@@ -13,7 +13,8 @@ import java.nio.charset.StandardCharsets;
 public class WinsonRpcClient {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        int size = 1000;
+        final int size = 1;
+        final int msgCount = 1;
         Thread[] ts = new Thread[size];
         for (int i = 0; i < size; i++) {
             ts[i] = new Thread(new Runnable() {
@@ -23,7 +24,7 @@ public class WinsonRpcClient {
                         Socket socket = new Socket();
                         socket.connect(new InetSocketAddress("localhost", 10001));
                         OutputStream out = socket.getOutputStream();
-                        for (int i = 0; i < 1000; i++) {
+                        for (int i = 0; i < msgCount; i++) {
                             out.write(String.format("hello-%04d", i + 1).getBytes(StandardCharsets.UTF_8));
                         }
                         out.flush();
