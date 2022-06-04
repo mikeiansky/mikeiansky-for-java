@@ -11,6 +11,10 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * @author winson
  * @date 2022/5/21
@@ -18,10 +22,27 @@ import io.netty.handler.logging.LoggingHandler;
 public class EchoServerDemoV1 {
 
     public static void main(String[] args) throws InterruptedException {
+//        EventLoopGroup bossGroup1 = new NioEventLoopGroup(1, new ThreadFactory() {
+//            private AtomicLong id = new AtomicLong();
+//            @Override
+//            public Thread newThread(Runnable r) {
+//                return new Thread(r, "winson-boss-"+id.incrementAndGet());
+//            }
+//        });
+//        EventLoopGroup workGroup1 = new NioEventLoopGroup(new ThreadFactory() {
+//            private AtomicLong id = new AtomicLong();
+//
+//            @Override
+//            public Thread newThread(Runnable r) {
+//                return new Thread(r, "winson-worker-"+id.incrementAndGet());
+//            }
+//        });
+
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workGroup = new NioEventLoopGroup();
-
         final EchoServerHandler serverHandler = new EchoServerHandler();
+//        bossGroup.submit(() -> System.out.println("do submit task "));
+        bossGroup.execute(() -> System.out.println("do execute task "));
 
         ServerBootstrap b = new ServerBootstrap();
         b.group(bossGroup, workGroup)
@@ -35,11 +56,10 @@ public class EchoServerDemoV1 {
                     }
                 });
 
-        ChannelFuture cf = b.bind(8007).sync();
-        cf.channel().closeFuture().sync();
+        b.bind(8007).channel().closeFuture().sync();
 
-        bossGroup.shutdownGracefully();
-        workGroup.shutdownGracefully();
+//        bossGroup.shutdownGracefully();
+//        workGroup.shutdownGracefully();
 
     }
 

@@ -1,4 +1,4 @@
-package com.winson.jdkapi.io.nio.client;
+package com.winson.jdkapi.io.nio.v1.client;
 
 import java.io.IOException;
 import java.io.InputStream;
