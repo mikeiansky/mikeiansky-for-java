@@ -46,21 +46,23 @@ public class TestByteBuf {
         byteBuf.readBytes(2);
 //        byteBuf.discardReadBytes();
 //        byteBuf.duplicate();
+        byteBuf.release();
         System.out.println("byteBuf.readableBytes() : "+byteBuf.readableBytes());
-        System.out.println((char) byteBuf.readByte());
+//        System.out.println((char) byteBuf.readByte());
         System.out.println("byteBuf.readerIndex() : "+byteBuf.readerIndex());
         System.out.println("byteBuf.isWritable() : "+byteBuf.isWritable());
 //        byteBuf.readerIndex(0);
 
-        byte[] tbs = new byte[4];
+//        byte[] tbs = new byte[4];
 //        ByteBuf tbf = byteBuf.readBytes(tbs);
 //        byteBuf.readBytes(tbs, 0, tbs.length);
 //        byteBuf.readInt();
-        byteBuf.readBytes(tbs);
-        System.out.println(new String(tbs));
-        ByteBuf sbf = byteBuf.slice(0,10);
-        System.out.println(byteBuf);
-        System.out.println(sbf);
+//        byteBuf.readBytes(tbs);
+//        System.out.println(new String(tbs));
+//        ByteBuf sbf = byteBuf.slice(0,10);
+//        System.out.println(byteBuf);
+//        System.out.println(sbf);
+//        sbf.release();
 //        System.out.println(tbf.array().length);
 
 //        System.out.println(str.substring(0, 1));

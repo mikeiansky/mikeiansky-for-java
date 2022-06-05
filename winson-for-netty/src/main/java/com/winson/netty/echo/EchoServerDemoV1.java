@@ -1,10 +1,7 @@
 package com.winson.netty.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -42,22 +39,78 @@ public class EchoServerDemoV1 {
         EventLoopGroup workGroup = new NioEventLoopGroup();
         final EchoServerHandler serverHandler = new EchoServerHandler();
 //        bossGroup.submit(() -> System.out.println("do submit task "));
-        bossGroup.execute(() -> System.out.println("do execute task "));
+//        bossGroup.execute(() -> System.out.println("do execute task "));
 
         ServerBootstrap b = new ServerBootstrap();
         b.group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel.class)
+//                .childOption()
                 .option(ChannelOption.SO_BACKLOG, 100)
                 .handler(new LoggingHandler(LogLevel.INFO))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        socketChannel.pipeline().addFirst(new ChannelHandler() {
+                            @Override
+                            public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+                                AdaptiveRecvByteBufAllocator rba = new AdaptiveRecvByteBufAllocator(10, 10, 10);
+                                ctx.channel().config().setRecvByteBufAllocator(rba);
+                            }
+
+                            @Override
+                            public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+
+                            }
+
+                            @Override
+                            public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+
+                            }
+                        });
                         socketChannel.pipeline().addLast(serverHandler);
                     }
                 });
 
-        b.bind(8007).channel().closeFuture().sync();
+        Channel channel = b.bind(8007).channel();
+        channel.pipeline().addLast(new ChannelHandler() {
+            @Override
+            public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+                System.out.println("handle1 ---------- handlerAdded");
 
+            }
+
+            @Override
+            public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+
+            }
+
+            @Override
+            public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+                System.out.println("exceptionCaught ---------- 1");
+            }
+        });
+        channel.pipeline().addLast(new ChannelHandler() {
+            @Override
+            public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+                System.out.println("handle2 ---------- handlerAdded");
+
+            }
+
+            @Override
+            public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+
+            }
+
+            @Override
+            public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+                System.out.println("exceptionCaught ---------- 2");
+            }
+        });
+
+//        AdaptiveRecvByteBufAllocator rba = new AdaptiveRecvByteBufAllocator(10, 10, 10);
+//        channel.config().setRecvByteBufAllocator(rba);
+        channel.closeFuture().sync();
+        channel.close();
 //        bossGroup.shutdownGracefully();
 //        workGroup.shutdownGracefully();
 

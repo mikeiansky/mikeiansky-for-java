@@ -19,28 +19,30 @@ public class WinsonNioServerDemoV2 {
 
     public static void main(String[] args) throws IOException {
 
+        Selector selector = Selector.open();
+//        Selector selector2 = Selector.open();
+//        Selector selector3 = Selector.open();
+//        System.out.println("selector : " +selector);
+//        System.out.println("selector2 : " +selector2);
+//        System.out.println("selector3 : " +selector3);
+
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.configureBlocking(false);
-        serverSocketChannel.bind(new InetSocketAddress(20001));
-        ServerSocket s1 = serverSocketChannel.socket();
-        ServerSocket s2 = serverSocketChannel.socket();
-        ServerSocket s3 = serverSocketChannel.socket();
-        System.out.println("ss1 : "+s1);
-        System.out.println("ss2 : "+s2);
-        System.out.println("ss3 : "+s3);
-        System.out.println("s1 == s2 : " + (s1 == s2));
-        System.out.println("s2 == s3 : " + (s2 == s3));
-        System.out.println("s1 == s3 : " + (s1 == s3));
+        SelectionKey selectionKey = serverSocketChannel.register(selector, 0, new WinsonNioServerDemoV2());
 
-        Selector selector = Selector.open();
-        Selector selector2 = Selector.open();
-        Selector selector3 = Selector.open();
-        System.out.println("selector : " +selector);
-        System.out.println("selector2 : " +selector2);
-        System.out.println("selector3 : " +selector3);
+        serverSocketChannel.bind(new InetSocketAddress(20001));
+//        ServerSocket s1 = serverSocketChannel.socket();
+//        ServerSocket s2 = serverSocketChannel.socket();
+//        ServerSocket s3 = serverSocketChannel.socket();
+//        System.out.println("ss1 : "+s1);
+//        System.out.println("ss2 : "+s2);
+//        System.out.println("ss3 : "+s3);
+//        System.out.println("s1 == s2 : " + (s1 == s2));
+//        System.out.println("s2 == s3 : " + (s2 == s3));
+//        System.out.println("s1 == s3 : " + (s1 == s3));
 
 //        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, new WinsonNioServerDemoV2());
-        SelectionKey selectionKey = serverSocketChannel.register(selector, 0, new WinsonNioServerDemoV2());
+//        SelectionKey selectionKey = serverSocketChannel.register(selector, 0, new WinsonNioServerDemoV2());
         new Thread(new Runnable() {
             @Override
             public void run() {
