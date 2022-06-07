@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
  **/
 public class Animal implements Comparable<Animal>{
 
-    public int size;
+    public volatile int size;
 
     public void eat(){
         System.out.println("animal eat");
