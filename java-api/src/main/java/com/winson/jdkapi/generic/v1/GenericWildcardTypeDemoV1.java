@@ -1,4 +1,4 @@
-package com.winson.jdkapi.generic;
+package com.winson.jdkapi.generic.v1;
 
 //import jdk.internal.org.objectweb.asm.ClassWriter;
 

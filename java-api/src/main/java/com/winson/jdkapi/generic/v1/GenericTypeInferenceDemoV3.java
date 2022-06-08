@@ -1,4 +1,4 @@
-package com.winson.jdkapi.generic;
+package com.winson.jdkapi.generic.v1;
 
 import com.winson.pojo.Animal;
 import com.winson.pojo.Dog;

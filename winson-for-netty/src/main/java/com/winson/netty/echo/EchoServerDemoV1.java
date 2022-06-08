@@ -7,6 +7,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.GenericFutureListener;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadFactory;
@@ -45,7 +47,7 @@ public class EchoServerDemoV1 {
         b.group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel.class)
 //                .childOption()
-                .option(ChannelOption.SO_BACKLOG, 100)
+                .option(ChannelOption.SO_BACKLOG, 1)
                 .handler(new LoggingHandler(LogLevel.INFO))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
@@ -71,46 +73,20 @@ public class EchoServerDemoV1 {
                     }
                 });
 
-        Channel channel = b.bind(8007).channel();
-        channel.pipeline().addLast(new ChannelHandler() {
+        ChannelFuture channelFuture = b.bind(8007);
+//        channelFuture.channel().pipeline().addFirst();
+        channelFuture.addListener(new GenericFutureListener<Future<? super Void>>() {
             @Override
-            public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-                System.out.println("handle1 ---------- handlerAdded");
-
-            }
-
-            @Override
-            public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-
-            }
-
-            @Override
-            public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-                System.out.println("exceptionCaught ---------- 1");
+            public void operationComplete(Future<? super Void> future) throws Exception {
+                System.out.println("operationComplete -----------> ...... future : " + future);
             }
         });
-        channel.pipeline().addLast(new ChannelHandler() {
-            @Override
-            public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-                System.out.println("handle2 ---------- handlerAdded");
-
-            }
-
-            @Override
-            public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-
-            }
-
-            @Override
-            public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-                System.out.println("exceptionCaught ---------- 2");
-            }
-        });
+//        channelFuture.addListener(new MyErrorGenericFutureListener());
 
 //        AdaptiveRecvByteBufAllocator rba = new AdaptiveRecvByteBufAllocator(10, 10, 10);
 //        channel.config().setRecvByteBufAllocator(rba);
-        channel.closeFuture().sync();
-        channel.close();
+        channelFuture.channel().closeFuture().sync();
+        channelFuture.channel().close();
 //        bossGroup.shutdownGracefully();
 //        workGroup.shutdownGracefully();
 

@@ -1,4 +1,4 @@
-package com.winson.jdkapi.generic;
+package com.winson.jdkapi.generic.v1;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.TypeVariable;

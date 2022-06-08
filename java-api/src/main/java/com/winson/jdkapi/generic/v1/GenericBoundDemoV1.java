@@ -1,4 +1,4 @@
-package com.winson.jdkapi.generic;
+package com.winson.jdkapi.generic.v1;
 
 /**
  * @author winson
