@@ -37,6 +37,7 @@ public class TestCompletableService {
 
         for (int i = 0; i < 3; i++) {
             Future fr = ecs.take();
+            System.out.println("take-" + i);
             if(fr != null){
                 System.out.println("take result is : "+ fr.get());
             }

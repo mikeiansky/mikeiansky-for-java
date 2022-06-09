@@ -53,6 +53,7 @@ public class EchoServerDemoV1 {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         socketChannel.pipeline().addFirst(new ChannelHandler() {
+
                             @Override
                             public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
                                 AdaptiveRecvByteBufAllocator rba = new AdaptiveRecvByteBufAllocator(10, 10, 10);
