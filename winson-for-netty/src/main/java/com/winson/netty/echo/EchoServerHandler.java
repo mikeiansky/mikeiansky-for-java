@@ -17,6 +17,12 @@ import java.nio.charset.StandardCharsets;
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+        System.out.println("EchoServerHandler ---------> channelActive");
+    }
+
+    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
 //        ctx.write(msg);
 //        ctx.write("hello client".getBytes(StandardCharsets.UTF_8));
