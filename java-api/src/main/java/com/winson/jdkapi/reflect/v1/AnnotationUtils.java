@@ -1,8 +1,6 @@
 package com.winson.jdkapi.reflect.v1;
 
-import com.winson.jdkapi.annotation.Super;
-import com.winson.jdkapi.annotation.User;
-import com.winson.jdkapi.annotation.UserGroup;
+import com.winson.jdkapi.annotation.v1.User;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;

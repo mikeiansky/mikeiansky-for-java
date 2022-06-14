@@ -1,4 +1,4 @@
-package com.winson.jdkapi.annotation;
+package com.winson.jdkapi.annotation.v1;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;

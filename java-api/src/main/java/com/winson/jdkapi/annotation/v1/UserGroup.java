@@ -1,4 +1,4 @@
-package com.winson.jdkapi.annotation;
+package com.winson.jdkapi.annotation.v1;
 
 import java.lang.annotation.*;
 
@@ -9,8 +9,12 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@HolySuper
-@Inherited // 代表能被子类继承
-public @interface Super {
+@Inherited
+@Super
+public @interface UserGroup {
+
+    String name() default "winson";
+
+    int age() default 23;
 
 }

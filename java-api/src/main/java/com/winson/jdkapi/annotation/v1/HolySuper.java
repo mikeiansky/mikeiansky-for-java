@@ -1,20 +1,14 @@
-package com.winson.jdkapi.annotation;
+package com.winson.jdkapi.annotation.v1;
 
 import java.lang.annotation.*;
 
 /**
  * @author winson
- * @date 2021/6/20
+ * @date 2022/2/28
  **/
 @Documented
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Inherited
-@Super
-public @interface UserGroup {
-
-    String name() default "winson";
-
-    int age() default 23;
-
+@Inherited // 代表能被子类继承
+public @interface HolySuper {
 }

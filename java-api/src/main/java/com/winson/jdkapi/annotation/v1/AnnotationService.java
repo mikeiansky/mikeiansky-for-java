@@ -1,4 +1,4 @@
-package com.winson.jdkapi.annotation;
+package com.winson.jdkapi.annotation.v1;
 
 /**
  * @author winson

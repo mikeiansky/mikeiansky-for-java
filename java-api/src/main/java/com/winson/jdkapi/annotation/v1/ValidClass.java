@@ -1,4 +1,4 @@
-package com.winson.jdkapi.annotation;
+package com.winson.jdkapi.annotation.v1;
 
 import java.lang.annotation.*;
 
@@ -7,9 +7,10 @@ import java.lang.annotation.*;
  * @date 2021/6/15
  **/
 @Documented
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NotEmpty {
+public @interface ValidClass {
 
+    Class targetClass();
 
 }

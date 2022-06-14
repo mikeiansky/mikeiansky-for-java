@@ -1,4 +1,4 @@
-package com.winson.jdkapi.annotation;
+package com.winson.jdkapi.annotation.v1;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
