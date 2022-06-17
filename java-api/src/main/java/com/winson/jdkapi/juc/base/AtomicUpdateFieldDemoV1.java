@@ -1,10 +1,9 @@
-package com.winson.jdkapi.juc.atomic;
+package com.winson.jdkapi.juc.base;
 
 import com.winson.pojo.Animal;
 
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import java.util.function.IntUnaryOperator;
 
 /**
  * @author winson
