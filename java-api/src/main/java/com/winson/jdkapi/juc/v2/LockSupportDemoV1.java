@@ -1,6 +1,6 @@
 package com.winson.jdkapi.juc.v2;
 
-import sun.misc.Unsafe;
+//import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.locks.LockSupport;
@@ -16,23 +16,23 @@ public class LockSupportDemoV1 {
         System.out.println("LockSupport classLoader:" + LockSupport.class.getClassLoader());
         System.out.println("LockSupportDemoV1 classLoader:" + LockSupportDemoV1.class.getClassLoader());
 //        sun.misc.Unsafe UNSAFE = sun.misc.Unsafe.getUnsafe();
-        Field[] fields = sun.misc.Unsafe.class.getDeclaredFields();
+//        Field[] fields = sun.misc.Unsafe.class.getDeclaredFields();
 
 //        System.out.println(fields.length);
-        sun.misc.Unsafe UNSAFE = null;
-        for (Field field : fields) {
-            if(field.getName().equals("theUnsafe")){
-                field.setAccessible(true);
-                UNSAFE = (Unsafe) field.get(Unsafe.class);
-                break;
-            }
-        }
+//        sun.misc.Unsafe UNSAFE = null;
+//        for (Field field : fields) {
+//            if(field.getName().equals("theUnsafe")){
+//                field.setAccessible(true);
+////                UNSAFE = (Unsafe) field.get(Unsafe.class);
+//                break;
+//            }
+//        }
 //        System.out.println(UNSAFE);
 
         System.out.println("lock support demo v1 start ");
         Thread main = Thread.currentThread();
         final Object lock = new Object();
-        Unsafe finalUNSAFE = UNSAFE;
+//        Unsafe finalUNSAFE = UNSAFE;
         new Thread(new Runnable() {
             @Override
             public void run() {

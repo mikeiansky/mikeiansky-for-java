@@ -32,6 +32,11 @@ public class TestByteBuf {
 //        byteBuf.writerIndex(20);
         System.out.println("byteBuf.isWritable() : "+byteBuf.isWritable());
         byteBuf.writeBytes(bts);
+
+        //
+        byteBuf.writeFloat(1.0f);
+        //
+
         System.out.println("byteBuf.isWritable() : "+byteBuf.isWritable());
 
 

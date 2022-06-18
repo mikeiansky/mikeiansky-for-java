@@ -1,6 +1,6 @@
 package com.winson.springboot.demo;
 
-import com.winson.lib.two.LibTwoManager;
+//import com.winson.lib.two.LibTwoManager;
 import org.apache.logging.slf4j.SLF4JLoggerContextFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,9 +73,9 @@ public class MyService {
     }
 
     public void testLibTwo(){
-        LibTwoManager libTwoManager = new LibTwoManager();
-        System.out.println("testLibTwo : " + libTwoManager);
-        libTwoManager.doSomething();
+//        LibTwoManager libTwoManager = new LibTwoManager();
+//        System.out.println("testLibTwo : " + libTwoManager);
+//        libTwoManager.doSomething();
 //        libTwoManager.doFour();
     }
 
