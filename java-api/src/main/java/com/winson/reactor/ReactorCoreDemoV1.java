@@ -17,18 +17,18 @@ public class ReactorCoreDemoV1 {
     public static void main(String[] args) {
 
         Flux.just("Hello")
-                .flatMap(new Function<String, Publisher<String>>() {
-                    @Override
-                    public Publisher<String> apply(String s) {
-                        return new Flux<String>() {
-                            @Override
-                            public void subscribe(CoreSubscriber<? super String> actual) {
-                                System.out.println("subscribe delegate ... ");
-                                actual.onNext(s);
-                            }
-                        };
-                    }
-                })
+//                .flatMap(new Function<String, Publisher<String>>() {
+//                    @Override
+//                    public Publisher<String> apply(String s) {
+//                        return new Flux<String>() {
+//                            @Override
+//                            public void subscribe(CoreSubscriber<? super String> actual) {
+//                                System.out.println("subscribe delegate ... ");
+//                                actual.onNext(s);
+//                            }
+//                        };
+//                    }
+//                })
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) {
