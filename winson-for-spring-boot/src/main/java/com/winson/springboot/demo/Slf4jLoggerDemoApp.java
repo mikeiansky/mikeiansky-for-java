@@ -17,7 +17,8 @@ public class Slf4jLoggerDemoApp {
     public static void main(String[] args) {
 
         SpringApplication.run(Slf4jLoggerDemoApp.class);
-        logger.info("application start ... ");
+        logger.info("application start1 ... ");
+        logger.info("application start2 ... ");
 
     }
 
