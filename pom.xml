@@ -27,6 +27,7 @@
         <module>winson-for-servlet</module>
         <module>winson-for-mvc</module>
         <module>winson-for-netty</module>
+        <module>winson-for-maven-plugin</module>
     </modules>
 
 </project>
