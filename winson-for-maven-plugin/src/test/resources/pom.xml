@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.winson</groupId>
+    <artifactId>maven.study.lesson-001</artifactId>
+    <version>v1.0.0-SNAPSHOT</version>
+
+    <name>winson-maven-study-lesson-001</name>
+
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.1.6.RELEASE</version>-->
+<!--    </parent>-->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>5.2.7.RELEASE</version>
+        </dependency>
+        <!-- <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-parent</artifactId>
+                    <version>2.1.6.RELEASE</version>
+        </dependency> -->
+    </dependencies>
+    
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
+
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>winson-ciwei-nexus-docker-release</id>-->
+<!--            <name>winson-ciwei-home-nexus-release</name>-->
+<!--            <url>http://192.168.159.130:8081/repository/winson-ciwei-docker-release/</url>-->
+<!--        </repository>-->
+<!--        <snapshotRepository>-->
+<!--            <id>winson-ciwei-nexus-docker-snapshot</id>-->
+<!--            <name>winson-ciwei-home-nexus-snapshot</name>-->
+<!--            <url>http://192.168.159.130:8081/repository/winson-ciwei-docker-snapshot/</url>-->
+<!--        </snapshotRepository>    -->
+<!--  </distributionManagement>-->
+
+  <build>
+  <plugins>
+    <plugin>
+        <groupId>com.winson</groupId>
+        <artifactId>winson-for-maven-plugin</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <configuration>
+            <dirPath>asdfadsf</dirPath>
+        </configuration>
+        <executions>
+            <execution>
+                <phase>compile</phase>
+                <goals>
+                    <goal>winson-hello</goal>
+                </goals>
+            </execution>
+        </executions>
+<!--        <goals>-->
+<!--            <project>winson-hello</project>-->
+<!--        </goals>-->
+    </plugin>
+  </plugins>
+</build>
+
+</project>
