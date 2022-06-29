@@ -35,13 +35,13 @@ public class HelloMojo extends AbstractMojo {
         for (Object key : getPluginContext().keySet()) {
             System.out.println("key:" + key + " , value class : " + getPluginContext().get(key).getClass());
         }
-        CountDownLatch latch = new CountDownLatch(1);
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            System.out.println("--------- countdown ...... ");
-        }
+//        CountDownLatch latch = new CountDownLatch(1);
+//        try {
+//            latch.await();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//            System.out.println("--------- countdown ...... ");
+//        }
         System.out.println("dirPath : " + dirPath);
         System.out.println("nothing : " + nothing);
         System.out.println("project : " + project);
