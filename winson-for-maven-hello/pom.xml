@@ -24,17 +24,17 @@
                 <version>1.0-SNAPSHOT</version>
 
                 <executions>
-                    <execution>
-                        <id>hhhpackage</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>hello</goal>
-<!--                            <goal>info</goal>-->
-                        </goals>
-                        <configuration>
-                            <company>shenzhen</company>
-                        </configuration>
-                    </execution>
+                                <execution>
+                                    <id>double-package</id>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>hello</goal>
+                                        <goal>info</goal>
+                                    </goals>
+                                    <configuration>
+                                        <company>shenzhen</company>
+                                    </configuration>
+                                </execution>
                     <!--                    <execution>-->
                     <!--                        <id>mvd</id>-->
                     <!--                        <phase>validate</phase>-->
@@ -61,26 +61,6 @@
                     <!--                    <age>321</age>-->
                     <!--                    <second>haha</second>-->
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-<!--                                <exec>-->
-<!--                                    <args line="one two three"></args>-->
-<!--                                </exec>-->
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
