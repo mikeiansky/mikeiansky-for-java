@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>winson-for-java</artifactId>
+        <groupId>com.winson</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>winson-for-maven-hello</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.winson</groupId>
+                <artifactId>winson-for-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+
+                <executions>
+                    <execution>
+                        <id>hhhpackage</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>hello</goal>
+<!--                            <goal>info</goal>-->
+                        </goals>
+                        <configuration>
+                            <company>shenzhen</company>
+                        </configuration>
+                    </execution>
+                    <!--                    <execution>-->
+                    <!--                        <id>mvd</id>-->
+                    <!--                        <phase>validate</phase>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>hello</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <company>winson-validate</company>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
+                    <!--                    <execution>-->
+                    <!--                        <id>dddclean</id>-->
+                    <!--                        <phase>post-clean</phase>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>hello</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <company>winson-clean</company>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
+                </executions>
+                <configuration>
+                    <company>ciwei</company>
+                    <!--                    <age>321</age>-->
+                    <!--                    <second>haha</second>-->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+<!--                                <exec>-->
+<!--                                    <args line="one two three"></args>-->
+<!--                                </exec>-->
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -28,6 +28,7 @@
         <module>winson-for-mvc</module>
         <module>winson-for-netty</module>
         <module>winson-for-maven-plugin</module>
+        <module>winson-for-maven-hello</module>
     </modules>
 
 </project>
