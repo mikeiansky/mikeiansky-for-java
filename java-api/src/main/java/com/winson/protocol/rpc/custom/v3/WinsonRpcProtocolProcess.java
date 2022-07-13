@@ -134,6 +134,7 @@ public class WinsonRpcProtocolProcess {
             System.arraycopy(tempData, 0, body, 0, tempData.length);
             bodyStartPosition = tempData.length;
         }
+
         int leftLength = bodyLength - bodyStartPosition;
         for (int i = 0; i < leftLength; i++) {
             body[bodyStartPosition + i] = byteBuffer.get(startPosition + i);
