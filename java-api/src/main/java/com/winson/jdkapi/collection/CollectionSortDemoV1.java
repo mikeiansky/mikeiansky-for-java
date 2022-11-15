@@ -19,7 +19,7 @@ public class CollectionSortDemoV1 {
         public int compare(Animal o1, Animal o2) {
 //            System.out.println("o1 : " + o1 + " , o2 : " + o2 + " , result : " + (o1.size - o2.size));
 //            return o1.size - o2.size;
-            return 0;
+            return o1.size - o2.size;
         }
     }
 
