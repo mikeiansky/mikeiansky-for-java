@@ -18,9 +18,11 @@ public class CollectionOpDemoV1 {
         idList.add(4);
         idList.add(5);
         idList.add(6);
+//        List<Integer> allIdList = new ArrayList<>();
+        List<Integer> allIdList = null;
+//        idList.addAll(allIdList);
 
-        System.out.println(idList.subList(1,20));
-
+//        System.out.println(idList.subList(1,20));
     }
 
 }
