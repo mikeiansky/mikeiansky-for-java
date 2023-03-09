@@ -13,10 +13,10 @@ public class INCInstructionDemoV1 {
 
     public static void main(String[] args) {
 
-        List<String> list = new ArrayList<>();
-        list.add("one");
-
-        System.out.println(list.get(++i));
+//        List<String> list = new ArrayList<>();
+//        list.add("one");
+//
+//        System.out.println(list.get(++i));
 
     }
 
