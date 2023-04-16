@@ -31,15 +31,16 @@ public class ProductConsumeDemoV3 {
     }
 
     public static void main(String[] args) {
-        ReentrantLock lock = new ReentrantLock();
-        Condition notFullCondition = lock.newCondition();
-        Condition notEmptyCondition = lock.newCondition();
+        ReentrantLock lock1 = new ReentrantLock();
+        ReentrantLock lock2 = new ReentrantLock();
+        Condition notFullCondition = lock1.newCondition();
+        Condition notEmptyCondition = lock1.newCondition();
         int size = 10;
         int maxSize = 3;
         Window window = new Window(0);
         Thread productThread = new Thread(() -> {
             for (int i = 0; i < size; i++) {
-                lock.lock();
+                lock1.lock();
                 try {
                     while (window.getWindow() >= maxSize) {
                         notFullCondition.await();
@@ -50,7 +51,7 @@ public class ProductConsumeDemoV3 {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    lock.unlock();
+                    lock1.unlock();
                 }
             }
         });
@@ -58,7 +59,7 @@ public class ProductConsumeDemoV3 {
 
         Thread consumeThread = new Thread(() -> {
             for (int i = 0; i < size; i++) {
-                lock.lock();
+                lock1.lock();
                 try {
                     while (window.getWindow() < 1) {
                         notEmptyCondition.await();
@@ -69,7 +70,7 @@ public class ProductConsumeDemoV3 {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    lock.unlock();
+                    lock1.unlock();
                 }
             }
         });
