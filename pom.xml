@@ -43,7 +43,8 @@
         <module>winson-for-netty</module>
         <module>winson-for-maven-plugin</module>
         <module>winson-for-maven-hello</module>
-<!--        <module>winson-app-001</module>-->
+        <module>winson-for-spring-boot-02</module>
+        <!--        <module>winson-app-001</module>-->
 <!--        <module>winson-app-002</module>-->
 <!--        <module>winson-app-003</module>-->
     </modules>
