@@ -136,8 +136,6 @@ public class IterableDemo {
         myCollection.addFlag(new Flag("2"));
         myCollection.addFlag(new Flag("3"));
 
-
-
         System.out.println(" -- 1 --  ");
         for (Object o : myCollection) {
             System.out.println(o);
