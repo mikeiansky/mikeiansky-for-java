@@ -11,9 +11,6 @@ WORKDIR /home/ciwei
 # 复制jar包
 COPY target/*.jar /home/ciwei/app.jar
 
-# 统一启动端口
-ENV PARAMS = "--server.port=20001"
-
 EXPOSE 20001
 
 ENTRYPOINT ["/bin/sh","-c","java -Dfile.encoding=utf8 -Djava.security.egd=file:/dev/./urandom -jar app.jar ${PARAMS}"]
