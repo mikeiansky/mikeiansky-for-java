@@ -6,11 +6,11 @@ package com.winson.jdkapi.exception;
  **/
 public class ExceptionStackDemoV1 {
 
-    public static void topOne(){
+    public static void topOne() {
         topTwo();
     }
 
-    public static void topTwo(){
+    public static void topTwo() {
         methodOne();
     }
 
@@ -52,20 +52,53 @@ public class ExceptionStackDemoV1 {
     }
 
     public static void methodSix() {
-        try {
-            System.out.println("methodSix +++++ 1");
-            System.out.println("methodSix +++++ 2");
+//        try {
+        System.out.println("methodSix +++++ 1");
+        System.out.println("methodSix +++++ 2");
+//            if (1 == 1) {
+//                throw new IllegalStateException("hello exception");
+//            }
+//            String temp = null;
+//            System.out.println(temp.length());
+        methodSeven();
+        System.out.println("methodSix +++++ 3");
+        System.out.println("methodSix +++++ 4");
+//        } catch (Exception e) {
+//            throw new IllegalStateException("from methodSix", e);
+//        }
+    }
+
+    public static void methodSeven() {
+//        try {
+        System.out.println("methodSeven +++++ 1");
+        System.out.println("methodSeven +++++ 2");
+//            if (1 == 1) {
+//                throw new IllegalStateException("hello exception");
+//            }
+//            String temp = null;
+//            System.out.println(temp.length());
+        methodEight();
+        System.out.println("methodSeven +++++ 3");
+        System.out.println("methodSeven +++++ 4");
+//        } catch (Exception e) {
+//            throw new IllegalStateException("from methodSix", e);
+//        }
+    }
+
+    public static void methodEight() {
+//        try {
+            System.out.println("methodEight +++++ 1");
+            System.out.println("methodEight +++++ 2");
 //            if (1 == 1) {
 //                throw new IllegalStateException("hello exception");
 //            }
             String temp = null;
             System.out.println(temp.length());
-            System.out.println("methodSix +++++ 3");
-            System.out.println("methodSix +++++ 4");
-        } catch (Exception e) {
-            throw new IllegalStateException("from methodSix", e);
-        }
-
+            System.out.println("methodEight +++++ 3");
+            System.out.println("methodEight +++++ 4");
+//        } catch (Exception e) {
+//            throw new IllegalStateException("from methodSix", e);
+//        }
     }
 
     public static void main(String[] args) {
