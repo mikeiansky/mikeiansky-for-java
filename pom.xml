@@ -46,6 +46,7 @@
         <module>winson-for-spring-boot-02</module>
         <module>winson-for-transaction</module>
         <module>winson-for-spring-boot-docker</module>
+        <module>winson-algorithm</module>
         <!--        <module>winson-app-001</module>-->
 <!--        <module>winson-app-002</module>-->
 <!--        <module>winson-app-003</module>-->
