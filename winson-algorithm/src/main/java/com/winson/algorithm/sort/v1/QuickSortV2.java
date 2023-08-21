@@ -1,4 +1,4 @@
-package com.winson.algorithm.sort;
+package com.winson.algorithm.sort.v1;
 
 import java.util.Arrays;
 

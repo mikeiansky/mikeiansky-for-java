@@ -1,14 +1,13 @@
-package com.winson.algorithm.sortv2;
+package com.winson.algorithm.sort.v1;
 
 /**
  * @author mike ian
- * @date 2023/8/20
- * @desc 选择排序，原地排序，不稳定排序
+ * @date 2023/8/16
+ * @desc
  **/
-public class SelectionSortV2 {
+public class SelectionSort {
 
-    public static void sort(int data[]) {
-
+    public static void selectionSort(int data[]) {
         for (int i = 0; i < data.length - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < data.length; j++) {
@@ -17,16 +16,16 @@ public class SelectionSortV2 {
                 }
             }
             if (minIndex != i) {
-                int temp = data[i];
-                data[i] = data[minIndex];
-                data[minIndex] = temp;
+                int temp = data[minIndex];
+                data[minIndex] = data[i];
+                data[i] = temp;
             }
         }
     }
 
     public static void main(String[] args) {
         int data[] = {1, 3, 6, 8, 9, 2, 5, 7};
-        sort(data);
+        selectionSort(data);
         for (int i = 0; i < data.length; i++) {
             System.out.println(data[i]);
         }

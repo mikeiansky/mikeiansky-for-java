@@ -1,4 +1,4 @@
-package com.winson.algorithm.sortv2;
+package com.winson.algorithm.sort.v2;
 
 /**
  * @author mike ian
