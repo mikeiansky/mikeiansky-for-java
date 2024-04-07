@@ -34,6 +34,9 @@ public class WinsonSB02 {
 
         ZKApp zkApp = applicationContext.getBean(ZKApp.class);
         zkApp.connectZKServer();
+
+//        ZKClientApp zkClientApp = applicationContext.getBean(ZKClientApp.class);
+//        zkClientApp.useClient();
     }
 
 }
