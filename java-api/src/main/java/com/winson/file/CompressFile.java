@@ -20,6 +20,7 @@ public class CompressFile {
         File f5 = new File("D:\\temp\\f3.zip");
         File f6 = new File("D:\\temp\\f3.zip");
         File f7 = new File("D:\\temp\\f3.zip");
+        File f8 = new File("D:\\temp\\f3.zip");
 
 //        FileInputStream in1 = new FileInputStream(f1);
 //        FileInputStream in2 = new FileInputStream(f2);
