@@ -32,11 +32,15 @@ public class WinsonSB02 {
 //        myTransactionService.hello("winson");
 
 
-        ZKApp zkApp = applicationContext.getBean(ZKApp.class);
-        zkApp.connectZKServer();
+//        ZKApp zkApp = applicationContext.getBean(ZKApp.class);
+//        zkApp.connectZKServer();
 
 //        ZKClientApp zkClientApp = applicationContext.getBean(ZKClientApp.class);
 //        zkClientApp.useClient();
+
+        KafkaProducerService kafkaProducerService = applicationContext.getBean(KafkaProducerService.class);
+        kafkaProducerService.sendMessage();
+
     }
 
 }
