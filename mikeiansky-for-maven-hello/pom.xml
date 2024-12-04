@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>io.github.mikeiansky</groupId>
+        <artifactId>mikeiansky-for-java</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mikeiansky-for-maven-hello</artifactId>
+
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>com.winson</groupId>-->
+<!--                <artifactId>winson-for-maven-plugin</artifactId>-->
+<!--                <version>1.0-SNAPSHOT</version>-->
+
+<!--                <executions>-->
+<!--                                <execution>-->
+<!--                                    <id>double-package</id>-->
+<!--                                    <phase>package</phase>-->
+<!--                                    <goals>-->
+<!--                                        <goal>hello</goal>-->
+<!--                                        <goal>info</goal>-->
+<!--                                    </goals>-->
+<!--                                    <configuration>-->
+<!--                                        <company>shenzhen</company>-->
+<!--                                    </configuration>-->
+<!--                                </execution>-->
+<!--                    &lt;!&ndash;                    <execution>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <id>mvd</id>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <phase>validate</phase>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <goals>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <goal>hello</goal>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </goals>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <configuration>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <company>winson-validate</company>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </configuration>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </execution>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <execution>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <id>dddclean</id>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <phase>post-clean</phase>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <goals>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <goal>hello</goal>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </goals>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <configuration>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <company>winson-clean</company>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </configuration>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </execution>&ndash;&gt;-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <company>ciwei</company>-->
+<!--                    &lt;!&ndash;                    <age>321</age>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <second>haha</second>&ndash;&gt;-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+</project>
