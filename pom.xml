@@ -16,6 +16,7 @@
         <module>mikeiansky-for-maven-plugin</module>
         <module>mikeiansky-for-maven-hello</module>
         <module>mikeiansky-for-algorithm</module>
+        <module>mikeiansky-for-design-pattern</module>
     </modules>
 
 </project>
