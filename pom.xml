@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>mikeiansky-for-java-api</module>
+        <module>mikeiansky-for-java-base</module>
         <module>mikeiansky-for-servlet</module>
         <module>mikeiansky-for-netty</module>
         <module>mikeiansky-for-maven-plugin</module>
