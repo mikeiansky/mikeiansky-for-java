@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: io.github.mikeiansky.java.base.jvm.classloader.TestSingleton
+
