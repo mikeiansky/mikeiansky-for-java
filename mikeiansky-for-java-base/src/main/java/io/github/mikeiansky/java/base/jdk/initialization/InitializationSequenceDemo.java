@@ -1,4 +1,4 @@
-package io.github.mikeiansky.java.base.jdk.base;
+package io.github.mikeiansky.java.base.jdk.initialization;
 
 /**
  * @author mike ian
