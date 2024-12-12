@@ -8,14 +8,14 @@ package io.github.mikeiansky.java.base.jdk.initialization;
 public class InitializationSequenceDemo {
 
     public static class Inner {
-        public Inner(){
+        public Inner() {
             System.out.println("Inner created");
         }
     }
 
     private Inner inner = new Inner();
 
-    public InitializationSequenceDemo(){
+    public InitializationSequenceDemo() {
         System.out.println("InitializationSequenceDemo created");
     }
 
