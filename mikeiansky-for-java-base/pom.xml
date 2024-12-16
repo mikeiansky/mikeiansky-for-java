@@ -149,11 +149,13 @@
             <artifactId>lombok</artifactId>
             <version>1.18.16</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.winson</groupId>-->
-<!--            <artifactId>exceptions</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.github.mikeiansky</groupId>
+            <artifactId>mikeiansky-utils-context</artifactId>
+            <version>1.0.6</version>
+            <scope>provided</scope>
+        </dependency>
+
 
 
     </dependencies>
