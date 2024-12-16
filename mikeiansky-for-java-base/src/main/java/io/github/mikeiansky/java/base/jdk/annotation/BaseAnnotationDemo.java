@@ -46,6 +46,7 @@ public class BaseAnnotationDemo {
         System.out.println("get annotation ");
         SonAnnotation sonAnnotation = clazz.getAnnotation(SonAnnotation.class);
         System.out.println(sonAnnotation);
+        System.out.println(sonAnnotation.annotationType());
         FatherAnnotation fatherAnnotation = clazz.getAnnotation(FatherAnnotation.class);
         System.out.println(fatherAnnotation);
         GrandFatherAnnotation grandFatherAnnotation = clazz.getAnnotation(GrandFatherAnnotation.class);

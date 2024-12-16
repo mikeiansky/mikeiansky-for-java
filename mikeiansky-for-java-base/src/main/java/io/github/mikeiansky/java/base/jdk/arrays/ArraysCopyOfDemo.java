@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * @date 2024/12/16
  * @desc
  **/
-public class ArraysDemo {
+public class ArraysCopyOfDemo {
 
     public static void main(String[] args) {
 
