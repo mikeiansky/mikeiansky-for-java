@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
  * @author winson
  * @date 2022/5/23
  **/
-public class TestByteBufferV2 {
+public class TestJavaByteBufferV2 {
 
     public static void main(String[] args) {
 

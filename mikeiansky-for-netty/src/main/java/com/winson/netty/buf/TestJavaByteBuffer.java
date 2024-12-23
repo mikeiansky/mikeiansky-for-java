@@ -1,16 +1,15 @@
 package com.winson.netty.buf;
 
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 
 /**
  * @author winson
  * @date 2022/5/22
  **/
-public class TestByteBuffer {
+public class TestJavaByteBuffer {
 
     public static void main(String[] args) {
-        System.out.println("TestByteBuffer ... ");
+        System.out.println("TestJavaByteBuffer ... ");
         ByteBuffer byteBuffer = ByteBuffer.allocate(10);
 //        byteBuffer.limit(10);
 

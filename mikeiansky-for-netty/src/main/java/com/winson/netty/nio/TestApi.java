@@ -12,9 +12,13 @@ public class TestApi {
         int temp1 = 1 | value;
         int temp2 = 1 | ~value;
         int temp3 = ~value;
+        System.out.println(value);
         System.out.println(temp1);
         System.out.println(temp2);
+        System.out.println(temp3);
         System.out.println(Integer.toBinaryString(value));
+        System.out.println(Integer.toBinaryString(temp1));
+        System.out.println(Integer.toBinaryString(temp2));
         System.out.println(Integer.toBinaryString(temp3));
 
     }

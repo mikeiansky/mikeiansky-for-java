@@ -1,21 +1,15 @@
 package com.winson.netty.buf;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.PooledByteBufAllocator;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author winson
  * @date 2022/5/22
  **/
-public class TestByteBuf {
+public class TestNettyByteBuf {
 
     public static void main(String[] args) {
 
@@ -24,7 +18,7 @@ public class TestByteBuf {
 //        byteBuf.capacity(1);
 //        System.out.println(byteBuf);
         System.out.println("byteBuf.capacity() : "+byteBuf.capacity());
-        String str = "0123456789x";
+        String str = "X01234";
         byte[] bts = str.getBytes(StandardCharsets.UTF_8);
 //        byteBuf.writerIndex(8);
         byteBuf.writeBytes(bts);
@@ -47,6 +41,9 @@ public class TestByteBuf {
         System.out.println("byteBuf.readerIndex() : "+byteBuf.readerIndex());
         System.out.println("byteBuf.readableBytes() : "+byteBuf.readableBytes());
         System.out.println((char) byteBuf.readByte());
+        System.out.println((char) byteBuf.readByte());
+        System.out.println(byteBuf.readBytes(2));
+        System.out.println((char) byteBuf.readByte());
 //        System.out.println((char) );
         byteBuf.readBytes(2);
 //        byteBuf.discardReadBytes();
@@ -56,7 +53,10 @@ public class TestByteBuf {
 //        System.out.println((char) byteBuf.readByte());
         System.out.println("byteBuf.readerIndex() : "+byteBuf.readerIndex());
         System.out.println("byteBuf.isWritable() : "+byteBuf.isWritable());
+        System.out.println("byteBuf.isReadable() : "+byteBuf.isReadable());
 //        byteBuf.readerIndex(0);
+
+//        byteBuf.writeBytes(bts);
 
 //        byte[] tbs = new byte[4];
 //        ByteBuf tbf = byteBuf.readBytes(tbs);
