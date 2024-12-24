@@ -26,14 +26,14 @@ public class TestNioServerV1 {
         serverSocketChannel.bind(new InetSocketAddress("localhost", 9001));
         serverSocketChannel.configureBlocking(false);
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-//        int now = selector.selectNow();
-//        System.out.println("now : " + now);
+        int now = selector.selectNow();
+        System.out.println("now : " + now);
         boolean running = true;
 //        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
         while (running) {
             int select = selector.select();
-//            System.out.println("select is : " + select);
+            System.out.println("select is : " + select);
             Set<SelectionKey> keySet = selector.selectedKeys();
             Iterator<SelectionKey> iterator = keySet.iterator();
             while (iterator.hasNext()) {
