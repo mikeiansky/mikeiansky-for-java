@@ -18,7 +18,26 @@ public class EchoServerDemoV1 {
 
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        bossGroup.execute(() -> System.out.println(Thread.currentThread() + ", 1 execute from boss group loop "));
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                System.out.println("add task");
+//                // 会唤醒
+//                bossGroup.execute(() -> System.out.println(Thread.currentThread() + ", 2 execute from boss group loop "));
+//            }
+//        }).start();
+
         EventLoopGroup workGroup = new NioEventLoopGroup();
+        workGroup.execute(() -> System.out.println(Thread.currentThread() + ", 1 execute from work group loop "));
+        workGroup.execute(() -> System.out.println(Thread.currentThread() + ", 2 execute from work group loop "));
+        workGroup.execute(() -> System.out.println(Thread.currentThread() + ", 3 execute from work group loop "));
+
         final EchoServerHandler serverHandler = new EchoServerHandler();
 //        bossGroup.submit(() -> System.out.println("do submit task "));
 //        bossGroup.execute(() -> System.out.println("do execute task "));
@@ -28,37 +47,39 @@ public class EchoServerDemoV1 {
             @Override
             public void channelActive(ChannelHandlerContext ctx) throws Exception {
                 super.channelActive(ctx);
-                System.out.println(" ---------> child handler channelActive -------> ");
+                System.out.println(Thread.currentThread() + " ---------> child handler channelActive -------> ");
             }
 
 
             @Override
             protected void initChannel(SocketChannel socketChannel) throws Exception {
-                System.out.println("child handler initChannel -------> ");
+                System.out.println(Thread.currentThread() + ", child handler initChannel -------> ");
                 socketChannel.pipeline().addFirst(new ChannelHandler() {
-
 
                     @Override
                     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+                        System.out.println(Thread.currentThread() + " , ------> handlerAdded");
                         AdaptiveRecvByteBufAllocator rba = new AdaptiveRecvByteBufAllocator(10, 10, 10);
                         ctx.channel().config().setRecvByteBufAllocator(rba);
                     }
 
                     @Override
                     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+                        System.out.println(Thread.currentThread() + " , ------> handlerRemoved");
 
                     }
 
                     @Override
                     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+                        System.out.println(Thread.currentThread() + " , ------> exceptionCaught");
 
                     }
                 });
-                socketChannel.pipeline().addLast(new ChannelInboundHandlerAdapter(){
+                socketChannel.pipeline().addLast(new ChannelInboundHandlerAdapter() {
                     @Override
                     public void channelActive(ChannelHandlerContext ctx) throws Exception {
                         super.channelActive(ctx);
-                        System.out.println("child channel inbound handle active ... ");
+                        System.out.println(Thread.currentThread() + " , child channel inbound handle active ... ");
                     }
                 });
                 socketChannel.pipeline().addLast(serverHandler);
@@ -71,7 +92,8 @@ public class EchoServerDemoV1 {
 //                .childOption()
                 .option(ChannelOption.SO_BACKLOG, 1)
                 .handler(new LoggingHandler(LogLevel.INFO))
-                .childHandler(channelInitializer);
+                .childHandler(channelInitializer)
+        ;
 
         ChannelFuture channelFuture = b.bind(8007);
 //        channelFuture.channel().pipeline().addFirst();
@@ -83,7 +105,7 @@ public class EchoServerDemoV1 {
         });
 //        channelFuture.addListener(new MyErrorGenericFutureListener());
 
-        channelFuture.channel().pipeline().addLast(new ChannelInboundHandlerAdapter(){
+        channelFuture.channel().pipeline().addLast(new ChannelInboundHandlerAdapter() {
             @Override
             public void channelActive(ChannelHandlerContext ctx) throws Exception {
                 super.channelActive(ctx);
@@ -92,7 +114,7 @@ public class EchoServerDemoV1 {
             }
         });
 
-        channelFuture.channel().pipeline().addLast(new ChannelInboundHandlerAdapter(){
+        channelFuture.channel().pipeline().addLast(new ChannelInboundHandlerAdapter() {
             @Override
             public void channelActive(ChannelHandlerContext ctx) throws Exception {
                 super.channelActive(ctx);

@@ -9,6 +9,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -20,12 +21,21 @@ public class TestNioServerV1 {
 
     public static void main(String[] args) throws IOException {
 
-        Selector selector = Selector.open();
+        SelectorProvider provider = SelectorProvider.provider();
+        Selector selector = provider.openSelector();
+
+//        Selector selector = Selector.open();
 
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        serverSocketChannel.bind(new InetSocketAddress("localhost", 9001));
         serverSocketChannel.configureBlocking(false);
-        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+
+        // 延迟注册感兴趣的事件
+        SelectionKey selectionKey = serverSocketChannel.register(selector, 0);
+//        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        selectionKey.interestOps(SelectionKey.OP_ACCEPT);
+
+        serverSocketChannel.bind(new InetSocketAddress("localhost", 9001));
+
         int now = selector.selectNow();
         System.out.println("now : " + now);
         boolean running = true;

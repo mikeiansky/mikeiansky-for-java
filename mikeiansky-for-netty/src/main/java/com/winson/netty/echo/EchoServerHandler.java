@@ -29,12 +29,13 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 //        System.out.println("msg:class:" + msg.getClass());
 //        System.out.println("channelRead msg:" + msg);
         ByteBuf byteBuf = (ByteBuf) msg;
-        System.out.println("server receive message : " + byteBuf.toString(Charset.defaultCharset()));
+        System.out.println(Thread.currentThread()+", server receive message : " + byteBuf.toString(Charset.defaultCharset()));
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
+        System.out.println(Thread.currentThread()+", server receive complete ");
     }
 
     @Override
