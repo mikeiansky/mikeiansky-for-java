@@ -3,6 +3,7 @@ package io.github.mikeiansky.rxjava.base;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
+import java.util.function.Consumer;
 
 /**
  * @author mike ian
@@ -13,8 +14,14 @@ public class MonoDemo {
 
     public static void main(String[] args) throws InterruptedException {
 
+
         Mono<String> mono = Mono.just("Hello");
-        mono.subscribe(System.out::println);
+        mono.subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                System.out.println(Thread.currentThread().getName() + ": " + s);
+            }
+        });
 
         Mono.delay(Duration.ofSeconds(1))
 //                .then(Mono.delay(Duration.ofSeconds(2)))
