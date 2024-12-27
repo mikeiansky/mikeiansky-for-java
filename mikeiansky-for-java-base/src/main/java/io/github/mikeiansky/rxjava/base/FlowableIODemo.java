@@ -12,19 +12,16 @@ public class FlowableIODemo {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Flowable.fromCallable(() -> {
-                    System.out.println(Thread.currentThread().getName() + " , create ");
-                    Thread.sleep(1000); //  imitate expensive computation
-                    return "Done";
-                })
+        Flowable.just("hello world")
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.single())
+                .observeOn(Schedulers.io())
 //                .observeOn(Schedulers.newThread())
                 .subscribe(v-> {
                     System.out.println(Thread.currentThread().getName()+", Thread current : "+v);
-                }, Throwable::printStackTrace);
+                });
 
-        Thread.sleep(2000); // <--- wait for the flow to finish
+        Thread.sleep(100); // <--- wait for the flow to finish
+        System.out.println(Thread.currentThread().getName() + " complete ... ");
 
     }
 
