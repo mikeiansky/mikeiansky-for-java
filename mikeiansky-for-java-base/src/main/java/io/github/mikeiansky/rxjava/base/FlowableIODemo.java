@@ -15,7 +15,6 @@ public class FlowableIODemo {
         Flowable.just("hello world")
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-//                .observeOn(Schedulers.newThread())
                 .subscribe(v-> {
                     System.out.println(Thread.currentThread().getName()+", Thread current : "+v);
                 });
