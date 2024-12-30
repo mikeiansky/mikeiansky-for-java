@@ -17,11 +17,19 @@ public class ExtendsWildcardGenericDemo {
         public void hello() {
             System.out.println("hello father");
         }
+
+        public void helloFather() {
+            System.out.println("hello father explicit");
+        }
     }
 
     public static class Son extends Father {
         public void hello() {
             System.out.println("hello son");
+        }
+
+        public void helloSon() {
+            System.out.println("hello son explicit");
         }
     }
 
@@ -70,6 +78,36 @@ public class ExtendsWildcardGenericDemo {
 
     }
 
+    public static class GranderFatherClazz<T extends GrandFather> {
+        private T grandFather;
+
+        public GranderFatherClazz(T grandFather) {
+            this.grandFather = grandFather;
+            grandFather.hello();
+        }
+    }
+
+    public static class FatherClazz<T extends Father> {
+        private T father;
+
+        public FatherClazz(T father) {
+            this.father = father;
+            father.hello();
+            father.helloFather();
+        }
+    }
+
+    public static class SonClazz<T extends Son> {
+        private T son;
+
+        public SonClazz(T son) {
+            this.son = son;
+            son.hello();
+            son.helloFather();
+            son.helloSon();
+        }
+    }
+
     public static void readGrandFatherTool(BaseTool<? super GrandFather> baseTool, GrandFather grandFather) {
         baseTool.useObj(grandFather);
 //        baseTool.useObj(new GrandFather());  // ok
@@ -95,19 +133,31 @@ public class ExtendsWildcardGenericDemo {
 //        baseTool.useObj();
     }
 
-    public static void useGrandFatherTool(BaseTool<? extends GrandFather> baseTool) {
+    public static void useGrandFatherToolExtends(BaseTool<? extends GrandFather> baseTool) {
         GrandFather grandFather = baseTool.create();
         grandFather.hello();
     }
 
-    public static void useFatherTool(BaseTool<? extends Father> baseTool) {
+    public static void useFatherToolExtends(BaseTool<? extends Father> baseTool) {
         Father father = baseTool.create();
         father.hello();
     }
 
-    public static void useSonTool(BaseTool<? extends Son> baseTool) {
+    public static void useSonToolExtends(BaseTool<? extends Son> baseTool) {
         Son son = baseTool.create();
         son.hello();
+    }
+
+    public static void useGrandFatherToolSuper(BaseTool<? super GrandFather> baseTool) {
+        Object son = baseTool.create();
+    }
+
+    public static void useFatherToolSuper(BaseTool<? super Father> baseTool) {
+        Object son = baseTool.create();
+    }
+
+    public static void useSonToolSuper(BaseTool<? super Son> baseTool) {
+        Object son = baseTool.create();
     }
 
     public static void combineGrandFatherTool(BaseTool<? super GrandFather> baseTool, BaseTool<? extends GrandFather> grandFatherTool) {
@@ -118,8 +168,8 @@ public class ExtendsWildcardGenericDemo {
         baseTool.useObj(fatherTool.create());
     }
 
-    public static void combineSonTool(BaseTool<? super Son> baseTool, BaseTool<? extends Son> soonTool) {
-        baseTool.useObj(soonTool.create());
+    public static void combineSonTool(BaseTool<? super Son> baseTool, BaseTool<? extends Son> sonTool) {
+        baseTool.useObj(sonTool.create());
     }
 
     public static GrandFather createGrandFatherByExtends(BaseTool<? extends GrandFather> baseTool) {
@@ -165,6 +215,22 @@ public class ExtendsWildcardGenericDemo {
 //    }
 
     public static void main(String[] args) {
+        System.out.println("=============> use class start <==============");
+        System.out.println("====> GranderFatherClazz");
+        GranderFatherClazz<GrandFather> gfc = new GranderFatherClazz<>(new GrandFather());
+        GranderFatherClazz<Father> fc = new GranderFatherClazz<>(new Father());
+        GranderFatherClazz<Son> sc = new GranderFatherClazz<>(new Son());
+        System.out.println("====> FatherClazz");
+//        FatherClazz<GrandFather> fgfc = new FatherClazz<GrandFather>(new GrandFather());
+        FatherClazz<Father> ffc = new FatherClazz<Father>(new Father());
+        FatherClazz<Son> fsc = new FatherClazz<Son>(new Son());
+        System.out.println("====> SonClazz");
+//        SonClazz<GrandFather> sgfc = new SonClazz<GrandFather>(new GrandFather());
+//        SonClazz<Father> sfc = new SonClazz<Father>(new Father());
+        SonClazz<Son> ssc = new SonClazz<Son>(new Son());
+        System.out.println("=============> use class start <==============");
+
+
         System.out.println("=============> read start <==============");
         System.out.println("====> readGrandFatherTool");
         readGrandFatherTool(new GrandFatherTool(), new GrandFather());
@@ -211,18 +277,33 @@ public class ExtendsWildcardGenericDemo {
 
         System.out.println("=============> read complete <==============");
         System.out.println("=============> use start <==============");
-        System.out.println("====> useGrandFatherTool");
-        useGrandFatherTool(new GrandFatherTool());
-        useGrandFatherTool(new FatherTool());
-        useGrandFatherTool(new SonTool());
-        System.out.println("====> useFatherTool");
+        System.out.println("====> useGrandFatherToolExtends");
+        useGrandFatherToolExtends(new GrandFatherTool());
+        useGrandFatherToolExtends(new FatherTool());
+        useGrandFatherToolExtends(new SonTool());
+        System.out.println("====> useFatherToolExtends");
 //        useFatherTool(new GrandFatherTool());
-        useFatherTool(new FatherTool());
-        useFatherTool(new SonTool());
-        System.out.println("====> useSonTool");
+        useFatherToolExtends(new FatherTool());
+        useFatherToolExtends(new SonTool());
+        System.out.println("====> useSonToolExtends");
 //        useSonTool(new GrandFatherTool());
 //        useSonTool(new FatherTool());
-        useSonTool(new SonTool());
+        useSonToolExtends(new SonTool());
+
+        System.out.println("====> useGrandFatherToolSuper");
+        useGrandFatherToolSuper(new GrandFatherTool());
+//        useGrandFatherToolSuper(new FatherTool());
+//        useGrandFatherToolSuper(new SonTool());
+        System.out.println("====> useFatherToolSuper");
+        useFatherToolSuper(new GrandFatherTool());
+        useFatherToolSuper(new FatherTool());
+//        useFatherToolSuper(new SonTool());
+        System.out.println("====> useSonToolSuper");
+        useSonToolSuper(new GrandFatherTool());
+        useSonToolSuper(new FatherTool());
+        useSonToolSuper(new SonTool());
+
+
         System.out.println("=============> use complete <==============");
         System.out.println("=============> combine start <==============");
         System.out.println("====> combineGrandFatherTool");
