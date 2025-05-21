@@ -31,6 +31,22 @@ public class ClassLoaderOfClassForName {
         System.out.println("classpathClazz.getClass().getClassLoader() : " + classpathClazz.getClass().getClassLoader());
         classpathClazz.getMethod("hello").invoke(null);
 
+        System.out.println("===== StaticClazzObj.class");
+        // 这里如果类如何不存在则会出现
+        /**
+         * Caused by: java.lang.NoClassDefFoundError: io/github/mikeiansky/java/base/jdk/clazz/load/StaticClazzObj
+         *         at io.github.mikeiansky.java.base.jdk.clazz.load.ClassLoaderOfClassForName.hello(ClassLoaderOfClassForName.java:35)
+         *         ... 5 more
+         * Caused by: java.lang.ClassNotFoundException: io.github.mikeiansky.java.base.jdk.clazz.load.StaticClazzObj
+         *         at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+         *         at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+         *         at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+         *         ... 6 more
+         */
+        // 切换当前线程的类加载器
+        Thread.currentThread().setContextClassLoader(ClassLoaderOfClassForName.class.getClassLoader());
+        StaticClazzObj.hello();
+
     }
 
 }
