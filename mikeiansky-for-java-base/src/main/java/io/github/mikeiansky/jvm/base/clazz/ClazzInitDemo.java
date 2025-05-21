@@ -116,6 +116,12 @@ public class ClazzInitDemo {
 
     }
 
+    public static class ClazzForName {
+        static {
+            System.out.println("ClazzForName initialized");
+        }
+    }
+
     public static void main(String[] args) throws Exception {
 
         System.out.println("=====> enum clazz initialize");
@@ -166,6 +172,13 @@ public class ClazzInitDemo {
         System.out.println("before use Annotation Method");
         annotationClazzTagClass.getMethod("hello").invoke(null);
         System.out.println("after use Annotation Method");
+
+        System.out.println("=====> clazz for name initialize");
+        System.out.println(ClazzForName.class);
+        System.out.println("before class for name");
+        System.out.println(Class.forName(ClazzForName.class.getName()));
+        System.out.println("after class for name");
+
 
     }
 
