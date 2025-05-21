@@ -66,7 +66,8 @@ public class CustomClazzLoad {
 //        }
 
         String temp1 = "C:\\Users\\zhouw\\Desktop\\temp\\temp1\\classes";
-        String temp2 = "C:\\Users\\zhouw\\Desktop\\temp\\temp2\\classes";
+        String temp2 = "C:\\Users\\zhouw\\Desktop\\temp\\temp1\\classes";
+//        String temp2 = "C:\\Users\\zhouw\\Desktop\\temp\\temp2\\classes";
         File tempFile1 = new File(temp1);
         System.out.println(tempFile1.exists());
         File tempFile2 = new File(temp2);
@@ -90,6 +91,12 @@ public class CustomClazzLoad {
 
         System.out.println();
         System.out.println("tagFive.equals(tagSix) = " + tagFive.equals(tagSix));
+
+        System.out.println("\nclazz ========");
+        System.out.println("urlLoadTagClass1 : " + urlLoadTagClass1);
+        System.out.println("urlLoadTagClass2 : " + urlLoadTagClass2);
+        System.out.println("urlLoadTagClass1 equals urlLoadTagClass2 = " + urlLoadTagClass1.equals(urlLoadTagClass2));
+        System.out.println("urlLoadTagClass1 == urlLoadTagClass2 = " + (urlLoadTagClass1 == urlLoadTagClass2));
 
     }
 
