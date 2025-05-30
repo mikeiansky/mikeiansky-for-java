@@ -3,10 +3,13 @@ package com.winson.netty.v2.sample;
 import io.netty.bootstrap.AbstractBootstrap;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.base64.Base64Decoder;
 
 import java.net.InetSocketAddress;
 
@@ -27,6 +30,9 @@ public class NettyClientV2Demo {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
                 System.out.println("client channel is initialized");
+                ch.pipeline().addLast(new Base64Decoder())
+                        .addLast(new Base64Decoder())
+                        .addLast(new Base64Decoder());
             }
         });
 

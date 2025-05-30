@@ -20,8 +20,9 @@ public class NettyServerV2Demo {
 
     public static void main(String[] args) throws InterruptedException {
 
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup(Runtime.getRuntime().availableProcessors() * 2);
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        // 默认情况下，workerGroup的线程数是CPU核心数的两倍
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap.group(bossGroup, workerGroup);
@@ -35,7 +36,35 @@ public class NettyServerV2Demo {
             }
 
         });
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                bossGroup.execute(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        System.out.println("hello change11 .... " + Thread.currentThread().getName());
+//                    }
+//                });
+//            }
+//        }).start();
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                bossGroup.execute(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        System.out.println("hello change22 .... " + Thread.currentThread().getName());
+//                    }
+//                });
+//            }
+//        }).start();
+
+        Thread.sleep(1000);
+        System.out.println("after sleep ... ");
         ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress("127.0.0.1", 56666));
+        System.out.println("after bind ... ");
         channelFuture.channel().closeFuture().sync();
 
         System.out.println("server application is complete ... ");
