@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package com.winson.netty.echo;
+package com.winson.netty.v1.echo;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

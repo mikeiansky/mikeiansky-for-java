@@ -1,4 +1,4 @@
-package com.winson.netty.sample;
+package com.winson.netty.v1.sample;
 
 import java.io.IOException;
 import java.nio.channels.Selector;

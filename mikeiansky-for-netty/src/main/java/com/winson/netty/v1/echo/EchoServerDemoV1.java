@@ -1,4 +1,4 @@
-package com.winson.netty.echo;
+package com.winson.netty.v1.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;

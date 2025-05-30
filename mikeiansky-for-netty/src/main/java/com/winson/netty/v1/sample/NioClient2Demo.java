@@ -1,4 +1,4 @@
-package com.winson.netty.sample;
+package com.winson.netty.v1.sample;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -9,7 +9,7 @@ import java.net.Socket;
  * @date 2024/12/24
  * @desc
  **/
-public class NioClient3Demo {
+public class NioClient2Demo {
 
     public static void main(String[] args) throws IOException {
 

@@ -1,4 +1,4 @@
-package com.winson.netty.buf;
+package com.winson.netty.v1.buf;
 
 import java.nio.ByteBuffer;
 
