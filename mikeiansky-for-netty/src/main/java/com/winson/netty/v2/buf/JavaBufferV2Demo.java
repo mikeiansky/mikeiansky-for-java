@@ -6,4 +6,11 @@ package com.winson.netty.v2.buf;
  * @desc
  **/
 public class JavaBufferV2Demo {
+
+    public static void main(String[] args) {
+
+
+
+    }
+
 }
