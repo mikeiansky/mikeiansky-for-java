@@ -30,9 +30,6 @@ public class NettyClientV2Demo {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
                 System.out.println("client channel is initialized");
-                ch.pipeline().addLast(new Base64Decoder())
-                        .addLast(new Base64Decoder())
-                        .addLast(new Base64Decoder());
             }
         });
 

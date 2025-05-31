@@ -1,9 +1,7 @@
 package com.winson.netty.v2.sample;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -19,9 +17,9 @@ public class NettyServerV2Demo {
 
     public static void main(String[] args) throws InterruptedException {
 
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
         // 默认情况下，workerGroup的线程数是CPU核心数的两倍
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap.group(bossGroup, workerGroup);
@@ -32,6 +30,19 @@ public class NettyServerV2Demo {
             protected void initChannel(SocketChannel ch) throws Exception {
                 System.out.println("server channel is initialized ... ch : " + ch);
 //                ch.pipeline().addLast(); // Add yourhandlers here, e.g., ch.pipeline().addLast(new YourHandler());
+                ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
+
+                    @Override
+                    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+                        super.handlerAdded(ctx);
+                        ctx.write("hello world");
+                    }
+
+                    @Override
+                    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+                        super.channelRead(ctx, msg);
+                    }
+                });
             }
 
         });
@@ -39,7 +50,7 @@ public class NettyServerV2Demo {
         System.out.println("after sleep ... ");
         InetSocketAddress address = new InetSocketAddress("127.0.0.1", 56666);
         ChannelFuture channelFuture = serverBootstrap.bind(address);
-        System.out.println("after bind ... ");
+        System.out.println("after bind ... channelFuture : " + channelFuture);
         channelFuture.channel().closeFuture().sync();
 
         System.out.println("server application is complete ... ");
