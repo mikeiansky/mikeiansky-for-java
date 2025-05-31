@@ -1,6 +1,5 @@
 package com.winson.netty.v2.sample;
 
-import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -31,39 +30,15 @@ public class NettyServerV2Demo {
 
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
-                System.out.println("server channel is initialized ... ");
+                System.out.println("server channel is initialized ... ch : " + ch);
 //                ch.pipeline().addLast(); // Add yourhandlers here, e.g., ch.pipeline().addLast(new YourHandler());
             }
 
         });
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                bossGroup.execute(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        System.out.println("hello change11 .... " + Thread.currentThread().getName());
-//                    }
-//                });
-//            }
-//        }).start();
-//
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                bossGroup.execute(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        System.out.println("hello change22 .... " + Thread.currentThread().getName());
-//                    }
-//                });
-//            }
-//        }).start();
-
-        Thread.sleep(1000);
         System.out.println("after sleep ... ");
-        ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress("127.0.0.1", 56666));
+        InetSocketAddress address = new InetSocketAddress("127.0.0.1", 56666);
+        ChannelFuture channelFuture = serverBootstrap.bind(address);
         System.out.println("after bind ... ");
         channelFuture.channel().closeFuture().sync();
 

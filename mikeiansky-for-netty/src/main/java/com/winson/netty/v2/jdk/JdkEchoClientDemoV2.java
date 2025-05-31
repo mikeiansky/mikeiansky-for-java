@@ -5,6 +5,7 @@ package com.winson.netty.v2.jdk;
  import java.io.InputStreamReader;
  import java.net.InetSocketAddress;
  import java.nio.ByteBuffer;
+ import java.nio.channels.ClosedChannelException;
  import java.nio.channels.SelectionKey;
  import java.nio.channels.Selector;
  import java.nio.channels.SocketChannel;
@@ -30,7 +31,16 @@ package com.winson.netty.v2.jdk;
 
          // 分配缓冲区并注册连接事件
          ByteBuffer buffer = ByteBuffer.allocate(1024);
-         socketChannel.register(selector, SelectionKey.OP_CONNECT, buffer);
+//         socketChannel.register(selector, SelectionKey.OP_CONNECT, buffer);
+         SelectionKey selectionKey = socketChannel.register(selector, SelectionKey.OP_READ, buffer);
+         new Thread(() -> {
+             try {
+                 Thread.sleep(2000);
+             } catch (InterruptedException e) {
+                 throw new RuntimeException(e);
+             }
+             selectionKey.interestOps(SelectionKey.OP_READ | SelectionKey.OP_CONNECT);
+         }).start();
 
          // 发起连接
          socketChannel.connect(new InetSocketAddress("127.0.0.1", 60001));
