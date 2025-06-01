@@ -72,7 +72,6 @@ public class EchoServerDemoV2 {
                             final ByteBuf buf = ch.alloc().buffer(data.length);
                             buf.writeBytes(data);
                             ch.writeAndFlush(buf);
-                            ch.flush();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

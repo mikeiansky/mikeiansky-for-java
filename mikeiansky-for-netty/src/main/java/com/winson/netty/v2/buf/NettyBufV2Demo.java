@@ -21,6 +21,7 @@ public class NettyBufV2Demo {
         System.out.println("buf.writerIndex() : " + buf.writerIndex());
         System.out.println("buf.isReadable() : " + buf.isReadable());
         System.out.println("buf.isWritable() : " + buf.isWritable());
+        System.out.println("buf.hashCode() : " + buf.hashCode());
 //        buf.touch();
 
 //        buf.writeBytes(new byte[]{1, 2, 3});
@@ -53,7 +54,7 @@ public class NettyBufV2Demo {
         System.out.println("buf.writerIndex() : " + buf.writerIndex());
         System.out.println("buf.isReadable() : " + buf.isReadable());
         System.out.println("buf.isWritable() : " + buf.isWritable());
-        System.out.println("buf.isWritable() : " + buf.hashCode());
+        System.out.println("buf.hashCode() : " + buf.hashCode());
 
     }
 

@@ -2,6 +2,7 @@ package com.winson.netty.v2.echo;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -60,11 +61,11 @@ public class EchoClientDemoV2 {
                         try {
                             String msg = reader.readLine();
                             System.out.println("client send msg : " + msg);
+//                            ByteBuf buf1 = PooledByteBufAllocator.DEFAULT.buffer();
                             byte[] data = msg.getBytes(Charset.defaultCharset());
                             final ByteBuf buf = channel.alloc().buffer(data.length);
                             buf.writeBytes(data,0, data.length);
                             channel.writeAndFlush(buf);
-                            channel.flush();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
