@@ -24,6 +24,11 @@ public class NettyBufV2Demo {
         System.out.println("buf.hashCode() : " + buf.hashCode());
 //        buf.touch();
 
+        buf.markReaderIndex();
+        buf.markWriterIndex();
+        buf.resetReaderIndex();
+        buf.resetWriterIndex();
+
 //        buf.writeBytes(new byte[]{1, 2, 3});
 //        buf.writeBytes(new byte[]{4, 5, 6});
 //        buf.writeBytes(new byte[]{7, 8, 9});
@@ -39,6 +44,9 @@ public class NettyBufV2Demo {
 
 //        buf.readerIndex(3);
 //        System.out.println(buf.getInt(3));
+
+        buf.clear();
+        buf.release();
 
         System.out.println(buf.readBytes(1).getByte(0));
         System.out.println(buf.readBytes(1).getByte(0));
