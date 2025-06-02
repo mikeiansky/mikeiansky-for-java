@@ -49,10 +49,16 @@ public class UnsafeJdkDemo {
 
     public static void main(String[] args) throws NoSuchFieldException {
 
-        byte[] data = new byte[]{22, 0, 0, 13, 0, 0, 0, 22};
-        int b1 = unsafe.getByte(data, Unsafe.ARRAY_BYTE_BASE_OFFSET + 0);
+        byte[] data = new byte[]{22, 0, 0, 13, 0, 0, 32, 22};
+        int arrayScale = unsafe.arrayIndexScale(data.getClass());
+        int arrayBaseOffset = unsafe.arrayBaseOffset(data.getClass());
+        System.out.println("arrayBaseOffset is " + arrayBaseOffset);
+        System.out.println("arrayScale is " + arrayScale);
+        System.out.println("Unsafe.ARRAY_BYTE_BASE_OFFSET is " + Unsafe.ARRAY_BYTE_BASE_OFFSET);
+        System.out.println("Unsafe.ARRAY_INT_INDEX_SCALE is " + Unsafe.ARRAY_BYTE_INDEX_SCALE);
+        int b1 = unsafe.getByte(data, Unsafe.ARRAY_BYTE_BASE_OFFSET + 0 * arrayScale);
         System.out.println("b1 is " + b1);
-        int b2 = unsafe.getInt(data, Unsafe.ARRAY_BYTE_BASE_OFFSET + 3);
+        int b2 = unsafe.getByte(data, Unsafe.ARRAY_BYTE_BASE_OFFSET + 6 * arrayScale);
         System.out.println("b2 is " + b2);
         System.out.println(Unsafe.ARRAY_BYTE_BASE_OFFSET);
 
@@ -68,11 +74,15 @@ public class UnsafeJdkDemo {
 
         int age = unsafe.getInt(person, ageOffset);
         int height = unsafe.getInt(person, heightOffset);
+        // 会报错
+        int height2 = unsafe.getInt(null, heightOffset);
 
         System.out.println("person age : " + age);
         System.out.println("person height : " + height);
+        System.out.println("person height2 : " + height2);
 
 
+        System.out.println("---->");
     }
 
 }
