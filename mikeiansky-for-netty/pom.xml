@@ -18,6 +18,20 @@
             <version>4.1.49.Final</version>
 <!--            <version>4.2.1.Final</version>-->
         </dependency>
+
+        <!-- BouncyCastle 加密库 -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15to18</artifactId>
+            <version>1.77</version>
+        </dependency>
+
+        <!-- BouncyCastle PKIX 证书构建支持 -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15to18</artifactId>
+            <version>1.77</version>
+        </dependency>
     </dependencies>
 
 </project>
