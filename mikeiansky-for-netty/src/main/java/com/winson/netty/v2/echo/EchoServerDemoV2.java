@@ -26,12 +26,16 @@ public class EchoServerDemoV2 {
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
         ServerBootstrap bootstrap = new ServerBootstrap();
+        bootstrap.config();
+
         bootstrap.group(bossGroup, workerGroup);
         bootstrap.channel(NioServerSocketChannel.class);
         bootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
                 System.out.println("initChannel ch : " + ch);
+
+//                ch.config().setWriteBufferWaterMark(new WriteBufferWaterMark(1024, 1024));
                 ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
 
                     private String content = "";

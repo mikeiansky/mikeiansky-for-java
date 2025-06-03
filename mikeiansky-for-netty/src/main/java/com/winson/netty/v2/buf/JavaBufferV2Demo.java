@@ -26,17 +26,25 @@ public class JavaBufferV2Demo {
 //        System.out.println("buffer.getInt() : " + buffer.getInt());
         buffer.flip();
         System.out.println("buffer.limit() : " + buffer.limit());
+        System.out.println("buffer.position() : " + buffer.position());
         System.out.println("buffer.getInt() : " + buffer.getInt());
+        System.out.println("buffer.position() : " + buffer.position());
         System.out.println("buffer.getInt() : " + buffer.getInt());
+        System.out.println("buffer.position() : " + buffer.position());
 
         System.out.println("after put and flip");
         buffer.position(buffer.limit());
-        buffer.limit(buffer.limit() + 4);
+//        buffer.putInt(888);
+        buffer.limit(buffer.limit() + 8);
         buffer.putInt(33);
+        buffer.putInt(999);
         buffer.flip();
+        buffer.reset();
+
         System.out.println("buffer.getInt() : " + buffer.getInt());
         System.out.println("buffer.getInt() : " + buffer.getInt());
         System.out.println("buffer.getInt() : " + buffer.getInt());
+        System.out.println("buffer.limit() : " + buffer.limit());
 
         System.out.println("completed");
 

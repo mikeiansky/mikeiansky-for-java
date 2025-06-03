@@ -2,7 +2,6 @@ package com.winson.netty.v2.buf;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
-import io.netty.buffer.Unpooled;
 
 /**
  * @author mike ian
@@ -25,17 +24,17 @@ public class NettyBufV2Demo {
         System.out.println("buf.hashCode() : " + buf.hashCode());
 
         buf.writeInt(11);
+        buf.retain();
+        buf.release();
+//        buf.release();
         buf.writeByte(21);
         buf.writeInt(22);
         buf.writeInt(33);
-        System.out.println(buf.readInt());
-        System.out.println(buf.readByte());
-        System.out.println(buf.readInt());
-        System.out.println(buf.getInt(0));
-        System.out.println(buf.getInt(5));
-        System.out.println(buf.getByte(4));
-
-
+//        System.out.println(buf.readInt());
+//        System.out.println(buf.readByte());
+//        System.out.println(buf.readInt());
+        byte[] bytes = new byte[buf.readableBytes() * 2];
+        buf.readBytes(bytes, 0, buf.readableBytes());
 
         System.out.println("------ after operation ------");
         System.out.println("buf.capacity() : " + buf.capacity());
