@@ -75,11 +75,11 @@ public class UnsafeJdkDemo {
         int age = unsafe.getInt(person, ageOffset);
         int height = unsafe.getInt(person, heightOffset);
         // 会报错
-        int height2 = unsafe.getInt(null, heightOffset);
+//        int height2 = unsafe.getInt(null, heightOffset);
 
         System.out.println("person age : " + age);
         System.out.println("person height : " + height);
-        System.out.println("person height2 : " + height2);
+//        System.out.println("person height2 : " + height2);
 
 
         System.out.println("---->");
