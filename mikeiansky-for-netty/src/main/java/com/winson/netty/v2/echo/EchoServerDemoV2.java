@@ -60,6 +60,9 @@ public class EchoServerDemoV2 {
                     @Override
                     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                         System.out.println("server complete msg : " + msg);
+
+                        ByteBuf buf = ctx.alloc().buffer();
+
                         super.channelRead(ctx, msg);
                     }
                 });

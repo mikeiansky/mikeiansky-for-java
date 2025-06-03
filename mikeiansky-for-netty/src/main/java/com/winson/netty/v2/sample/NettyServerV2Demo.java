@@ -1,12 +1,15 @@
 package com.winson.netty.v2.sample;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.ByteToMessageCodec;
 
 import java.net.InetSocketAddress;
+import java.util.List;
 
 /**
  * @author mike ian
@@ -30,6 +33,17 @@ public class NettyServerV2Demo {
             protected void initChannel(SocketChannel ch) throws Exception {
                 System.out.println("server channel is initialized ... ch : " + ch);
 //                ch.pipeline().addLast(); // Add yourhandlers here, e.g., ch.pipeline().addLast(new YourHandler());
+                ch.pipeline().addLast(new ByteToMessageCodec<String>() {
+                    @Override
+                    protected void encode(ChannelHandlerContext ctx, String msg, ByteBuf out) throws Exception {
+
+                    }
+
+                    @Override
+                    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+
+                    }
+                });
                 ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
 
                     @Override

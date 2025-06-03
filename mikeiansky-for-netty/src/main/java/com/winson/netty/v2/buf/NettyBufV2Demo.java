@@ -3,6 +3,8 @@ package com.winson.netty.v2.buf;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
 
+import java.nio.charset.Charset;
+
 /**
  * @author mike ian
  * @date 2025/5/30
@@ -12,8 +14,10 @@ public class NettyBufV2Demo {
 
     public static void main(String[] args) {
 
+
         PooledByteBufAllocator allocator = new PooledByteBufAllocator(true);
         ByteBuf buf = allocator.heapBuffer(8, 16);
+        buf = allocator.buffer();
         System.out.println("------ before operation ------");
         System.out.println("buf.capacity() : " + buf.capacity());
         System.out.println("buf.maxCapacity() : " + buf.maxCapacity());
@@ -44,6 +48,14 @@ public class NettyBufV2Demo {
         System.out.println("buf.isReadable() : " + buf.isReadable());
         System.out.println("buf.isWritable() : " + buf.isWritable());
         System.out.println("buf.hashCode() : " + buf.hashCode());
+
+        ByteBuf buf2 = allocator.buffer();
+        buf2.writeByte('c');
+        buf2.writeByte('i');
+        buf2.writeByte('w');
+        buf2.writeByte('e');
+        buf2.writeByte('i');
+        System.out.println(buf2.toString(Charset.defaultCharset()));
 
     }
 
