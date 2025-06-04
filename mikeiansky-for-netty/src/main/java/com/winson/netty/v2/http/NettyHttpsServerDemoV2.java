@@ -63,7 +63,7 @@ public class NettyHttpsServerDemoV2 {
         InetSocketAddress socketAddress = new InetSocketAddress("localhost", 60008);
         bootstrap.bind(socketAddress);
 
-        System.out.println("http server started on " + socketAddress.getHostString() + ":" + socketAddress.getPort());
+        System.out.println("https server started on " + socketAddress.getHostString() + ":" + socketAddress.getPort());
 
     }
 
