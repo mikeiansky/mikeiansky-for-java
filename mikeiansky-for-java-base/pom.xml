@@ -59,6 +59,19 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.16</version>
         </dependency>
+        <!-- BouncyCastle 加密库 -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15to18</artifactId>
+            <version>1.77</version>
+        </dependency>
+
+        <!-- BouncyCastle PKIX 证书构建支持 -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15to18</artifactId>
+            <version>1.77</version>
+        </dependency>
     </dependencies>
 
 </project>

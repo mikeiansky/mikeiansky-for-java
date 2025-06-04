@@ -26,7 +26,7 @@ public class NettyHttpsServerDemoV2 {
     public static void main(String[] args) throws CertificateException, SSLException {
 
         // 创建自签名证书
-        SelfSignedCertificate ssc = new SelfSignedCertificate();
+        SelfSignedCertificate ssc = new SelfSignedCertificate("localhost");
         SslContext sslCtx = SslContextBuilder
                 .forServer(ssc.certificate(), ssc.privateKey())
                 .build();
@@ -59,7 +59,8 @@ public class NettyHttpsServerDemoV2 {
                 });
             }
         });
-        InetSocketAddress socketAddress = new InetSocketAddress("127.0.0.1", 60008);
+//        InetSocketAddress socketAddress = new InetSocketAddress("127.0.0.1", 60008);
+        InetSocketAddress socketAddress = new InetSocketAddress("localhost", 60008);
         bootstrap.bind(socketAddress);
 
         System.out.println("http server started on " + socketAddress.getHostString() + ":" + socketAddress.getPort());
