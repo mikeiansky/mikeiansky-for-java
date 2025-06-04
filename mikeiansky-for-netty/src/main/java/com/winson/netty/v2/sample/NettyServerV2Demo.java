@@ -26,6 +26,7 @@ public class NettyServerV2Demo {
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap.group(bossGroup, workerGroup);
+        serverBootstrap.option(ChannelOption.SO_BACKLOG, 1024);
         serverBootstrap.channel(NioServerSocketChannel.class);
         serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
 
