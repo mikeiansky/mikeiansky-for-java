@@ -50,7 +50,7 @@ public class NettyHttpServerDemoV2 {
                 ch.pipeline().addLast(new SimpleChannelInboundHandler<FullHttpRequest>() {
                     @Override
                     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
-                        System.out.println("read msg : " + msg);
+                        System.out.println("read msg : " + msg + " , msg.getClass() : " + msg.getClass());
                         String responseContent = "Hello, Netty HTTP!";
                         FullHttpResponse response = new DefaultFullHttpResponse(
                                 HttpVersion.HTTP_1_1,
