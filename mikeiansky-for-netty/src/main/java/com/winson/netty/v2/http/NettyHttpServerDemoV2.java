@@ -34,6 +34,18 @@ public class NettyHttpServerDemoV2 {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
                 ch.pipeline().addLast(new HttpServerCodec());
+                ch.pipeline().addLast(new SimpleChannelInboundHandler<HttpObject>() {
+                    @Override
+                    protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
+                        ctx.fireChannelRead(msg);
+                        if (msg instanceof HttpRequest request) {
+                            System.out.println("Received HTTP request: " + request.uri());
+                        } else if (msg instanceof HttpContent content) {
+//                            content.content();
+                            System.out.println("Received HTTP content: " + content);
+                        }
+                    }
+                });
                 ch.pipeline().addLast(new HttpObjectAggregator(65536)); // 聚合HTTP消息
                 ch.pipeline().addLast(new SimpleChannelInboundHandler<FullHttpRequest>() {
                     @Override
