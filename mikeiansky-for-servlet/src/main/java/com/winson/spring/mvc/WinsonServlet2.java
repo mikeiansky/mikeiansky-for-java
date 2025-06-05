@@ -26,6 +26,7 @@ public class WinsonServlet2 extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         System.out.println("WinsonServlet2 init(ServletConfig config) ... ");
+        System.out.println("WinsonServlet2 init(ServletConfig config) - classLoader: " + Thread.currentThread().getContextClassLoader());
     }
 
     @Override

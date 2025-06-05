@@ -1,9 +1,6 @@
 package io.github.mikeiansky.java.concurrent.future;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 /**
  * @author mike ian
@@ -22,16 +19,12 @@ public class FutureTaskDemo {
                 return 0;
             }
         });
-        task.run();
-        Integer ret = task.get();
-        System.out.println("task return : " + ret);
-        ConcurrentHashMap<Integer, Integer> map = new ConcurrentHashMap<>();
-        Integer absent = map.putIfAbsent(1, 1);
-        System.out.println("putIfAbsent absent : " + absent);
-        absent = map.putIfAbsent(1, 2);
-        System.out.println("putIfAbsent absent : " + absent);
-        absent = map.putIfAbsent(1, 3);
-        System.out.println("putIfAbsent absent : " + absent);
+//        task.run();
+//        Integer ret = task.get();
+//        System.out.println("task return : " + ret);
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.submit(task);
 
     }
 
