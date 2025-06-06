@@ -38,10 +38,11 @@ public class WinsonServlet2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 设置响应给页面的格式、字符集
-        System.out.println("winson servlet do get ...... ");
+        String reqUri = req.getRequestURI();
+        System.out.println("winson servlet do get ......  " + reqUri);
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.write("winson - ciwei - servlet - server");
+        writer.write("winson - ciwei - servlet - server ==> ||||" + reqUri);
         writer.close();
     }
 
