@@ -17,7 +17,7 @@
 <!--        <module>mikeiansky-for-maven-hello</module>-->
         <module>mikeiansky-for-algorithm</module>
         <module>mikeiansky-for-design-pattern</module>
-        <module>mikeiansky-for-reactor-netty</module>
+        <module>mikeiansky-for-reactor</module>
     </modules>
 
     <properties>
