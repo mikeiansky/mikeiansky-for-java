@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    Welcome home ...
+    Welcome home ... generator by jsp user!
 </body>
 </html>
