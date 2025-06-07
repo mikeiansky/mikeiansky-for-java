@@ -1,4 +1,4 @@
-package io.github.mikeiansky.rn;
+package io.github.mikeiansky.reactor.netty.http;
 
 import reactor.core.publisher.Flux;
 import reactor.netty.http.server.HttpServer;
@@ -9,8 +9,10 @@ import reactor.netty.http.server.HttpServer;
  * @desc
  **///TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class ReactorNettyApp {
+public class ReactorNettyHttpApp {
+
     public static void main(String[] args) {
+
         HttpServer.create()
                 .host("0.0.0.0")
                 .port(60066)
@@ -21,6 +23,9 @@ public class ReactorNettyApp {
                 .bindNow()
                 .onDispose()
                 .block();
+
         System.out.println("Reactor Netty HTTP server started on port 60066");
+
     }
+
 }
