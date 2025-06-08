@@ -3,16 +3,18 @@ package io.github.mikeiansky.reactor.netty.http;
 import reactor.core.publisher.Flux;
 import reactor.netty.http.server.HttpServer;
 
+import java.time.Duration;
+
 /**
  * @author mike ian
  * @date 2025/6/7
  * @desc
  **///TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class ReactorNettyHttpApp {
+public class ReactorNettyHttpServerApp {
 
     public static void main(String[] args) {
-
+        System.out.println(Duration.ofNanos(500));
         HttpServer.create()
                 .host("0.0.0.0")
                 .port(60066)
