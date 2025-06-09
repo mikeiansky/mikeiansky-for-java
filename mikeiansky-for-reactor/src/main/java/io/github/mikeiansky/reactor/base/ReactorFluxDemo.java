@@ -14,7 +14,7 @@ public class ReactorFluxDemo {
 
     public static void main(String[] args) {
 
-        System.out.println("use seq1");
+        System.out.println("use seq2");
         Flux<String> seq1 = Flux.just("foo", "bar", "foobar");
         seq1.subscribe(System.out::println);
 
