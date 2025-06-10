@@ -19,7 +19,7 @@ public class ReactorMonoDemo {
         System.out.println("before mono delay");
         Mono.delay(Duration.ofSeconds(2))
                 .then(Mono.just("hello after delay"))
-                .subscribe(System.out::println) ;
+                .subscribe(System.out::println);
 
         Thread.sleep(3000);
     }
