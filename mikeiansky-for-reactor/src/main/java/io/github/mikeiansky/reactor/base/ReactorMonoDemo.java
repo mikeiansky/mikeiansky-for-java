@@ -5,7 +5,8 @@ import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
-import java.util.concurrent.Callable;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author mike ian
@@ -15,6 +16,18 @@ import java.util.concurrent.Callable;
 public class ReactorMonoDemo {
 
     public static void main(String[] args) throws InterruptedException {
+
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 10,
+                60,
+                TimeUnit.SECONDS,
+                new SynchronousQueue<>(),
+                new ThreadFactory() {
+                    private AtomicInteger count = new AtomicInteger(1);
+                    @Override
+                    public Thread newThread(Runnable r) {
+                        return new Thread(r, "test-" + count.getAndIncrement());
+                    }
+                });
 
         Mono<String> mono = Mono.just("Hello, Reactor Mono!");
         mono.subscribe(System.out::println);
@@ -36,7 +49,52 @@ public class ReactorMonoDemo {
                 System.out.println("task2 running @ thread : " + Thread.currentThread().getName());
                 return "task2";
             }
-        }).subscribeOn(Schedulers.boundedElastic()).subscribe(System.out::println);
+//        }).subscribeOn(Schedulers.boundedElastic()).subscribe(System.out::println);
+        }).subscribeOn(Schedulers.fromExecutor(threadPoolExecutor)).subscribe(System.out::println);
+
+        Mono.fromCallable(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                System.out.println("task3 running @ thread : " + Thread.currentThread().getName());
+                return "task3";
+            }
+//        }).subscribeOn(Schedulers.boundedElastic()).subscribe(System.out::println);
+        }).subscribeOn(Schedulers.fromExecutor(threadPoolExecutor)).subscribe(System.out::println);
+
+        Thread.sleep(500);
+        Mono.fromCallable(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                System.out.println("task3 running @ thread : " + Thread.currentThread().getName());
+                return "task3";
+            }
+//        }).subscribeOn(Schedulers.boundedElastic()).subscribe(System.out::println);
+        }).subscribeOn(Schedulers.fromExecutor(threadPoolExecutor)).subscribe(System.out::println);
+        Mono.fromCallable(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                System.out.println("task3 running @ thread : " + Thread.currentThread().getName());
+                return "task3";
+            }
+//        }).subscribeOn(Schedulers.boundedElastic()).subscribe(System.out::println);
+        }).subscribeOn(Schedulers.fromExecutor(threadPoolExecutor)).subscribe(System.out::println);
+        Mono.fromCallable(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                System.out.println("task3 running @ thread : " + Thread.currentThread().getName());
+                return "task3";
+            }
+//        }).subscribeOn(Schedulers.boundedElastic()).subscribe(System.out::println);
+        }).subscribeOn(Schedulers.fromExecutor(threadPoolExecutor)).subscribe(System.out::println);
+        Mono.fromCallable(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                System.out.println("task3 running @ thread : " + Thread.currentThread().getName());
+                return "task3";
+            }
+//        }).subscribeOn(Schedulers.boundedElastic()).subscribe(System.out::println);
+        }).subscribeOn(Schedulers.fromExecutor(threadPoolExecutor)).subscribe(System.out::println);
+
 
         Thread.sleep(3000);
     }
