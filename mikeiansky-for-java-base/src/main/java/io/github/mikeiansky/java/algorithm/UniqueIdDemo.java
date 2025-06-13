@@ -22,6 +22,8 @@ public class UniqueIdDemo {
         String simpleUUID = IdUtil.simpleUUID();
         System.out.println(simpleUUID);
 
+        System.out.println(IdUtil.fastSimpleUUID());
+
         //生成类似：5b9e306a4df4f8c54a39fb0c
         String id1 = ObjectId.next();
         System.out.println(id1);

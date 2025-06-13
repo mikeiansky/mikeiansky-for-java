@@ -23,6 +23,15 @@ public class ReactorFluxDemo {
         Flux<String> seq2 = Flux.fromIterable(iterable);
         seq2.subscribe(System.out::println);
 
+        System.out.println(" ==================== ");
+
+
+
+        Flux.just(1, 2, 3, 4, 5)
+                .take(2)
+                .doOnNext(System.out::println)
+                .subscribe();
+
     }
 
 }
