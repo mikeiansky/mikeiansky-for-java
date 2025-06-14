@@ -36,7 +36,15 @@ public class ReactorIODemo {
                     System.out.println("value: " + value + " , thread name : " + Thread.currentThread().getName());
                 })
                 .block();
-        System.out.println("result:"+result);
+        System.out.println("result1:"+result);
+
+        result = Mono.just("world")
+                .subscribeOn(Schedulers.parallel())
+                .doOnNext(value->{
+                    System.out.println("value: " + value + " , thread name : " + Thread.currentThread().getName());
+                })
+                .block();
+        System.out.println("result2:"+result);
 
         Flux.just("hello", "world", "mike")
                         .doOnNext(value->{
