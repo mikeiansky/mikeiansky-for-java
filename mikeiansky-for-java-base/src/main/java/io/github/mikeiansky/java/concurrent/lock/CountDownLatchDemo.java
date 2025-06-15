@@ -21,7 +21,13 @@ public class CountDownLatchDemo {
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 } finally {
+                    System.out.println(countDownLatch.getCount());
                     countDownLatch.countDown(); // 任务完成，计数器减一
+                    System.out.println(countDownLatch.getCount());
+                    countDownLatch.countDown(); // 任务完成，计数器减一
+                    System.out.println(countDownLatch.getCount());
+                    countDownLatch.countDown(); // 任务完成，计数器减一
+                    System.out.println(countDownLatch.getCount());
                 }
             }).start();
         }

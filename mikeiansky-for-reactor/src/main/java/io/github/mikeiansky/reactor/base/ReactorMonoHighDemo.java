@@ -22,8 +22,9 @@ public class ReactorMonoHighDemo {
     public static void main(String[] args) {
 
         Mono<? extends Tag> mono = Mono.create(sink -> {
+            System.out.println("create active ... ");
             sink.success(new Tag("hello"));
-            sink.error(new RuntimeException("none"));
+//            sink.error(new RuntimeException("none"));
         });
 
         mono.subscribe(new Consumer<Tag>() {
