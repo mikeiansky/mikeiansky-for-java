@@ -9,7 +9,7 @@ import java.util.function.Consumer;
  * @date 2025/6/14
  * @desc
  **/
-public class ReactorMonoHighDemo {
+public class MonoCreateDemo {
 
     public static class Tag {
         private final String name;
@@ -21,7 +21,7 @@ public class ReactorMonoHighDemo {
 
     public static void main(String[] args) {
 
-        Mono<? extends Tag> mono = Mono.create(sink -> {
+        Mono<Tag> mono = Mono.create(sink -> {
             System.out.println("create active ... ");
             sink.success(new Tag("hello"));
 //            sink.error(new RuntimeException("none"));

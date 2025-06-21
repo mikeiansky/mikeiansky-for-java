@@ -22,7 +22,7 @@ public class MonoContextDemo {
         Mono.just("Hello")
                 .flatMap(s -> Mono.deferContextual(ctx -> {
                     System.out.println("ctx : " + ctx);
-                    return Mono.just(s + "<-->" + ctx.getOrEmpty(key+"-01"));
+                    return Mono.just(s + "<-->" + ctx.getOrEmpty(key ));
                 }))
 //                .contextWrite(ctx -> ctx.put(key, "World"))
                 .contextWrite(ctx -> ctx.put(key, "mike"))
