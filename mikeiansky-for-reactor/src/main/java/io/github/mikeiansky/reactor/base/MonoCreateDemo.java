@@ -25,6 +25,8 @@ public class MonoCreateDemo {
             System.out.println("create active ... ");
             sink.success(new Tag("hello"));
 //            sink.error(new RuntimeException("none"));
+
+
         });
 
         mono.subscribe(new Consumer<Tag>() {

@@ -14,14 +14,15 @@ public class MonoBaseDemo {
     public static void main(String[] args) {
 
         Mono.just("hello")
+//                .doOnSubscribe(s -> System.out.println("aa doOnSubscribe ... : " + s))
                         .subscribe(System.out::println);
 
-        Mono.just("hello")
-                .subscribe(new CoreSubscriber<String>() {
+        Mono.just("world")
+                .subscribe(new CoreSubscriber<>() {
                     @Override
                     public void onSubscribe(Subscription s) {
                         System.out.println("on subscribe .... : " + s);
-                        s.request(1);
+//                        s.request(1);
                     }
 
                     @Override
