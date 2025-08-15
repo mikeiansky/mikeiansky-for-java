@@ -19,7 +19,7 @@ public class FutureDemo {
             }
             System.out.println("Task 1 is running in thread: " + Thread.currentThread().getName());
         });
-        future.get();
+        System.out.println(future.get());
         System.out.println("complete task 1");
 
         Future future2 = executor.submit(()->{
@@ -38,7 +38,7 @@ public class FutureDemo {
                     throw new RuntimeException(e);
                 }
             }
-        }, 100);
+        }, 101);
 
         System.out.println(future3.get());
         System.out.println("complete task 3");
