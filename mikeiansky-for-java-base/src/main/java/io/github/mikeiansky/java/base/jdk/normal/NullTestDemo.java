@@ -14,6 +14,7 @@ public class NullTestDemo {
         Long l3 = 11111111l;
         System.out.println(l1 == l2);
         System.out.println(l1.equals(l3));
+        System.out.println(System.getenv("path"));
     }
 
 }
