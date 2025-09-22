@@ -7,6 +7,10 @@ package io.github.mikeiansky.java.base.jdk.reflect;
  **/
 public class BaseReflectDemo {
 
+    public enum Type {
+        COLLECTION();
+    }
+
     public static class One {
 
         public static class OneStaticInner  {}
@@ -21,12 +25,17 @@ public class BaseReflectDemo {
 
         private static class OnePrivateFinalInner {}
 
+        private static String type;
+
+
         public One() {
             Object obj1 = new Object();
             System.out.println(obj1.getClass());
             Object obj2 = new Object(){
 
             };
+
+            String collection = "";
             System.out.println(obj2.getClass());
             System.out.println(obj2.getClass().getDeclaredClasses().length);
             System.out.println(obj2.getClass().getSuperclass());
