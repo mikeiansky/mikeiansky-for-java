@@ -1,8 +1,5 @@
 package io.github.mikeiansky.grpc;
 
-import com.example.grpc.HelloRequest;
-import com.example.grpc.HelloResponse;
-import com.example.grpc.HelloServiceGrpc;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
