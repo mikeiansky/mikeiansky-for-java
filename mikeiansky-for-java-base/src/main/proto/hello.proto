@@ -6,8 +6,12 @@ option java_package = "io.github.mikeiansky.grpc";
 option java_outer_classname = "HelloProto";
 option go_package="mikeian-for-golang/app/grpc/api";
 
+// grpc 服务需要这里来进行统一的定位
+package proto;
+
 // 定义服务
 service HelloService {
+  // grpc 中不能进行重载
   rpc SayHello (HelloRequest) returns (HelloResponse);
 }
 

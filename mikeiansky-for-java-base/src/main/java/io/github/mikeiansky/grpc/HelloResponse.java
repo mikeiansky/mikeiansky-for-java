@@ -10,12 +10,12 @@ package io.github.mikeiansky.grpc;
  * 响应消息
  * </pre>
  *
- * Protobuf type {@code HelloResponse}
+ * Protobuf type {@code proto.HelloResponse}
  */
 @com.google.protobuf.Generated
 public final class HelloResponse extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:HelloResponse)
+    // @@protoc_insertion_point(message_implements:proto.HelloResponse)
     HelloResponseOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
@@ -37,13 +37,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloResponse_descriptor;
+    return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloResponse_fieldAccessorTable
+    return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             io.github.mikeiansky.grpc.HelloResponse.class, io.github.mikeiansky.grpc.HelloResponse.Builder.class);
   }
@@ -248,21 +248,21 @@ private static final long serialVersionUID = 0L;
    * 响应消息
    * </pre>
    *
-   * Protobuf type {@code HelloResponse}
+   * Protobuf type {@code proto.HelloResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:HelloResponse)
+      // @@protoc_insertion_point(builder_implements:proto.HelloResponse)
       io.github.mikeiansky.grpc.HelloResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloResponse_descriptor;
+      return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloResponse_fieldAccessorTable
+      return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.github.mikeiansky.grpc.HelloResponse.class, io.github.mikeiansky.grpc.HelloResponse.Builder.class);
     }
@@ -288,7 +288,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloResponse_descriptor;
+      return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloResponse_descriptor;
     }
 
     @java.lang.Override
@@ -457,10 +457,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:HelloResponse)
+    // @@protoc_insertion_point(builder_scope:proto.HelloResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:HelloResponse)
+  // @@protoc_insertion_point(class_scope:proto.HelloResponse)
   private static final io.github.mikeiansky.grpc.HelloResponse DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new io.github.mikeiansky.grpc.HelloResponse();

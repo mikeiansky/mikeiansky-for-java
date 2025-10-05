@@ -27,15 +27,15 @@ public final class HelloProto extends com.google.protobuf.GeneratedFile {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_HelloRequest_descriptor;
+    internal_static_proto_HelloRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_HelloRequest_fieldAccessorTable;
+      internal_static_proto_HelloRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_HelloResponse_descriptor;
+    internal_static_proto_HelloResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_HelloResponse_fieldAccessorTable;
+      internal_static_proto_HelloResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -45,28 +45,29 @@ public final class HelloProto extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032src/main/proto/hello.proto\"\034\n\014HelloReq" +
-      "uest\022\014\n\004name\030\001 \001(\t\" \n\rHelloResponse\022\017\n\007m" +
-      "essage\030\001 \001(\t29\n\014HelloService\022)\n\010SayHello" +
-      "\022\r.HelloRequest\032\016.HelloResponseBJ\n\031io.gi" +
-      "thub.mikeiansky.grpcB\nHelloProtoP\001Z\037mike" +
-      "ian-for-golang/app/grpc/apib\006proto3"
+      "\n\032src/main/proto/hello.proto\022\005proto\"\034\n\014H" +
+      "elloRequest\022\014\n\004name\030\001 \001(\t\" \n\rHelloRespon" +
+      "se\022\017\n\007message\030\001 \001(\t2E\n\014HelloService\0225\n\010S" +
+      "ayHello\022\023.proto.HelloRequest\032\024.proto.Hel" +
+      "loResponseBJ\n\031io.github.mikeiansky.grpcB" +
+      "\nHelloProtoP\001Z\037mikeian-for-golang/app/gr" +
+      "pc/apib\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_HelloRequest_descriptor =
+    internal_static_proto_HelloRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_HelloRequest_fieldAccessorTable = new
+    internal_static_proto_HelloRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_HelloRequest_descriptor,
+        internal_static_proto_HelloRequest_descriptor,
         new java.lang.String[] { "Name", });
-    internal_static_HelloResponse_descriptor =
+    internal_static_proto_HelloResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_HelloResponse_fieldAccessorTable = new
+    internal_static_proto_HelloResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_HelloResponse_descriptor,
+        internal_static_proto_HelloResponse_descriptor,
         new java.lang.String[] { "Message", });
     descriptor.resolveAllFeaturesImmutable();
   }

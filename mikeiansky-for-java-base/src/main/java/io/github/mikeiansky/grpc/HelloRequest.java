@@ -10,12 +10,12 @@ package io.github.mikeiansky.grpc;
  * 请求消息
  * </pre>
  *
- * Protobuf type {@code HelloRequest}
+ * Protobuf type {@code proto.HelloRequest}
  */
 @com.google.protobuf.Generated
 public final class HelloRequest extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:HelloRequest)
+    // @@protoc_insertion_point(message_implements:proto.HelloRequest)
     HelloRequestOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
@@ -37,13 +37,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloRequest_descriptor;
+    return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloRequest_fieldAccessorTable
+    return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             io.github.mikeiansky.grpc.HelloRequest.class, io.github.mikeiansky.grpc.HelloRequest.Builder.class);
   }
@@ -248,21 +248,21 @@ private static final long serialVersionUID = 0L;
    * 请求消息
    * </pre>
    *
-   * Protobuf type {@code HelloRequest}
+   * Protobuf type {@code proto.HelloRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:HelloRequest)
+      // @@protoc_insertion_point(builder_implements:proto.HelloRequest)
       io.github.mikeiansky.grpc.HelloRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloRequest_descriptor;
+      return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloRequest_fieldAccessorTable
+      return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.github.mikeiansky.grpc.HelloRequest.class, io.github.mikeiansky.grpc.HelloRequest.Builder.class);
     }
@@ -288,7 +288,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.github.mikeiansky.grpc.HelloProto.internal_static_HelloRequest_descriptor;
+      return io.github.mikeiansky.grpc.HelloProto.internal_static_proto_HelloRequest_descriptor;
     }
 
     @java.lang.Override
@@ -457,10 +457,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:HelloRequest)
+    // @@protoc_insertion_point(builder_scope:proto.HelloRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:HelloRequest)
+  // @@protoc_insertion_point(class_scope:proto.HelloRequest)
   private static final io.github.mikeiansky.grpc.HelloRequest DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new io.github.mikeiansky.grpc.HelloRequest();

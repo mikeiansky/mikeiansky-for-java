@@ -7,7 +7,7 @@ package io.github.mikeiansky.grpc;
 
 @com.google.protobuf.Generated
 public interface HelloRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:HelloRequest)
+    // @@protoc_insertion_point(interface_extends:proto.HelloRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

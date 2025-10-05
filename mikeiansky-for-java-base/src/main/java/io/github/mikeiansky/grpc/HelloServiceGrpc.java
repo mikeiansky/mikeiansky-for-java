@@ -27,7 +27,7 @@ public final class HelloServiceGrpc {
 
   private HelloServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "HelloService";
+  public static final String SERVICE_NAME = "proto.HelloService";
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
@@ -49,7 +49,7 @@ public final class HelloServiceGrpc {
               io.grpc.MethodDescriptor.<io.github.mikeiansky.grpc.HelloRequest, io.github.mikeiansky.grpc.HelloResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "HelloService", "SayHello"))
+                  "proto.HelloService", "SayHello"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.github.mikeiansky.grpc.HelloRequest.getDefaultInstance()))
